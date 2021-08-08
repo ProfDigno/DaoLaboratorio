@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="76"/>
+	<queryString>
+		<![CDATA[select o.order_id as orden,
+DATE_FORMAT(o.date_activated, "%W %d-%M-%Y %H:%i") as fec_recepcion,
+DATE_FORMAT(ob.obs_datetime, "%W %d-%M-%Y %H:%i") as fec_emision,
+CONCAT(pn.given_name ,' ',pn.family_name) as paciente ,
+pa1.value as cedula,
+p.gender as genero,
+DATE_FORMAT(p.birthdate, "%d-%m-%Y") as fec_nac,
+CONCAT(YEAR(CURDATE()) - YEAR(p.birthdate),' Año') AS edad,
+(CASE 
+		when (select cn9.name as medico from concept_set cs9,concept_name cn9, orders o9 where cs9.concept_set=155248 and cs9.concept_id=cn9.concept_id and cn9.concept_name_type='SHORT' and cn9.locale='en' and cn9.concept_id=o9.concept_id and o9.encounter_id=o.encounter_id) is null then 'sin ubicacion' 
+		else (select cn9.name as medico from concept_set cs9,concept_name cn9, orders o9 where cs9.concept_set=155248 and cs9.concept_id=cn9.concept_id and cn9.concept_name_type='SHORT' and cn9.locale='en' and cn9.concept_id=o9.concept_id and o9.encounter_id=o.encounter_id) 
+	end) as pedido_de,
+	(CASE 
+		when (select cn9.name as medico from concept_set cs9,concept_name cn9, orders o9 where cs9.concept_set=155247 and cs9.concept_id=cn9.concept_id and cn9.concept_name_type='SHORT' and cn9.locale='en' and cn9.concept_id=o9.concept_id and o9.encounter_id=o.encounter_id) is null then 'sin medico' 
+		else (select cn9.name as medico from concept_set cs9,concept_name cn9, orders o9 where cs9.concept_set=155247 and cs9.concept_id=cn9.concept_id and cn9.concept_name_type='SHORT' and cn9.locale='en' and cn9.concept_id=o9.concept_id and o9.encounter_id=o.encounter_id) 
+	end) as medico,
+cn5.name as sample_estud_lab,
+cn4.name as panel_estud_lab,
+cn.name as estud_lab,
+(CASE 
+        WHEN (select cn3.units from concept_numeric cn3 where cn3.concept_id=cn.concept_id) IS NULL THEN 'texto'
+        ELSE (select cn3.units from concept_numeric cn3 where cn3.concept_id=cn.concept_id)
+    END) AS unidad,
+(CASE 
+        WHEN ob.value_numeric IS not NULL THEN  FORMAT(ob.value_numeric, 1, 'de_DE')
+        WHEN ob.value_text IS not NULL THEN ob.value_text
+        WHEN ob.value_coded IS not NULL THEN (select cn2.name from concept_name cn2 
+        where cn2.concept_id=ob.value_coded and cn2.concept_name_type='FULLY_SPECIFIED')
+        ELSE 'nulo'
+    END) AS resultado,cd.description as valor_referencia
+from orders o, obs ob,encounter e,concept_name cn,concept_name cn4,concept_name cn5,concept_description cd,person p,person_name pn,
+person_attribute pa1,concept_set cs,concept_set cs5,concept c ,concept c5
+where ob.order_id=o.order_id 
+and ob.encounter_id=e.encounter_id 
+and ob.concept_id=cn.concept_id 
+and ob.concept_id=cd.concept_id
+and ob.concept_id=cs.concept_id
+and c.concept_id=cs.concept_set 
+and c.class_id=35
+and cs.concept_set=cn4.concept_id 
+and cn4.concept_name_type='SHORT'
+and cn4.locale='en'
+and ob.concept_id=cs5.concept_id
+and c5.concept_id=cs5.concept_set 
+and c5.class_id=36
+and cs5.concept_set=cn5.concept_id 
+and cn5.concept_name_type='SHORT'
+and cn5.locale='en'
+and e.patient_id=p.person_id 
+and p.person_id=pn.person_id
+and p.person_id=pa1.person_id
+and pa1.person_attribute_type_id=32
+and cn.concept_name_type='FULLY_SPECIFIED'
+and e.encounter_type=8
+and (ob.value_numeric IS not NULL or ob.value_text IS not NULL or ob.value_coded IS not NULL) 
+and (ob.concept_id!=38 and ob.concept_id!=39 and ob.concept_id!=40 and ob.concept_id!=41)
+and ob.order_id=1493
+ORDER BY cs.concept_set asc;]]>
+	</queryString>
+	<field name="orden" class="java.lang.Integer"/>
+	<field name="fec_recepcion" class="java.lang.String"/>
+	<field name="fec_emision" class="java.lang.String"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.String"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="fec_nac" class="java.lang.String"/>
+	<field name="edad" class="java.lang.String"/>
+	<field name="pedido_de" class="java.lang.String"/>
+	<field name="medico" class="java.lang.String"/>
+	<field name="sample_estud_lab" class="java.lang.String"/>
+	<field name="panel_estud_lab" class="java.lang.String"/>
+	<field name="estud_lab" class="java.lang.String"/>
+	<field name="unidad" class="java.lang.String"/>
+	<field name="resultado" class="java.lang.String"/>
+	<field name="valor_referencia" class="java.lang.String"/>
+	<group name="sample_estud_lab">
+		<groupExpression><![CDATA[$F{sample_estud_lab}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement x="0" y="0" width="416" height="18"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sample_estud_lab}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="panel_estud_lab">
+		<groupExpression><![CDATA[$F{panel_estud_lab}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField>
+					<reportElement x="9" y="0" width="301" height="16"/>
+					<textElement>
+						<font size="10" isBold="true" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{panel_estud_lab}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="185" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="181" width="555" height="2"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="81" width="48" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="97" width="48" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orden:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="81" width="41" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="97" width="52" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fec. Nac.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="97" width="32" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="97" width="41" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genero:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="113" width="82" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fec. Recepcion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="82" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fec. Emision:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="81" width="295" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="97" width="82" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{orden}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="81" width="103" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="97" width="76" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fec_nac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="97" width="52" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="97" width="41" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="113" width="164" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fec_recepcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="140" width="164" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fec_emision}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="310" y="113" width="245" height="27"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pedido_de}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="310" y="140" width="245" height="27"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="246" y="113" width="64" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pedido de:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="140" width="64" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="167" width="328" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable Tecnico: Dra. Vicenta Sosa Sosa Reg Nro 2746]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="0" width="189" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estudios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="0" width="103" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resultado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="0" width="36" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unid.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="0" width="139" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Referencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="15" y="0" width="231" height="13"/>
+				<textElement>
+					<font size="8" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estud_lab}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="246" y="0" width="103" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="349" y="0" width="36" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{unidad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="385" y="0" width="170" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_referencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="370" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Los resultados deben ser interpretados exclusivamente por un Medico.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,13 @@
+{
+"nom_sistema":"SAINTER",
+"tel_sistema":"TEL: ",
+"dir_sistema":"DIR: ",
+"fecha_sis":"13-04-2021",
+"tiempo_max_emitido":"60",
+"version":"2.9",
+"user_admin":"5",
+"pass_admin":"3",
+"ana_porc_precio_2":"20",
+"ana_porc_precio_3":"30",
+"venta_negativo":false
+}

@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[select iol.fk_idorden_lab as idorden,
+case when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=3
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null 
+then (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=3
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)
+else '---' end as area,
+case when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=4
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null 
+then (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=4
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)
+else '---' end as seccion,
+case when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=5
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null 
+then (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=5
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)
+else '---' end as gru_valor,
+case when (select ile1.orden as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=5
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null 
+then (select ile1.orden as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=5
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)
+else 0 end as orden,
+case 
+when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=7
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null 
+and (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=8
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null
+then concat(iol.descripcion,
+chr(13),'>>Mues.:',(select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=7
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio),
+chr(13),'>>Met.:',(select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=8
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio))
+
+when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=7
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is null 
+and (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=8
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null
+then concat(iol.descripcion,
+chr(13),'>>Met.:',(select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=8
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio))
+
+when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=7
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null 
+and (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=8
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is null
+then concat(iol.descripcion,
+chr(13),'>>Mues.:',(select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge
+where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio
+and lge.fk_idlab_grupo=7
+and ile1.fk_idlab_estudio=iol.fk_idlab_estudio))
+
+else iol.descripcion end as descrip_estudio,
+case when (iol.es_numerico=true and iol.estado_estudio='PEDIDO') then null
+when (iol.es_testo=true and iol.estado_estudio='PEDIDO') then null
+when (iol.es_predefinido=true and iol.estado_estudio='PEDIDO') then null
+when (iol.es_numerico=true and iol.estado_estudio='CARGADO' and iol.numerico_decimal=0) then TRIM(TRAILING(to_char(iol.valor_numerico,'999G999G999')))
+when (iol.es_numerico=true and iol.estado_estudio='CARGADO' and iol.numerico_decimal=1) then TRIM(TRAILING(to_char(iol.valor_numerico,'999G999G999D9')))
+when (iol.es_numerico=true and iol.estado_estudio='CARGADO' and iol.numerico_decimal=2) then TRIM(TRAILING(to_char(iol.valor_numerico,'999G999G999D99')))
+when (iol.es_testo=true and iol.estado_estudio='CARGADO') then (iol.valor_testo)
+when (iol.es_predefinido=true and iol.estado_estudio='CARGADO') then (select lep.nombre from lab_estudio_predefinido lep where lep.idlab_estudio_predefinido=iol.valor_predefinido)
+else 'mas_tipo' end as resultado,
+iol.unidad as unid, iol.valor_de_referencia as referencia,
+to_char(ol.fecha_inicio,'yyyy-MM-dd HH24:MI') as fec_inicio,to_char(ol.fecha_fin,'yyyy-MM-dd HH24:MI') as fec_fin,
+p1.idpersona as idpac,(p1.nombre||' '||p1.apellido) as paciente,p1.cedula as ci_pac,to_char(p1.fec_nac,'yyyy-MM-dd') as fec_nac_pac ,
+to_char(age(current_date, p1.fec_nac), 'YY"A"-mm"M"-DD"D"') as edad_pac,
+(p2.nombre||' '||p2.apellido) as medico,(p3.nombre||' '||p3.apellido) as nom_respo,p3.registro as regis_respo,olu.nombre as pedido_de
+from item_orden_lab iol, orden_lab ol, persona p1, persona p2, persona p3,orden_lugar olu
+where iol.fk_idorden_lab=5
+and iol.fk_idorden_lab=ol.idorden_lab
+and ol.fk_idorden_lugar=olu.idorden_lugar
+and ol.fk_idpersona1=p1.idpersona
+and ol.fk_idpersona2=p2.idpersona
+and ol.fk_idpersona3=p3.idpersona
+order by 2 desc,3 desc,4 desc,5 asc;]]>
+	</queryString>
+	<field name="idorden" class="java.lang.Integer"/>
+	<field name="area" class="java.lang.String"/>
+	<field name="seccion" class="java.lang.String"/>
+	<field name="gru_valor" class="java.lang.String"/>
+	<field name="orden" class="java.lang.Integer"/>
+	<field name="descrip_estudio" class="java.lang.String"/>
+	<field name="resultado" class="java.lang.String"/>
+	<field name="unid" class="java.lang.String"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="fec_inicio" class="java.lang.String"/>
+	<field name="fec_fin" class="java.lang.String"/>
+	<field name="idpac" class="java.lang.Integer"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="ci_pac" class="java.lang.String"/>
+	<field name="fec_nac_pac" class="java.lang.String"/>
+	<field name="edad_pac" class="java.lang.String"/>
+	<field name="medico" class="java.lang.String"/>
+	<field name="nom_respo" class="java.lang.String"/>
+	<field name="regis_respo" class="java.lang.Integer"/>
+	<field name="pedido_de" class="java.lang.String"/>
+	<group name="area">
+		<groupExpression><![CDATA[$F{area}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="0" width="480" height="17" forecolor="#000000"/>
+					<textElement>
+						<font size="14" isBold="true" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="seccion">
+		<groupExpression><![CDATA[$F{seccion}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField>
+					<reportElement style="SubTitle" x="5" y="0" width="460" height="14" forecolor="#000000"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{seccion}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="gru_valor">
+		<groupExpression><![CDATA[$F{gru_valor}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField>
+					<reportElement x="10" y="0" width="304" height="14"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{gru_valor}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="188" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="185" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="15" y="170" width="175" height="12" forecolor="#000000"/>
+				<textElement>
+					<font size="10" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="198" y="170" width="123" height="12" forecolor="#000000"/>
+				<textElement>
+					<font size="10" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Resultado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="321" y="170" width="39" height="12" forecolor="#000000"/>
+				<textElement>
+					<font size="10" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[unid]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="360" y="170" width="192" height="12" forecolor="#000000"/>
+				<textElement>
+					<font size="10" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Intervalos Biologicos de Referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="10" y="90" width="46" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="56" y="90" width="249" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="10" y="75" width="35" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Orden:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="45" y="75" width="73" height="15"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idorden}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="5" y="105" width="46" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="51" y="105" width="94" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idpac}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="170" y="105" width="14" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[CI:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="184" y="105" width="98" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ci_pac}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="282" y="105" width="55" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Fec. Nac.:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="337" y="105" width="83" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_nac_pac}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="420" y="105" width="32" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="452" y="105" width="104" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edad_pac}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="5" y="120" width="55" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Fec. Inicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="60" y="120" width="110" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_inicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="170" y="120" width="44" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Fec. Fin:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="214" y="120" width="133" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_fin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="4" y="136" width="47" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Medico:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="51" y="136" width="197" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="201" y="151" width="111" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Responsable Tecnico:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="312" y="151" width="140" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_respo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="452" y="151" width="44" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Reg N°:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="496" y="151" width="60" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{regis_respo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="5" y="151" width="63" height="15" forecolor="#000000"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Pedido de:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="68" y="151" width="133" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pedido_de}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="15" y="0" width="175" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descrip_estudio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="197" y="0" width="124" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="321" y="0" width="39" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unid}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="360" y="0" width="195" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="4" width="391" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[*Los resultados deben ser interpretados exclusivamente por un Medico.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="511" y="0" width="40" height="20" forecolor="#736343"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Column header" x="431" y="0" width="80" height="20" forecolor="#736343"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="1" width="197" height="20" forecolor="#736343"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

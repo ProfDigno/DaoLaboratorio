@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select o.order_id as orden,
+DATE_FORMAT(o.date_activated, "%W %d-%M-%Y %H:%i") as fec_recepcion,
+DATE_FORMAT(ob.obs_datetime, "%W %d-%M-%Y %H:%i") as fec_emision,
+CONCAT(pn.given_name ,' ',pn.family_name) as paciente ,
+pa1.value as cedula,
+p.gender as genero,p.birthdate as fec_nac,
+YEAR(CURDATE()) - YEAR(p.birthdate) AS edad,
+cn5.name as sample_estud_lab,
+cn4.name as panel_estud_lab,
+cn.name as estud_lab,
+(CASE 
+        WHEN (select cn3.units from concept_numeric cn3 where cn3.concept_id=cn.concept_id) IS NULL THEN 'texto'
+        ELSE (select cn3.units from concept_numeric cn3 where cn3.concept_id=cn.concept_id)
+    END) AS unidad,
+(CASE 
+        WHEN ob.value_numeric IS not NULL THEN  FORMAT(ob.value_numeric, 1, 'de_DE')
+        WHEN ob.value_text IS not NULL THEN ob.value_text
+        WHEN ob.value_coded IS not NULL THEN (select cn2.name from concept_name cn2 
+        where cn2.concept_id=ob.value_coded and cn2.concept_name_type='FULLY_SPECIFIED')
+        ELSE 'nulo'
+    END) AS resultado,cd.description as valor_referencia
+from orders o, obs ob,encounter e,concept_name cn,concept_name cn4,concept_name cn5,concept_description cd,person p,person_name pn,
+person_attribute pa1,concept_set cs,concept_set cs5,concept c ,concept c5
+where ob.order_id=o.order_id 
+and ob.encounter_id=e.encounter_id 
+and ob.concept_id=cn.concept_id 
+and ob.concept_id=cd.concept_id
+and ob.concept_id=cs.concept_id
+and c.concept_id=cs.concept_set 
+and c.class_id=35
+and cs.concept_set=cn4.concept_id 
+and cn4.concept_name_type='SHORT'
+and cn4.locale='en'
+and ob.concept_id=cs5.concept_id
+and c5.concept_id=cs5.concept_set 
+and c5.class_id=36
+and cs5.concept_set=cn5.concept_id 
+and cn5.concept_name_type='SHORT'
+and cn5.locale='en'
+and e.patient_id=p.person_id 
+and p.person_id=pn.person_id
+and p.person_id=pa1.person_id
+and pa1.person_attribute_type_id=32
+and cn.concept_name_type='FULLY_SPECIFIED'
+and e.encounter_type=8
+and (ob.value_numeric IS not NULL or ob.value_text IS not NULL or ob.value_coded IS not NULL) 
+and (ob.concept_id!=38 and ob.concept_id!=39 and ob.concept_id!=40 and ob.concept_id!=41)
+and ob.order_id=1493
+ORDER BY cs.concept_set asc;]]>
+	</queryString>
+	<field name="orden" class="java.lang.Integer"/>
+	<field name="fec_recepcion" class="java.lang.String"/>
+	<field name="fec_emision" class="java.lang.String"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.String"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="fec_nac" class="java.sql.Date"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="sample_estud_lab" class="java.lang.String"/>
+	<field name="panel_estud_lab" class="java.lang.String"/>
+	<field name="estud_lab" class="java.lang.String"/>
+	<field name="unidad" class="java.lang.String"/>
+	<field name="resultado" class="java.lang.String"/>
+	<field name="valor_referencia" class="java.lang.String"/>
+	<group name="sample_estud_lab">
+		<groupExpression><![CDATA[$F{sample_estud_lab}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement x="0" y="0" width="525" height="18"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sample_estud_lab}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="panel_estud_lab">
+		<groupExpression><![CDATA[$F{panel_estud_lab}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement x="16" y="0" width="509" height="18"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{panel_estud_lab}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="0" width="145" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[estud_lab]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17">
+			<textField>
+				<reportElement x="35" y="0" width="319" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estud_lab}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="31" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch"/>
+	</summary>
+</jasperReport>
