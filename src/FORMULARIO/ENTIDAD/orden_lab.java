@@ -13,11 +13,12 @@ private int C8fk_idpersona2;
 private int C9fk_idpersona3;
 private int C10fk_idorden_lugar;
 private int C11fk_idusuario;
+private int C12nro_documento;
 private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public orden_lab() {
-		setTb_orden_lab("orden_lab");
+		setTb_orden_lab("public.orden_lab");
 		setId_idorden_lab("idorden_lab");
 	}
 	public static String getTb_orden_lab(){
@@ -102,4 +103,18 @@ private static String nom_idtabla;
 	public String toString() {
 		return "orden_lab(" + ",idorden_lab=" + C1idorden_lab + " ,fecha_inicio=" + C2fecha_inicio + " ,fecha_fin=" + C3fecha_fin + " ,estado=" + C4estado + " ,observacion=" + C5observacion + " ,visacion=" + C6visacion + " ,fk_idpersona1=" + C7fk_idpersona1 + " ,fk_idpersona2=" + C8fk_idpersona2 + " ,fk_idpersona3=" + C9fk_idpersona3 + " ,fk_idorden_lugar=" + C10fk_idorden_lugar + " ,fk_idusuario=" + C11fk_idusuario + " )";
 	}
+
+    /**
+     * @return the C12nro_documento
+     */
+    public int getC12nro_documento() {
+        return C12nro_documento;
+    }
+
+    /**
+     * @param C12nro_documento the C12nro_documento to set
+     */
+    public void setC12nro_documento(int C12nro_documento) {
+        this.C12nro_documento = C12nro_documento;
+    }
 }

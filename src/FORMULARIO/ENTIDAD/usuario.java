@@ -11,7 +11,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public usuario() {
-		setTb_usuario("usuario");
+		setTb_usuario("public.usuario");
 		setId_idusuario("idusuario");
 	}
 	public static String getTb_usuario(){

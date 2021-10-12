@@ -38,6 +38,7 @@ private int C12fk_idtipo_seguro;
 private int C13fk_idplan_seguro;
 private int C14fk_iddirec_barrio;
 private int C15fk_iddirec_ciudad;
+private String C16edad;
 private static String nom_tabla;
 private static String nom_idtabla;
 private static String sta_tipo_persona;
@@ -46,7 +47,7 @@ private static String sta_tipo_pers_medico="medico";
 private static String sta_tipo_pers_represent="representante";
 //---------------TABLA-ID---------------
 	public persona() {
-		setTb_persona("persona");
+		setTb_persona("public.persona");
 		setId_idpersona("idpersona");
 	}
 	public static String getTb_persona(){
@@ -176,5 +177,19 @@ private static String sta_tipo_pers_represent="representante";
      */
     public static void setSta_tipo_persona(String aSta_tipo_persona) {
         sta_tipo_persona = aSta_tipo_persona;
+    }
+
+    /**
+     * @return the C16edad
+     */
+    public String getC16edad() {
+        return C16edad;
+    }
+
+    /**
+     * @param C16edad the C16edad to set
+     */
+    public void setC16edad(String C16edad) {
+        this.C16edad = C16edad;
     }
 }

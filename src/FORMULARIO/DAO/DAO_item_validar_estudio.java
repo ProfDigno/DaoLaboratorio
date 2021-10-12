@@ -17,10 +17,10 @@ public class DAO_item_validar_estudio {
 	EvenFecha evefec = new EvenFecha();
 	private String mensaje_insert = "ITEM_VALIDAR_ESTUDIO GUARDADO CORRECTAMENTE";
 	private String mensaje_update = "ITEM_VALIDAR_ESTUDIO MODIFICADO CORECTAMENTE";
-	private String sql_insert = "INSERT INTO item_validar_estudio(iditem_validar_estudio,fk_idlab_estudio,fk_idvalidar_estudio) VALUES (?,?,?);";
-	private String sql_update = "UPDATE item_validar_estudio SET fk_idlab_estudio=?,fk_idvalidar_estudio=? WHERE iditem_validar_estudio=?;";
-	private String sql_select = "SELECT iditem_validar_estudio,fk_idlab_estudio,fk_idvalidar_estudio FROM item_validar_estudio order by 1 desc;";
-	private String sql_cargar = "SELECT iditem_validar_estudio,fk_idlab_estudio,fk_idvalidar_estudio FROM item_validar_estudio WHERE iditem_validar_estudio=";
+	private String sql_insert = "INSERT INTO public.item_validar_estudio(iditem_validar_estudio,fk_idlab_estudio,fk_idvalidar_estudio) VALUES (?,?,?);";
+	private String sql_update = "UPDATE public.item_validar_estudio SET fk_idlab_estudio=?,fk_idvalidar_estudio=? WHERE iditem_validar_estudio=?;";
+	private String sql_select = "SELECT iditem_validar_estudio,fk_idlab_estudio,fk_idvalidar_estudio FROM public.item_validar_estudio order by 1 desc;";
+	private String sql_cargar = "SELECT iditem_validar_estudio,fk_idlab_estudio,fk_idvalidar_estudio FROM public.item_validar_estudio WHERE iditem_validar_estudio=";
 	public void insertar_item_validar_estudio(Connection conn, item_validar_estudio ivali){
 		ivali.setC1iditem_validar_estudio(eveconn.getInt_ultimoID_mas_uno(conn, ivali.getTb_item_validar_estudio(), ivali.getId_iditem_validar_estudio()));
 		String titulo = "insertar_item_validar_estudio";

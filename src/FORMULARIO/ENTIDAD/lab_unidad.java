@@ -8,7 +8,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public lab_unidad() {
-		setTb_lab_unidad("lab_unidad");
+		setTb_lab_unidad("public.lab_unidad");
 		setId_idlab_unidad("idlab_unidad");
 	}
 	public static String getTb_lab_unidad(){

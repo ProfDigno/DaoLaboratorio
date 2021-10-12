@@ -8,7 +8,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public direc_barrio() {
-		setTb_direc_barrio("direc_barrio");
+		setTb_direc_barrio("public.direc_barrio");
 		setId_iddirec_barrio("iddirec_barrio");
 	}
 	public static String getTb_direc_barrio(){

@@ -17,10 +17,10 @@ public class DAO_direc_ciudad {
 	EvenFecha evefec = new EvenFecha();
 	private String mensaje_insert = "DIREC_CIUDAD GUARDADO CORRECTAMENTE";
 	private String mensaje_update = "DIREC_CIUDAD MODIFICADO CORECTAMENTE";
-	private String sql_insert = "INSERT INTO direc_ciudad(iddirec_ciudad,nombre) VALUES (?,?);";
-	private String sql_update = "UPDATE direc_ciudad SET nombre=? WHERE iddirec_ciudad=?;";
-	private String sql_select = "SELECT iddirec_ciudad,nombre FROM direc_ciudad order by 1 desc;";
-	private String sql_cargar = "SELECT iddirec_ciudad,nombre FROM direc_ciudad WHERE iddirec_ciudad=";
+	private String sql_insert = "INSERT INTO public.direc_ciudad(iddirec_ciudad,nombre) VALUES (?,?);";
+	private String sql_update = "UPDATE public.direc_ciudad SET nombre=? WHERE iddirec_ciudad=?;";
+	private String sql_select = "SELECT iddirec_ciudad,nombre FROM public.direc_ciudad order by 1 desc;";
+	private String sql_cargar = "SELECT iddirec_ciudad,nombre FROM public.direc_ciudad WHERE iddirec_ciudad=";
 	public void insertar_direc_ciudad(Connection conn, direc_ciudad dciu){
 		dciu.setC1iddirec_ciudad(eveconn.getInt_ultimoID_mas_uno(conn, dciu.getTb_direc_ciudad(), dciu.getId_iddirec_ciudad()));
 		String titulo = "insertar_direc_ciudad";

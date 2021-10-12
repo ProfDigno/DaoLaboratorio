@@ -17,10 +17,10 @@ public class DAO_plan_seguro {
 	EvenFecha evefec = new EvenFecha();
 	private String mensaje_insert = "PLAN_SEGURO GUARDADO CORRECTAMENTE";
 	private String mensaje_update = "PLAN_SEGURO MODIFICADO CORECTAMENTE";
-	private String sql_insert = "INSERT INTO plan_seguro(idplan_seguro,nombre) VALUES (?,?);";
-	private String sql_update = "UPDATE plan_seguro SET nombre=? WHERE idplan_seguro=?;";
-	private String sql_select = "SELECT idplan_seguro,nombre FROM plan_seguro order by 1 desc;";
-	private String sql_cargar = "SELECT idplan_seguro,nombre FROM plan_seguro WHERE idplan_seguro=";
+	private String sql_insert = "INSERT INTO public.plan_seguro(idplan_seguro,nombre) VALUES (?,?);";
+	private String sql_update = "UPDATE public.plan_seguro SET nombre=? WHERE idplan_seguro=?;";
+	private String sql_select = "SELECT idplan_seguro,nombre FROM public.plan_seguro order by 1 desc;";
+	private String sql_cargar = "SELECT idplan_seguro,nombre FROM public.plan_seguro WHERE idplan_seguro=";
 	public void insertar_plan_seguro(Connection conn, plan_seguro p_seg){
 		p_seg.setC1idplan_seguro(eveconn.getInt_ultimoID_mas_uno(conn, p_seg.getTb_plan_seguro(), p_seg.getId_idplan_seguro()));
 		String titulo = "insertar_plan_seguro";

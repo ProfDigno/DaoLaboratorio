@@ -87,13 +87,25 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         cargar_lab_grupo();
     }
 
-    private void buscar_estudio(JTextField txtbuscar, int fk_idlab_grupo) {
+    private void buscar_estudio_grupos(JTextField txtbuscar, int fk_idlab_grupo) {
+        if (txtbuscar.getText().trim().length() > 0) {
         String buscar = txtbuscar.getText();
-        String filtro = " and (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge\n"
+        String filtro = " and (select lge.nombre as gru_valor "
+                + "from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
                 + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
-                + "and lge.fk_idlab_grupo="+fk_idlab_grupo
+                + "and lge.fk_idlab_grupo=" + fk_idlab_grupo
                 + " and ile1.fk_idlab_estudio=les.idlab_estudio) ilike'%" + buscar + "%' \n";
         esdao.actualizar_tabla_lab_estudio(conn, tbllab, filtro);
+        }
+    }
+
+    private void buscar_estudio_nombre(JTextField txtbuscar) {
+
+        if (txtbuscar.getText().trim().length() > 0) {
+            String buscar = txtbuscar.getText();
+            String filtro = " and les.nombre_completo ilike'%" + buscar + "%' \n";
+            esdao.actualizar_tabla_lab_estudio(conn, tbllab, filtro);
+        }
     }
 
     private void boton_guardar_item_lab_estudio() {
@@ -155,7 +167,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
             suma_grupo_guardado = suma_grupo_guardado + txttabla_metodo.getText() + "\n";
         }
         JOptionPane.showMessageDialog(null, "GRUPOS DE ESTUDIOS GRADADOS\n" + suma_grupo_guardado);
-        esdao.actualizar_tabla_lab_estudio(conn, tbllab, "");
+        actualizar_lab_estudio_buscar();
     }
 
     private void cargar_lab_grupo() {
@@ -194,11 +206,20 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         if (evejtf.getBoo_JTextarea_vacio(txtAvalor_de_referencia, "DEBE CARGAR UN VALOR DE REFERENCIA")) {
             return false;
         }
+        if (evejtf.getBoo_JTextField_vacio(txtsku, "DEBE CARGAR UN SKU\nQUE SEA IGUAL AL IDEMPIERE")) {
+            return false;
+        }
         if (fk_idlab_unidad == 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA UNIDAD");
             return false;
         }
         return true;
+    }
+
+    private void boton_eliminar_item_lab_estudio(int fk_idlab_estudio, int fk_idlab_grupo) {
+        ilesBO.delete_item_lab_estudio_orden_por_estudio(conn, fk_idlab_estudio, fk_idlab_grupo);
+        seleccionar_tabla_lab_estudio();
+        esdao.actualizar_tabla_lab_estudio(conn, tbllab, "");
     }
 
     private int getDecimal() {
@@ -245,10 +266,20 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
             estu.setC9valor_de_referencia(txtAvalor_de_referencia.getText());
             estu.setC10fk_idlab_unidad(fk_idlab_unidad);
             estu.setC11fk_idlab_grupo_estudio(idlab_grupo_estudio_panel);
+            estu.setC12sku(Integer.parseInt(txtsku.getText()));
+            estu.setC13se_carga(jCse_carga.isSelected());
+            estu.setC14concepto_id(Integer.parseInt(txtconceptoid.getText()));
+            estu.setC15es_estudio(jCes_estudio.isSelected());
             esBO.insertar_lab_estudio(estu, tbllab);
             reestableser();
             esdao.actualizar_tabla_lab_estudio(conn, tbllab, "");
         }
+    }
+
+    private void boton_eliminar_panel() {
+        txtbuscar_panel.setText(null);
+        idlab_grupo_estudio_panel = 0;
+        boton_editar();
     }
 
     private void boton_editar() {
@@ -264,10 +295,27 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
             estu.setC9valor_de_referencia(txtAvalor_de_referencia.getText());
             estu.setC10fk_idlab_unidad(fk_idlab_unidad);
             estu.setC11fk_idlab_grupo_estudio(idlab_grupo_estudio_panel);
+            estu.setC12sku(Integer.parseInt(txtsku.getText()));
+            estu.setC13se_carga(jCse_carga.isSelected());
+            estu.setC14concepto_id(Integer.parseInt(txtconceptoid.getText()));
+            estu.setC15es_estudio(jCes_estudio.isSelected());
             esBO.update_lab_estudio(estu, tbllab);
             reestableser();
-            esdao.actualizar_tabla_lab_estudio(conn, tbllab, "");
+            actualizar_lab_estudio_buscar();
         }
+    }
+
+    private void actualizar_lab_estudio_buscar() {
+//
+//        if (txtbuscar_estudio.getText().trim().length() == 0) {
+//            esdao.actualizar_tabla_lab_estudio(conn, tbllab, "");
+//        } else {
+//            
+//        }
+        buscar_estudio_nombre(txtbuscar_estudio);
+        buscar_estudio_grupos(txtbuscar_area, tbl_or.getIdtabla_area());
+        buscar_estudio_grupos(txtbuscar_seccion, tbl_or.getIdtabla_seccion());
+        buscar_estudio_grupos(txtbuscar_grupovalor, tbl_or.getIdtabla_grupo_valor());
     }
 
     private void seleccionar_tabla_lab_estudio() {
@@ -276,12 +324,16 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         txtid.setText(String.valueOf(estu.getC1idlab_estudio()));
         txtnombre_completo.setText(estu.getC2nombre_completo());
         txtnombre_corto.setText(estu.getC3nombre_corto());
+        txtsku.setText(String.valueOf(estu.getC12sku()));
         int deci = estu.getC4numerico_decimal();
         cargar_decimal(deci);
         jRes_numerico.setSelected(estu.getC5es_numerico());
         jRes_testo.setSelected(estu.getC6es_testo());
         jRes_predefinido.setSelected(estu.getC7es_predefinido());
         jCes_validado.setSelected(estu.getC8es_validado());
+        jCse_carga.setSelected(estu.isC13se_carga());
+        txtconceptoid.setText(String.valueOf(estu.getC14concepto_id()));
+        jCes_estudio.setSelected(estu.isC15es_estudio());
         bloquear_predefinido(estu.getC7es_predefinido());
         ilespDAO.actualizar_tabla_item_lab_estudio_predefinido(conn, tbllab_item_estudio_predefinido, idlab_estudio);
         udao.cargar_lab_unidad(conn, unid, estu.getC10fk_idlab_unidad());
@@ -291,6 +343,8 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         if (estu.getC11fk_idlab_grupo_estudio() > 0) {
             lgruedao.cargar_lab_grupo_estudio(conn, lgrue, estu.getC11fk_idlab_grupo_estudio());
             txtbuscar_panel.setText("(" + lgrue.getC1idlab_grupo_estudio() + ")-" + lgrue.getC2nombre());
+        } else {
+            txtbuscar_panel.setText(null);
         }
         cargar_grupo_seleccion(txttabla_departamento, idlab_estudio, tbl_or.getIdtabla_departamento());
         cargar_grupo_seleccion(txttabla_area, idlab_estudio, tbl_or.getIdtabla_area());
@@ -303,6 +357,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
 
         btnguardar.setEnabled(false);
         btneditar.setEnabled(true);
+//        txttabla_departamento.requestFocus();
     }
 
     private void bloquear_predefinido(boolean blo) {
@@ -314,7 +369,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
 
     void cargar_grupo_seleccion(JTextField txttabla, int idlab_estudio, int idtabla_1) {
         String sql = "select (lges.nombre||'-('||lg.nombre||')') as grupo \n"
-                + "from item_lab_estudio iles,lab_grupo_estudio lges,lab_grupo lg\n"
+                + "from public.item_lab_estudio iles,public.lab_grupo_estudio lges,public.lab_grupo lg\n"
                 + "where iles.fk_idlab_grupo_estudio=lges.idlab_grupo_estudio\n"
                 + "and lges.fk_idlab_grupo=lg.idlab_grupo\n"
                 + "and lg.idlab_grupo=" + idtabla_1
@@ -326,7 +381,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
     private int getIntcargar_grupo_seleccion(int idlab_estudio, int idtabla_1) {
         int id = 0;
         String sql2 = "select iles.fk_idlab_grupo_estudio as grupo \n"
-                + "from item_lab_estudio iles,lab_grupo_estudio lges,lab_grupo lg\n"
+                + "from public.item_lab_estudio iles,public.lab_grupo_estudio lges,public.lab_grupo lg\n"
                 + "where iles.fk_idlab_grupo_estudio=lges.idlab_grupo_estudio\n"
                 + "and lges.fk_idlab_grupo=lg.idlab_grupo\n"
                 + "and lg.idlab_grupo=" + idtabla_1
@@ -339,9 +394,14 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         txtid.setText(null);
         txtnombre_completo.setText(null);
         txtnombre_corto.setText(null);
-        txtAvalor_de_referencia.setText(null);
+        txtAvalor_de_referencia.setText("*");
+        txtbuscar_panel.setText(null);
+        txtsku.setText("0");
+        txtconceptoid.setText("0");
         txtorden_predefinido.setText("1");
+        jCse_carga.setSelected(true);
         jRdeci_0.setSelected(true);
+        jCes_estudio.setSelected(true);
         jRes_numerico.setSelected(true);
         fk_idlab_unidad = 0;
         idlab_grupo_estudio_panel = 0;
@@ -361,33 +421,33 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
 
     private int cargar_idtabla(JTextField txttabla, JList jLista) {
         int idlab_grupo_estudio = eveconn.getInt_seleccionar_JLista(conn, txttabla, jLista, false,
-                "lab_grupo_estudio ges,lab_grupo gru",
+                "public.lab_grupo_estudio ges,public.lab_grupo gru",
                 "ges.fk_idlab_grupo=gru.idlab_grupo and concat(ges.nombre,'-(',gru.nombre,')')",
                 "(ges.nombre||'-('||gru.nombre||')') as grupo_estudio", "grupo_estudio", "idlab_grupo_estudio");
         return idlab_grupo_estudio;
     }
 
     private void buscar_cargar_Jlista(JTextField txttabla, JList jLista, int idtabla) {
-        eveconn.buscar_cargar_Jlista(conn, txttabla, jLista, "lab_grupo_estudio ges,lab_grupo gru",
+        eveconn.buscar_cargar_Jlista(conn, txttabla, jLista, "public.lab_grupo_estudio ges,public.lab_grupo gru",
                 "ges.fk_idlab_grupo=gru.idlab_grupo and ges.fk_idlab_grupo=" + idtabla + " and ges.nombre",
                 "(ges.nombre||'-('||gru.nombre||')') as nombre", 5);
     }
 
     private void buscar_cargar_Jlista_predefinido() {
-        eveconn.buscar_cargar_Jlista(conn, txtnombre_predefinido, jLista_predefinido, "lab_estudio_predefinido",
+        eveconn.buscar_cargar_Jlista(conn, txtnombre_predefinido, jLista_predefinido, "public.lab_estudio_predefinido",
                 "nombre",
                 "(idlab_estudio_predefinido||'-('||nombre||')') as nombre", 5);
     }
 
     private void buscar_cargar_Jlista_unidad() {
-        eveconn.buscar_cargar_Jlista(conn, txtbuscar_unidad, jLista_unidad, "lab_unidad",
+        eveconn.buscar_cargar_Jlista(conn, txtbuscar_unidad, jLista_unidad, "public.lab_unidad",
                 "nombre",
                 "(idlab_unidad||'-('||nombre||')') as nombre", 5);
     }
 
     private int cargar_idtabla_predefinido() {
         int idlab_estudio_predefinido = eveconn.getInt_seleccionar_JLista(conn, txtnombre_predefinido, jLista_predefinido, false,
-                "lab_estudio_predefinido",
+                "public.lab_estudio_predefinido",
                 "concat(idlab_estudio_predefinido,'-(',nombre,')')",
                 "(idlab_estudio_predefinido||'-('||nombre||')') as nombre", "nombre", "idlab_estudio_predefinido");
         return idlab_estudio_predefinido;
@@ -395,7 +455,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
 
     private int cargar_idtabla_unidad() {
         int idlab_unidad = eveconn.getInt_seleccionar_JLista(conn, txtbuscar_unidad, jLista_unidad, false,
-                "lab_unidad",
+                "public.lab_unidad",
                 "concat(idlab_unidad,'-(',nombre,')')",
                 "(idlab_unidad||'-('||nombre||')') as nombre", "nombre", "idlab_unidad");
         return idlab_unidad;
@@ -459,7 +519,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
             ilespBO.insertar_item_lab_estudio_predefinido(ilesp);
             ilespDAO.actualizar_tabla_item_lab_estudio_predefinido(conn, tbllab_item_estudio_predefinido, idlab_estudio);
             txtnombre_predefinido.setText(null);
-            String Sorden = String.valueOf(eveconn.getInt_SumarOrden_mas_uno(conn, "item_lab_estudio_predefinido", "orden", "fk_idlab_estudio", idlab_estudio));
+            String Sorden = String.valueOf(eveconn.getInt_SumarOrden_mas_uno(conn, "public.item_lab_estudio_predefinido", "orden", "fk_idlab_estudio", idlab_estudio));
             txtorden_predefinido.setText(Sorden);
 //            txtorden_predefinido.setText("0");
             txtnombre_predefinido.requestFocus();
@@ -529,6 +589,18 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         jPanel8 = new javax.swing.JPanel();
         jLista_panel = new javax.swing.JList<>();
         txtbuscar_panel = new javax.swing.JTextField();
+        btneliminar_panel = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtsku = new javax.swing.JTextField();
+        jCse_carga = new javax.swing.JCheckBox();
+        jLabel11 = new javax.swing.JLabel();
+        txtconceptoid = new javax.swing.JTextField();
+        jCes_estudio = new javax.swing.JCheckBox();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tbllab3 = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         panel_tabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbllab = new javax.swing.JTable();
@@ -547,6 +619,13 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         txttabla_muestra = new javax.swing.JTextField();
         lbltabla_7 = new javax.swing.JLabel();
         txttabla_metodo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jLista_aux = new javax.swing.JList<>();
         btnguardar_relaciones = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
@@ -558,6 +637,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         txtbuscar_grupovalor = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtbuscar_estudio = new javax.swing.JTextField();
+        btnlimpiar_buscar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -653,13 +733,28 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
 
         gru_tDato.add(jRes_numerico);
         jRes_numerico.setText("NUMERICO");
+        jRes_numerico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRes_numericoActionPerformed(evt);
+            }
+        });
 
         gru_tDato.add(jRes_testo);
         jRes_testo.setSelected(true);
         jRes_testo.setText("TESTO");
+        jRes_testo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRes_testoActionPerformed(evt);
+            }
+        });
 
         gru_tDato.add(jRes_predefinido);
         jRes_predefinido.setText("PREDEFINIDO");
+        jRes_predefinido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRes_predefinidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -695,7 +790,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("VALOR PREDEFINIDO"));
@@ -781,7 +876,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLista_predefinido, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btneliminar_predefinido))
         );
@@ -851,24 +946,25 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtnombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCes_validado))
-                .addGap(0, 186, Short.MAX_VALUE))
+                .addComponent(jCes_validado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtnombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 152, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jCes_validado)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCes_validado)
+                    .addComponent(txtnombre5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtnombre5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("UNIDAD"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("UNIDAD ( * = sin unidad)"));
 
         jLista_unidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLista_unidad.setSelectionBackground(new java.awt.Color(255, 0, 0));
@@ -891,9 +987,9 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtbuscar_unidad, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+            .addComponent(txtbuscar_unidad, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLista_unidad, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                .addComponent(jLista_unidad, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -925,23 +1021,92 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
             }
         });
 
+        btneliminar_panel.setText("ELI");
+        btneliminar_panel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminar_panelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtbuscar_panel)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(txtbuscar_panel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btneliminar_panel))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLista_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
+                .addComponent(jLista_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(txtbuscar_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbuscar_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btneliminar_panel))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                     .addGap(0, 35, Short.MAX_VALUE)
                     .addComponent(jLista_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jLabel10.setText("SKU:");
+
+        jCse_carga.setText("Se Puede Cargar");
+
+        jLabel11.setText("Concepto Id:");
+
+        txtconceptoid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtconceptoidKeyPressed(evt);
+            }
+        });
+
+        jCes_estudio.setText("Es Estudio");
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("LISTA DE PRECIO"));
+
+        tbllab3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbllab3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbllab3MouseReleased(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tbllab3);
+
+        jLabel12.setText("PRECIO:");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1)
+                    .addComponent(jLabel12)))
         );
 
         javax.swing.GroupLayout panel_insertarLayout = new javax.swing.GroupLayout(panel_insertar);
@@ -952,41 +1117,56 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_insertarLayout.createSequentialGroup()
-                        .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel_insertarLayout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panel_insertarLayout.createSequentialGroup()
-                                    .addComponent(btnnuevo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnguardar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btneditar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btndeletar))
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panel_insertarLayout.createSequentialGroup()
-                        .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtnombre_corto, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panel_insertarLayout.createSequentialGroup()
-                                .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
+                                .addComponent(btnnuevo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtnombre_completo, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnguardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btneditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btndeletar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_insertarLayout.createSequentialGroup()
+                        .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_insertarLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panel_insertarLayout.createSequentialGroup()
+                                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtsku, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtconceptoid, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtnombre_completo)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_insertarLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(txtnombre_corto, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCse_carga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCes_estudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         panel_insertarLayout.setVerticalGroup(
             panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -996,11 +1176,17 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(txtsku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtconceptoid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCse_carga))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtnombre_completo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtnombre_completo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCes_estudio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -1014,15 +1200,20 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_insertarLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panel_insertarLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnnuevo)
                             .addComponent(btnguardar)
                             .addComponent(btneditar)
-                            .addComponent(btndeletar)))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btndeletar))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("DATOS ESTUDIO", panel_insertar);
@@ -1044,6 +1235,11 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         tbllab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tbllabMouseReleased(evt);
+            }
+        });
+        tbllab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbllabKeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(tbllab);
@@ -1141,6 +1337,55 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("ELI");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("ELI");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("ELI");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("ELI");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("ELI");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("ELI");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("ELI");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -1154,48 +1399,71 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
                     .addComponent(lbltabla_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txttabla_departamento, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-                    .addComponent(txttabla_area)
-                    .addComponent(txttabla_seccion)
-                    .addComponent(txttabla_grupovalor, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txttabla_area, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                    .addComponent(txttabla_departamento, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txttabla_grupovalor)
+                    .addComponent(txttabla_seccion, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lbltabla_6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                     .addComponent(lbltabla_5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbltabla_7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txttabla_muestra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(txttabla_panel, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txttabla_metodo))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txttabla_muestra, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .addComponent(txttabla_metodo)
+                    .addComponent(txttabla_panel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltabla_1)
-                    .addComponent(txttabla_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbltabla_5)
-                    .addComponent(txttabla_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltabla_2)
-                    .addComponent(txttabla_area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txttabla_muestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbltabla_6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltabla_3)
-                    .addComponent(txttabla_seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txttabla_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbltabla_7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltabla_4)
-                    .addComponent(txttabla_grupovalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbltabla_1)
+                            .addComponent(txttabla_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbltabla_5)
+                            .addComponent(txttabla_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbltabla_2)
+                            .addComponent(txttabla_area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttabla_muestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbltabla_6)
+                            .addComponent(jButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbltabla_3)
+                            .addComponent(txttabla_seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttabla_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbltabla_7)
+                            .addComponent(jButton3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbltabla_4)
+                            .addComponent(txttabla_grupovalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4))))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jLista_aux.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1218,6 +1486,9 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         jLabel5.setText("AREA:");
 
         txtbuscar_area.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtbuscar_areaKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtbuscar_areaKeyReleased(evt);
             }
@@ -1226,6 +1497,9 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         jLabel7.setText("SECCION:");
 
         txtbuscar_seccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtbuscar_seccionKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtbuscar_seccionKeyReleased(evt);
             }
@@ -1234,12 +1508,31 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         jLabel8.setText("GRU. VALO:");
 
         txtbuscar_grupovalor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtbuscar_grupovalorKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtbuscar_grupovalorKeyReleased(evt);
             }
         });
 
         jLabel9.setText("ESTUDIO:");
+
+        txtbuscar_estudio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtbuscar_estudioKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscar_estudioKeyReleased(evt);
+            }
+        });
+
+        btnlimpiar_buscar.setText("LIMPIAR");
+        btnlimpiar_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiar_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1260,22 +1553,23 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtbuscar_estudio, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtbuscar_estudio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnlimpiar_buscar)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                 .addComponent(jLabel5)
                 .addComponent(txtbuscar_area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtbuscar_seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(txtbuscar_grupovalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtbuscar_estudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addComponent(jLabel7)
+                .addComponent(txtbuscar_seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel8)
+                .addComponent(txtbuscar_grupovalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel9)
+                .addComponent(txtbuscar_estudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnlimpiar_buscar))
         );
 
         javax.swing.GroupLayout panel_tablaLayout = new javax.swing.GroupLayout(panel_tabla);
@@ -1288,25 +1582,23 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLista_aux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnguardar_relaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                    .addComponent(btnguardar_relaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(panel_tablaLayout.createSequentialGroup()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panel_tablaLayout.setVerticalGroup(
             panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_tablaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_tablaLayout.createSequentialGroup()
+                .addGroup(panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_tablaLayout.createSequentialGroup()
                         .addComponent(jLista_aux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnguardar_relaciones))))
+                        .addComponent(btnguardar_relaciones))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("FILTRO DATO", panel_tabla);
@@ -1319,7 +1611,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1353,10 +1645,16 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
     private void txtnombre_completoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre_completoKeyPressed
         // TODO add your handling code here:
 //        evejtf.saltar_campo_enter(evt, txtnombre, txtprecio_venta);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtnombre_corto.grabFocus();
+        }
     }//GEN-LAST:event_txtnombre_completoKeyPressed
 
     private void txtnombre_cortoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre_cortoKeyPressed
         // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtbuscar_unidad.grabFocus();
+        }
     }//GEN-LAST:event_txtnombre_cortoKeyPressed
 
     private void tbllab_item_estudio_predefinidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbllab_item_estudio_predefinidoMouseReleased
@@ -1534,6 +1832,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
             if (buscar_tabla_unidad) {
                 fk_idlab_unidad = cargar_idtabla_unidad();
                 buscar_tabla_unidad = false;
+//                txtbuscar_unidad.requestFocus();
 //                evejtf.saltar_campo_directo(txtnombre_predefinido, txtorden_predefinido);
             }
         }
@@ -1543,6 +1842,9 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (evejtf.seleccionar_lista(evt, jLista_unidad)) {
             buscar_tabla_unidad = true;
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            boton_guardar();
         }
     }//GEN-LAST:event_txtbuscar_unidadKeyPressed
 
@@ -1574,31 +1876,155 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
 
     private void txtbuscar_areaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_areaKeyReleased
         // TODO add your handling code here:
-        buscar_estudio(txtbuscar_area, tbl_or.getIdtabla_area());
+//        buscar_estudio_grupos(txtbuscar_area, tbl_or.getIdtabla_area());
     }//GEN-LAST:event_txtbuscar_areaKeyReleased
 
     private void txtbuscar_seccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_seccionKeyReleased
         // TODO add your handling code here:
-        buscar_estudio(txtbuscar_seccion, tbl_or.getIdtabla_seccion());
+//        buscar_estudio_grupos(txtbuscar_seccion, tbl_or.getIdtabla_seccion());
     }//GEN-LAST:event_txtbuscar_seccionKeyReleased
 
     private void txtbuscar_grupovalorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_grupovalorKeyReleased
         // TODO add your handling code here:
-        buscar_estudio(txtbuscar_grupovalor, tbl_or.getIdtabla_grupo_valor());
+//        buscar_estudio_grupos(txtbuscar_grupovalor, tbl_or.getIdtabla_grupo_valor());
     }//GEN-LAST:event_txtbuscar_grupovalorKeyReleased
+
+    private void txtbuscar_estudioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_estudioKeyReleased
+        // TODO add your handling code here:
+//        buscar_estudio_nombre(txtbuscar_estudio);
+    }//GEN-LAST:event_txtbuscar_estudioKeyReleased
+
+    private void tbllabKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbllabKeyReleased
+        // TODO add your handling code here:
+        seleccionar_tabla_lab_estudio();
+    }//GEN-LAST:event_tbllabKeyReleased
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_item_lab_estudio(idlab_estudio, tbl_or.getIdtabla_metodo());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_item_lab_estudio(idlab_estudio, tbl_or.getIdtabla_departamento());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_item_lab_estudio(idlab_estudio, tbl_or.getIdtabla_area());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_item_lab_estudio(idlab_estudio, tbl_or.getIdtabla_seccion());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_item_lab_estudio(idlab_estudio, tbl_or.getIdtabla_grupo_valor());
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_item_lab_estudio(idlab_estudio, tbl_or.getIdtabla_panel());
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_item_lab_estudio(idlab_estudio, tbl_or.getIdtabla_muestra());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btneliminar_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminar_panelActionPerformed
+        // TODO add your handling code here:
+        boton_eliminar_panel();
+    }//GEN-LAST:event_btneliminar_panelActionPerformed
+
+    private void jRes_numericoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRes_numericoActionPerformed
+        // TODO add your handling code here:
+        bloquear_predefinido(jRes_predefinido.isSelected());
+    }//GEN-LAST:event_jRes_numericoActionPerformed
+
+    private void jRes_testoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRes_testoActionPerformed
+        // TODO add your handling code here:
+        bloquear_predefinido(jRes_predefinido.isSelected());
+    }//GEN-LAST:event_jRes_testoActionPerformed
+
+    private void jRes_predefinidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRes_predefinidoActionPerformed
+        // TODO add your handling code here:
+        bloquear_predefinido(jRes_predefinido.isSelected());
+    }//GEN-LAST:event_jRes_predefinidoActionPerformed
+
+    private void btnlimpiar_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiar_buscarActionPerformed
+        // TODO add your handling code here:
+        txtbuscar_estudio.setText(null);
+        txtbuscar_estudio.requestFocus();
+    }//GEN-LAST:event_btnlimpiar_buscarActionPerformed
+
+    private void txtconceptoidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtconceptoidKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            boton_editar();
+        }
+    }//GEN-LAST:event_txtconceptoidKeyPressed
+
+    private void tbllab3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbllab3MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbllab3MouseReleased
+
+    private void txtbuscar_estudioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_estudioKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        buscar_estudio_nombre(txtbuscar_estudio);
+        }
+    }//GEN-LAST:event_txtbuscar_estudioKeyPressed
+
+    private void txtbuscar_areaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_areaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             buscar_estudio_grupos(txtbuscar_area, tbl_or.getIdtabla_area());
+        }
+    }//GEN-LAST:event_txtbuscar_areaKeyPressed
+
+    private void txtbuscar_seccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_seccionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            buscar_estudio_grupos(txtbuscar_seccion, tbl_or.getIdtabla_seccion());
+        }
+    }//GEN-LAST:event_txtbuscar_seccionKeyPressed
+
+    private void txtbuscar_grupovalorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_grupovalorKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            buscar_estudio_grupos(txtbuscar_grupovalor, tbl_or.getIdtabla_grupo_valor());
+        }
+    }//GEN-LAST:event_txtbuscar_grupovalorKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btndeletar;
     private javax.swing.JButton btneditar;
+    private javax.swing.JButton btneliminar_panel;
     private javax.swing.JButton btneliminar_predefinido;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnguardar_relaciones;
+    private javax.swing.JButton btnlimpiar_buscar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.ButtonGroup gru_deci;
     private javax.swing.ButtonGroup gru_tDato;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JCheckBox jCes_estudio;
     private javax.swing.JCheckBox jCes_validado;
+    private javax.swing.JCheckBox jCse_carga;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1612,6 +2038,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
     private javax.swing.JList<String> jLista_predefinido;
     private javax.swing.JList<String> jLista_unidad;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1630,7 +2057,9 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbltabla_1;
     private javax.swing.JLabel lbltabla_2;
     private javax.swing.JLabel lbltabla_3;
@@ -1642,6 +2071,7 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panel_tabla;
     private javax.swing.JTable tbllab;
     private javax.swing.JTable tbllab2;
+    private javax.swing.JTable tbllab3;
     private javax.swing.JTable tbllab_item_estudio_predefinido;
     private javax.swing.JTextArea txtAvalor_de_referencia;
     private javax.swing.JTextField txtbuscar_area;
@@ -1650,12 +2080,14 @@ public class FrmLab_estudio extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtbuscar_panel;
     private javax.swing.JTextField txtbuscar_seccion;
     private javax.swing.JTextField txtbuscar_unidad;
+    private javax.swing.JTextField txtconceptoid;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre5;
-    private javax.swing.JTextField txtnombre_completo;
-    private javax.swing.JTextField txtnombre_corto;
+    public static javax.swing.JTextField txtnombre_completo;
+    public static javax.swing.JTextField txtnombre_corto;
     private javax.swing.JTextField txtnombre_predefinido;
     private javax.swing.JTextField txtorden_predefinido;
+    public static javax.swing.JTextField txtsku;
     private javax.swing.JTextField txttabla_area;
     private javax.swing.JTextField txttabla_departamento;
     private javax.swing.JTextField txttabla_grupovalor;

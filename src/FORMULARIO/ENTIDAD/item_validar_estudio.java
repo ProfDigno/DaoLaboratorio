@@ -9,7 +9,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public item_validar_estudio() {
-		setTb_item_validar_estudio("item_validar_estudio");
+		setTb_item_validar_estudio("public.item_validar_estudio");
 		setId_iditem_validar_estudio("iditem_validar_estudio");
 	}
 	public static String getTb_item_validar_estudio(){

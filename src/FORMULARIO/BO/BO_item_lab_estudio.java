@@ -72,4 +72,24 @@ public class BO_item_lab_estudio {
                 }
             }
     }
+    public void delete_item_lab_estudio_orden_por_estudio(Connection conn,int fk_idlab_estudio,int fk_idlab_grupo) {
+         if (evmen.MensajeGeneral_warning("ESTAS SEGURO DE ELIMINAR ITEM_LAB_ESTUDIO", "ELIMINAR", "ELIMINAR", "CANCELAR")) {
+            String titulo = "delete_item_lab_estudio_orden_por_estudio";
+//            Connection conn = ConnPostgres.getConnPosgres();
+            try {
+                if (conn.getAutoCommit()) {
+                    conn.setAutoCommit(false);
+                }
+                ilab_es_dao.delete_item_lab_estudio_orden_por_estudio(conn, fk_idlab_estudio, fk_idlab_grupo);
+                conn.commit();
+            } catch (SQLException e) {
+                evmen.mensaje_error(e,"error1", titulo);
+                try {
+                    conn.rollback();
+                } catch (SQLException e1) {
+                    evmen.Imprimir_serial_sql_error(e1, "error2", titulo);
+                }
+            }
+         }
+    }
 }

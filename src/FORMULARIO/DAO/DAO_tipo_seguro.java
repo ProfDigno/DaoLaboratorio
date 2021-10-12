@@ -20,10 +20,10 @@ public class DAO_tipo_seguro {
     EvenFecha evefec = new EvenFecha();
     private String mensaje_insert = "TIPO_SEGURO GUARDADO CORRECTAMENTE";
     private String mensaje_update = "TIPO_SEGURO MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO tipo_seguro(idtipo_seguro,nombre) VALUES (?,?);";
-    private String sql_update = "UPDATE tipo_seguro SET nombre=? WHERE idtipo_seguro=?;";
-    private String sql_select = "SELECT idtipo_seguro,nombre FROM tipo_seguro order by 1 desc;";
-    private String sql_cargar = "SELECT idtipo_seguro,nombre FROM tipo_seguro WHERE idtipo_seguro=";
+    private String sql_insert = "INSERT INTO public.tipo_seguro(idtipo_seguro,nombre) VALUES (?,?);";
+    private String sql_update = "UPDATE public.tipo_seguro SET nombre=? WHERE idtipo_seguro=?;";
+    private String sql_select = "SELECT idtipo_seguro,nombre FROM public.tipo_seguro order by 1 desc;";
+    private String sql_cargar = "SELECT idtipo_seguro,nombre FROM public.tipo_seguro WHERE idtipo_seguro=";
 
     public void insertar_tipo_seguro(Connection conn, tipo_seguro t_seg) {
         t_seg.setC1idtipo_seguro(eveconn.getInt_ultimoID_mas_uno(conn, t_seg.getTb_tipo_seguro(), t_seg.getId_idtipo_seguro()));

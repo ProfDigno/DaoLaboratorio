@@ -8,7 +8,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public tipo_seguro() {
-		setTb_tipo_seguro("tipo_seguro");
+		setTb_tipo_seguro("public.tipo_seguro");
 		setId_idtipo_seguro("idtipo_seguro");
 	}
 	public static String getTb_tipo_seguro(){

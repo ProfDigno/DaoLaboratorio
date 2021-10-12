@@ -1,6 +1,20 @@
 	package FORMULARIO.ENTIDAD;
 public class item_orden_lab {
 
+    /**
+     * @return the C17sku
+     */
+    public int getC17sku() {
+        return C17sku;
+    }
+
+    /**
+     * @param C17sku the C17sku to set
+     */
+    public void setC17sku(int C17sku) {
+        this.C17sku = C17sku;
+    }
+
 //---------------DECLARAR VARIABLES---------------
 private int C1iditem_orden_lab;
 private String C2descripcion;
@@ -18,11 +32,13 @@ private String C13nota;
 private boolean C14cobertura;
 private int C15fk_idorden_lab;
 private int C16fk_idlab_estudio;
+private int C17sku;
+private boolean C18se_carga;
 private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public item_orden_lab() {
-		setTb_item_orden_lab("item_orden_lab");
+		setTb_item_orden_lab("public.item_orden_lab");
 		setId_iditem_orden_lab("iditem_orden_lab");
 	}
 	public static String getTb_item_orden_lab(){
@@ -137,4 +153,18 @@ private static String nom_idtabla;
 	public String toString() {
 		return "item_orden_lab(" + ",iditem_orden_lab=" + C1iditem_orden_lab + " ,descripcion=" + C2descripcion + " ,numerico_decimal=" + C3numerico_decimal + " ,valor_numerico=" + C4valor_numerico + " ,valor_testo=" + C5valor_testo + " ,valor_predefinido=" + C6valor_predefinido + " ,valor_de_referencia=" + C7valor_de_referencia + " ,unidad=" + C8unidad + " ,es_numerico=" + C9es_numerico + " ,es_testo=" + C10es_testo + " ,es_predefinido=" + C11es_predefinido + " ,estado_estudio=" + C12estado_estudio + " ,nota=" + C13nota + " ,cobertura=" + C14cobertura + " ,fk_idorden_lab=" + C15fk_idorden_lab + " ,fk_idlab_estudio=" + C16fk_idlab_estudio + " )";
 	}
+
+    /**
+     * @return the C18se_carga
+     */
+    public boolean isC18se_carga() {
+        return C18se_carga;
+    }
+
+    /**
+     * @param C18se_carga the C18se_carga to set
+     */
+    public void setC18se_carga(boolean C18se_carga) {
+        this.C18se_carga = C18se_carga;
+    }
 }

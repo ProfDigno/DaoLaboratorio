@@ -24,7 +24,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public lab_grupo_estudio() {
-		setTb_lab_grupo_estudio("lab_grupo_estudio");
+		setTb_lab_grupo_estudio("public.lab_grupo_estudio");
 		setId_idlab_grupo_estudio("idlab_grupo_estudio");
 	}
 	public static String getTb_lab_grupo_estudio(){

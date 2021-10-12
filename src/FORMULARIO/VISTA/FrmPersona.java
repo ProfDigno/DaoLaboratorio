@@ -236,22 +236,22 @@ public class FrmPersona extends javax.swing.JInternalFrame {
         return id;
     }
     private void cargar_idciudad() {
-        fk_iddirec_ciudad = cargar_idtabla(txtidciudad,"direc_ciudad","iddirec_ciudad");
+        fk_iddirec_ciudad = cargar_idtabla(txtidciudad,"public.direc_ciudad","iddirec_ciudad");
         buscar_idciudad = false;
         evejtf.saltar_campo_directo(txtidciudad, txtidbarrio);
     }
     private void cargar_idbarrio() {
-        fk_iddirec_barrio = cargar_idtabla(txtidbarrio,"direc_barrio","iddirec_barrio");
+        fk_iddirec_barrio = cargar_idtabla(txtidbarrio,"public.direc_barrio","iddirec_barrio");
         buscar_idbarrio = false;
         evejtf.saltar_campo_directo(txtidbarrio, txtidseguro);
     }
     private void cargar_idseguro() {
-        fk_idtipo_seguro = cargar_idtabla(txtidseguro,"tipo_seguro","idtipo_seguro");
+        fk_idtipo_seguro = cargar_idtabla(txtidseguro,"public.tipo_seguro","idtipo_seguro");
         buscar_idseguro = false;
         evejtf.saltar_campo_directo(txtidseguro, txtidplan_seguro);
     }
     private void cargar_idplan_seguro() {
-        fk_idplan_seguro = cargar_idtabla(txtidplan_seguro,"plan_seguro","idplan_seguro");
+        fk_idplan_seguro = cargar_idtabla(txtidplan_seguro,"public.plan_seguro","idplan_seguro");
         buscar_idplan_seguro = false;
         evejtf.saltar_campo_directo(txtidplan_seguro, txtnombre);
     }
@@ -322,9 +322,16 @@ public class FrmPersona extends javax.swing.JInternalFrame {
         txtidplan_seguro = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLista_aux = new javax.swing.JList<>();
+        jLabel18 = new javax.swing.JLabel();
         panel_tabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbllab = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        txtbuscar_nombre = new javax.swing.JTextField();
+        txtbuscar_apellido = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        txtbuscar_cedula = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -655,6 +662,8 @@ public class FrmPersona extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel18.setText("aaaa-mm-dd");
+
         javax.swing.GroupLayout panel_insertarLayout = new javax.swing.GroupLayout(panel_insertar);
         panel_insertar.setLayout(panel_insertarLayout);
         panel_insertarLayout.setHorizontalGroup(
@@ -686,7 +695,10 @@ public class FrmPersona extends javax.swing.JInternalFrame {
                             .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                                 .addComponent(txtcedula, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(txtfec_nac, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel_insertarLayout.createSequentialGroup()
+                                .addComponent(txtfec_nac, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18))
                             .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -734,7 +746,8 @@ public class FrmPersona extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(txtfec_nac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtfec_nac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_insertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -781,17 +794,65 @@ public class FrmPersona extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbllab);
 
+        jLabel15.setText("NOMBRE:");
+
+        txtbuscar_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscar_nombreKeyReleased(evt);
+            }
+        });
+
+        txtbuscar_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscar_apellidoKeyReleased(evt);
+            }
+        });
+
+        jLabel16.setText("APELLIDO:");
+
+        txtbuscar_cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscar_cedulaKeyReleased(evt);
+            }
+        });
+
+        jLabel17.setText("CEDULA:");
+
         javax.swing.GroupLayout panel_tablaLayout = new javax.swing.GroupLayout(panel_tabla);
         panel_tabla.setLayout(panel_tablaLayout);
         panel_tablaLayout.setHorizontalGroup(
             panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+            .addGroup(panel_tablaLayout.createSequentialGroup()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtbuscar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtbuscar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtbuscar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panel_tablaLayout.setVerticalGroup(
             panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_tablaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17)
+                        .addComponent(txtbuscar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(txtbuscar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(txtbuscar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 58, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("FILTRO PERSONA", panel_tabla);
@@ -921,28 +982,43 @@ public class FrmPersona extends javax.swing.JInternalFrame {
 
     private void txtidciudadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidciudadKeyReleased
         // TODO add your handling code here:
-        buscar_lista(txtidciudad,"direc_ciudad", "iddirec_ciudad");
+        buscar_lista(txtidciudad,"public.direc_ciudad", "iddirec_ciudad");
     }//GEN-LAST:event_txtidciudadKeyReleased
 
     private void txtidbarrioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidbarrioKeyReleased
         // TODO add your handling code here:
-        buscar_lista(txtidbarrio,"direc_barrio", "iddirec_barrio");
+        buscar_lista(txtidbarrio,"public.direc_barrio", "iddirec_barrio");
     }//GEN-LAST:event_txtidbarrioKeyReleased
 
     private void txtidseguroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidseguroKeyReleased
         // TODO add your handling code here:
-        buscar_lista(txtidseguro,"tipo_seguro", "idtipo_seguro");
+        buscar_lista(txtidseguro,"public.tipo_seguro", "idtipo_seguro");
     }//GEN-LAST:event_txtidseguroKeyReleased
 
     private void txtidplan_seguroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidplan_seguroKeyReleased
         // TODO add your handling code here:
-        buscar_lista(txtidplan_seguro,"plan_seguro", "idplan_seguro");
+        buscar_lista(txtidplan_seguro,"public.plan_seguro", "idplan_seguro");
     }//GEN-LAST:event_txtidplan_seguroKeyReleased
 
     private void txtfec_nacKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfec_nacKeyReleased
         // TODO add your handling code here:
         evejtf.verificar_fecha(evt, txtfec_nac);
     }//GEN-LAST:event_txtfec_nacKeyReleased
+
+    private void txtbuscar_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_nombreKeyReleased
+        // TODO add your handling code here:
+        persdao.actualizar_buscar_persona(conn, tbllab, txtbuscar_nombre,"nombre");
+    }//GEN-LAST:event_txtbuscar_nombreKeyReleased
+
+    private void txtbuscar_apellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_apellidoKeyReleased
+        // TODO add your handling code here:
+         persdao.actualizar_buscar_persona(conn, tbllab, txtbuscar_apellido,"apellido");
+    }//GEN-LAST:event_txtbuscar_apellidoKeyReleased
+
+    private void txtbuscar_cedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_cedulaKeyReleased
+        // TODO add your handling code here:
+         persdao.actualizar_buscar_persona(conn, tbllab, txtbuscar_cedula,"cedula");
+    }//GEN-LAST:event_txtbuscar_cedulaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -958,6 +1034,10 @@ public class FrmPersona extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -982,6 +1062,9 @@ public class FrmPersona extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panel_tabla;
     private javax.swing.JTable tbllab;
     private javax.swing.JTextField txtapellido;
+    private javax.swing.JTextField txtbuscar_apellido;
+    private javax.swing.JTextField txtbuscar_cedula;
+    private javax.swing.JTextField txtbuscar_nombre;
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtfec_nac;

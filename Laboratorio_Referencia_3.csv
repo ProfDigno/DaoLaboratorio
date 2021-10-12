@@ -1,0 +1,2601 @@
+ID_NOMENCLADOR_LAB;NOMENCLADOR;UNIDAD_MEDIDA;UNIDAD_MEDIDA;METODOLOGIA;MUESTRA;AREA;SECCION;REFERENCIA
+326;FENOBARBITAL;;?g/mL;Interaccion Cinetica de Microparticulas (KIMS);SUERO.;TOXICOLOGIA;TOXICOLOGIA;###############################################################################################################################################################################################################################################################
+33;CHE - COLINESTERASA;;U/I;Colorimetrico;SUERO.;TOXICOLOGIA;TOXICOLOGIA;"3.962  -  11.142  U/I
+"
+43;CBZ - CARBAMAZEPINA;;?g/mL;Quimioluminiscencia;SUERO.;TOXICOLOGIA;BIOQUIMICA;"RANGO TERAPEUTICO:    4 - 12 ?g/mL
+RANGO TOXICO:             MAYOR 15 ?g/mL
+"
+10;ACIDO VALPROICO;;?g/mL;Quimioluminiscencia;SUERO.;TOXICOLOGIA;BIOQUIMICA;"RANGO TERAPEUTICO:    50  -  100 ug/mL
+RANGO TOXICO:             MAYOR 100 ug/mL
+"
+216;TPM - TEST DEL PIECITO MASTER;;;;;TEST DE PIECITO;TEST DE PIECITO;
+213;TPB - TEST DEL PIECITO  BASICO;?UI/mL;;;;TEST DE PIECITO;TEST DE PIECITO;Presencia de Hb F y Hb A
+213;TPB - TEST DEL PIECITO  BASICO;ng/mL;;;;TEST DE PIECITO;TEST DE PIECITO;Hasta 10.0 ?UI/mL
+213;TPB - TEST DEL PIECITO  BASICO;mg/dL;;;;TEST DE PIECITO;TEST DE PIECITO;Hasta 10.0 ?UI/mL
+214;TPA - TEST DEL PIECITO AMPLIADO;?g/dL;;;;TEST DE PIECITO;TEST DE PIECITO;"Valor normal hasta 1.6 mg/dL en muestras
+obtenidas en el 1? dia de vida.
+Valor normal hasta 2.0 mg/dL en muestras
+obtenidas antes del 3? dia de vida.
+Valor normal hasta 2.5 mg/dL en muestras
+obtenidas a partir del 3? dia de vida."
+214;TPA - TEST DEL PIECITO AMPLIADO;?UI/mL;;;;TEST DE PIECITO;TEST DE PIECITO;"Tripsina Imunoreactiva (IRT): hasta 110.0 ng/mL
+Valores por encima de 140.0 ng/mL
+son sugestivo de Fibrosis Quistica.
+"
+214;TPA - TEST DEL PIECITO AMPLIADO;;;;;TEST DE PIECITO;TEST DE PIECITO;Hasta 10.0 ?UI/mL
+214;TPA - TEST DEL PIECITO AMPLIADO;mg/dL;;;;TEST DE PIECITO;TEST DE PIECITO;Hasta 10.0 ?UI/mL
+179;PAR - HECES PARASITOLOGICO SERIADO;;;Met. Directo - Met. Ritchie;HECES;PARASITOLOGIA;PARASITOLOGIA;
+210;PROTEINURIA ORINA ESPONTANEA;;mg/dL;ROJO DE PIROGALOL;ORINA ESPONTANEA;ORINA;ORINA;Hasta 25 mg/dL
+210;PROTEINURIA ORINA ESPONTANEA;mL;mg/dL;ROJO DE PIROGALOL;ORINA ESPONTANEA;ORINA;ORINA;Hasta 25 mg/dL
+210;PROTEINURIA ORINA ESPONTANEA;mg/dL;mg/dL;ROJO DE PIROGALOL;ORINA ESPONTANEA;ORINA;ORINA;Hasta 25 mg/dL
+294;OSMOLARIDAD;;mOsm/Kg;Calculado;ORINA;ORINA;ORINA;"400  -  800 mOsm/Kg
+"
+146;ORI - ORINA SIMPLE Y SEDIMENTOS;;;;;ORINA;ORINA;
+146;ORI - ORINA SIMPLE Y SEDIMENTOS;p/c;;;;ORINA;ORINA;
+401;HEMOSIDERINA;;;ROUS;;ORINA;QUIMICA;Negativo
+295;ELECTROLITOS - ORINA;mEq/L;;ELECTRO ION ESPECIFICO;ORINA;ORINA;ORINA;"20 -  80 mmol/L
+"
+176;URO - UROCULTIVO;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+176;URO - UROCULTIVO;UFC/mL;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+176;URO - UROCULTIVO;p/c;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+195;UREAPLASMA SPP;;;CULTIVO;;MICROBIOLOGIA;MICROBIOLOGIA;
+117;NOUS -ESPERMOGRAMA;mL;;EXAMEN MACROSCOPICO;;MICROBIOLOGIA;MICROBIOLOGIA;V.N:   MAYOR O IGUAL   20.000.000 esp/mL
+117;NOUS -ESPERMOGRAMA;;;EXAMEN MACROSCOPICO;;MICROBIOLOGIA;MICROBIOLOGIA;V.N:     MAYOR O IGUAL  30% DE FORMAS NORMALES
+117;NOUS -ESPERMOGRAMA;%;;EXAMEN MACROSCOPICO;;MICROBIOLOGIA;MICROBIOLOGIA;V.N:   INFERIOR  10 p/c
+117;NOUS -ESPERMOGRAMA;p/c;;EXAMEN MACROSCOPICO;;MICROBIOLOGIA;MICROBIOLOGIA;V.N:   7,2  -  8
+117;NOUS -ESPERMOGRAMA;esp/mL;;EXAMEN MACROSCOPICO;;MICROBIOLOGIA;MICROBIOLOGIA;V.N:   7,2  -  8
+313;MYCOPLASMA HOMINIS;;;CULTIVO;;MICROBIOLOGIA;MICROBIOLOGIA;
+219;ESPUTO - COL. DE ZIEHL NEELSEN;;;;;MICROBIOLOGIA;MICROBIOLOGIA;"
+
+
+No se observan B.A.A.R. en 200 campos observados.
+Positivo (+): Inf. A 1 BAAR/campo en 100 campos.
+Positivo (++): de 1 a 10 BAAR/campo en 50 campos.
+Positivo (+++): Superior a 10 BAAR/campo en 20 campos.
+"
+315;CULTIVO PUNTA DE CATETER ARTERIAL;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+200;CULTIVO PUNTA DE CATETER;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+409;CULTIVO PARA BAAR;;;CULTIVO;;MICROBIOLOGIA;MICROBIOLOGIA;"No se observan BAAR en 200 campos observados
+Positivo (+): inf. a 1 BAAR/campo en 100 campos
+Positivo (++): de 1 a 10 BAAR/campo en 50 campos
+Positivo (+++): sup. a 10 BAAR/campo en 20 campos observados
+"
+331;CULTIVO IDENTIFICACION DE HONGOS;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+197;CULTIVO - SECRECION VAGINAL;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+197;CULTIVO - SECRECION VAGINAL;p/c;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+218;CULTIVO - SECRECION URETRAL  Y ATB;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+217;CULTIVO - SECRECION TRAQUEAL;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+202;CULTIVO - SECRECION PURULENTA Y ATB;;;CULTIVO;;MICROBIOLOGIA;MICROBIOLOGIA;
+201;CULTIVO - LIQUIDO PLEURAL Y ATB;;;CULTIVO;;MICROBIOLOGIA;MICROBIOLOGIA;
+199;CULTIVO - ESPERMOCULTIVO;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+199;CULTIVO - ESPERMOCULTIVO;UFC/mL;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+199;CULTIVO - ESPERMOCULTIVO;p/c;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+220;CMF - COPROCULTIVO;;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+220;CMF - COPROCULTIVO;p/c;;;;MICROBIOLOGIA;MICROBIOLOGIA;
+254;ANTIGENO CHLAMYDIA T;;;Inmunocromatografico;;MICROBIOLOGIA;MICROBIOLOGIA;
+107;WID - REACCION DE WIDAL;;;Inmunoaglutinacion - Latex;SUERO.;INMUNOLOGIA;INMUNOLOGIA;TITULO SIGNIFICATIVO A PARTIR 1 - 16
+188;VIRUS SINCITIAL RESPIRATORIO;;;Inmunocromatografico;SUERO;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+168;VDR - VDRL (TREPONEMA PALLIDIUM);;;Floculacion cardiolipinica;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NO REACTIVA
+La VDRL es una prueba que no puede
+interpretarse aisladamente, otras patologias
+pueden dar reacciones cruzadas.
+"
+391;VARICELLA ZOSTER IGM ANTICUERPOS;;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"Negativo: Inferior a 9.0
+Indeterminado: 9.0 a 11.0
+Positivo: Superior a 11.0"
+390;VARICELLA ZOSTER IGG ANTICUERPOS;;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"Negativo: Inferior a 9.0
+Indeterminado: 9.0 a 11.0
+Positivo: Superior a 11.0"
+242;TXA - TOXOPLASMA GONDII AVIDEZ;;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+297;TRYPANOSOMA CRUZI ANTIC. IGM;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+296;TRYPANOSOMA CRUZI ANTIC. IGG;;;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+183;TREPONEMA PALLIDUM - ANTIC. TOTALES;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+
+Esta prueba no debe ser interpretada
+aisladamente, titulos bajos de
+anticuerpos podrian dar negativo,
+repetir segun criterio medico."
+360;TRANSGLUTAMINASA TISULAR IGG ANTIC.;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"Negativo:      Inferior a 10 U/mL
+Positivo  :      Superior o igual a 10 U/mL
+"
+333;TRANSGLUTAMINASA TISULAR IGA ANTIC.;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO:   Inferior a 12 U/mL
+INTERMEDIO: 12.1 - 18.0 U/mL
+POSITIVO:    Superior a 18 U/mL"
+1;TOX - TOXOPLASMOSIS AC IGM NO USAR;;;Quimioluminiscencia/Fotometria;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NO REACTIVO         INFERIOR  0,83
+INDETERMINADO    0,83 - 1,00
+REACTIVO              SUPERIOR  1,00
+"
+364;TOX - TOXOPLASMOSIS AC IGM CUANTITATIVO;;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"Negativo: Inferior a 0.55 
+Zona gris: 0.55 - 0.65
+Positivo: Mayor a 0.65"
+24;TOX - TOXOPLASMOSIS AC IGG NO USAR;;UI/ml;Quimioluminiscencia/Fotometria;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NO REACTIVO         INFERIOR  1,6 UI/ml
+INDETERMINADO    1,6  -  3,0  UI/ml
+REACTIVO               SUPERIOR  3,0 UI/ml
+"
+363;TOX - TOXOPLASMOSIS AC IGG CUANTITATIVO;;UI/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"Negativo: Inferior a 4 UI/mL
+Zona gris: 4 - 8 UI/mL
+Positivo: Superior a 8 UI/mL 
+Positividad de anticuerpos mayor a 300 UI/mL, exige repeticion con dilucion por el mismo metodo."
+442;TEST HISOPADO PARA COVID-19;;;Inmunocromatografico;SUERO;INMUNOLOGIA;INMUNOLOGIA;
+441;TEST COVID-19 IGM;;;Inmunocromatografico;SUERO;INMUNOLOGIA;INMUNOLOGIA;
+440;TEST COVID-19 IGG;;;Inmunocromatografico;SUERO;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+187;STREPTOCOCCUS DEL GRUPO A - ANTIGENO;;;Inmunocromatografico;HISOPADO NASOFARINGEO;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+379;SNRNP (U1-SN RNP) ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                  INFERIOR   12   U/mL
+INDETERMINADO                 12  -  18   U/mL
+POSITIVO                   SUPERIOR   18  U/mL
+"
+270;SCL 70 AUTO ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+445;SARS-COV 2 IGG;;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO;INMUNOLOGIA;INMUNOLOGIA;"Inferior a 1.0 = Negativo
+Superior a 1.0 = Positivo"
+447;SARS - COV - 2 ANTIGENO;;;Inmunocromatografico;HISOPADO NASOFARINGEO;INMUNOLOGIA;INMUNOLOGIA;
+133;RUBEOLA ANTICUERPOS IGM;;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO      INFERIOR 0,80
+DUDOSO         0,80 - 1,20
+POSITIVO        SUPERIOR  1,20"
+137;RPB - MONOTEST;;;Inmunoaglutinacion;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+383;RO-SSA ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                  INFERIOR   20   U/mL
+INDETERMINADO      20  -  25   U/mL
+POSITIVO                   SUPERIOR   25  U/mL
+"
+320;RO - SSA ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO               Inferior a 20 U/mL
+INDETERMINADO    20 - 25 U/mL
+POSITIVO                Superior a 25 U/mL
+
+Sensibilidad del metodo: 1 U/mL."
+394;PRE ALBUMINA;;mg/dL;Turbidimetrica/Inmunoturbidimetrica;SUERO.;INMUNOLOGIA;INMUNOLOGIA;20 a 40 mg/dL
+124;PCR ULTRASENSIBLE;;mg/L;Turbidimetrica/Inmunoturbidimetrica;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"PARA RIESGO CARDIOVASCULAR
+*RIESGO ALTO          SUPERIOR  3,00 mg/L
+*RIESGO MEDIO        1,00  -  3,00 mg/L
+*RIESGO BAJO           INFERIOR  1,00 mg/L
+ENFERMEDADES INFLAMATORIAS FASE AGUDA
+*NEGATIVO               INFERIOR  5,00 mg/L"
+91;PCR - PROTEINA C REACTIVA;;mg/L;Inmunoaglutinacion - Latex;SUERO.;INMUNOLOGIA;INMUNOLOGIA;INFERIOR 6 mg/L
+6;PCAC - PROCALCITONINA;;ng/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+406;PAPERAS IGM ANTICUERPOS;;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                   INFERIOR 9,0
+INDETERMINADO        9,0 - 11,0
+POSITIVO                    SUPERIOR 11,0
+"
+405;PAPERAS IGG ANTICUERPOS;;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                            INFERIOR 9,0
+INDETERMINADO                 9,0 - 11,0
+POSITIVO                             SUPERIOR 11,0
+"
+77;NUCMM-CITOMEGALOVIRUS ANTICUERPOS IGM;;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO      INFERIOR  0,70 
+DUDOSO         0,70 - 0,90 
+POSITIVO       SUPERIOR  0,90"
+76;NUCMG-CITOMEGALOVIRUS ANTICUERPOS IGG;;aU/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO     INFERIOR  4 aU/mL
+DUDOSO        4  - 6 aU/mL
+POSITIVO      SUPERIOR  6 aU/mL"
+185;NS1 -  DENGUE ANTIGENO;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+131;NOS-RUBEOLA ANTICUERPOS IGG;;IU/ml;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO     INFERIOR   10 IU/ml
+DUDOSO       10 - 15  IU/ml
+POSITIVO     SUPERIOR   15 IU/ml"
+346;NO USAR CMV - AC. IGM;;IU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO: INFERIOR A 1.75 U/mL
+POSITIVO: SUPERIOR A 1.75  U/mL"
+345;NO USAR CMV - AC. IGG;;IU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO: INFERIOR A 0.90 IU/mL
+ZONA INDETERMINADA: 0.91 - 0.99  IU/mL
+POSITIVO: MAYOR O IGUAL  1.00  IU/mL"
+312;MYCOPLASMA PNEUMONIAE IGM;;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO             Inferior a 9.0
+INDETERMINADO   9.0 - 11.0
+POSITIVO              Superior a 11.0"
+371;MEZCLA DE POLVOS (HP1);kU/L;KU/L;Quimioluminiscencia (CLIA)-Inmulite 2000;;INMUNOLOGIA;INMUNOLOGIA;"AUSENCIA O INDETECTABLE
+"
+339;"LEISHMANIA VISCERAL ANTICUERPOS
+IGG + IGM (RK39-L.DONOVANI)";;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+367;LECHE (F2);;KU/L;CLIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;
+373;LA (SS - B) ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                 INFERIOR   12 U/mL
+INDETERMINADO                 12  -  18 U/mL
+POSITIVO                  SUPERIOR   18 U/mL
+"
+382;JO 1 ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                  INFERIOR   12   U/mL
+INDETERMINADO                 12  -  18   U/mL
+POSITIVO                   SUPERIOR   18  U/mL
+"
+376;INTOLERANCIA A LA LACTOSA;;;;;INMUNOLOGIA;INMUNOLOGIA;"74  -  109 mg/dL
+"
+376;INTOLERANCIA A LA LACTOSA;mg/dL;;;;INMUNOLOGIA;INMUNOLOGIA;6.8  a  7.2
+389;INTERFEROM GAMMA (QUANTIFERON PLUS);;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+163;INFLUENZA A-B-ANTIGENO;;;Inmunocromatografico;SUERO;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+
+"
+203;INFLUENZA A H1N1-ANTIGENO;;;Inmunocromatografico;SUERO;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+145;IGM - INMUNOGLOBULINA M;;mg/dL;Quimioluminiscencia/Fotometria;;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+144;IGG - INMUNOGLOBULINA G;;mg/dL;Turbidimetria;;INMUNOLOGIA;INMUNOLOGIA;700 - 1600 mg/dL
+274;IGE RAST - BLOMIA TROPICALIS (D201);;lU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"BAJO	              0.1 - 0.7 (KU/L)
+MODERADO      0.7 - 3.5 (KU/L)
+ALTO	              MAYOR 3.5 (KU/L)
+Limite de deteccion del metodo: 0.1 KU/L."
+323;IGE ESPECIFICO YEMA DE HUEVO/F75;;KU/L;CLIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"AUSENCIA O INDETECTABLE
+"
+322;IGE ESPECIFICO TOMATE/F25;;KU/L;CLIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"Clase 0:    0.10 - 0.34 KU/L
+Clase I:     0.35 - 0.69 KU/L
+Clase II:    0.70 - 3.49 KU/L
+Clase III:   3.50 - 17.49 KU/L
+Clase IV:   17.50 - 52.49 KU/L
+Clase V:    52.59 - 99.99 KU/L
+Clase VI:   Superior a 100.00 KU/L."
+362;IGE ESPECIFICO F105 CHOCOLATE;;KU/L;Quimioluminiscencia (CLIA)-Inmulite 2000;;INMUNOLOGIA;INMUNOLOGIA;"AUSENCIA O INDETECTABLE
+"
+324;IGE ESPECIFICO CLARA DE HUEVO/F1;;KU/L;CLIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"AUSENCIA O INDETECTABLE
+"
+330;IGE ESPECIFICO BLOMIA TROPICALIS/D5;;IU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"
+ Clase 0:    Inferior a 0.34 IU/mL
+ Clase I:     0.35 - 0.69 IU/mL
+ Clase II:    0.70 - 3.49 IU/mL	
+ Clase III:   3.50 - 17.49 IU/mL	
+ Clase IV:   17.50 - 49.49 IU/mL	
+ Clase V:    50.0  - 99.99 IU/mL	
+ Clase VI:   Superior a 100.00 IU/mL.
+"
+329;IGE DERMATOPHAGOIDES PTERONYSSINUS/D1;;IU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"
+ Clase 0:    Inferior a 0.34 IU/mL
+ Clase I:     0.35 - 0.69 IU/mL
+ Clase II:    0.70 - 3.49 IU/mL	
+ Clase III:   3.50 - 17.49 IU/mL	
+ Clase IV:   17.50 - 49.49 IU/mL	
+ Clase V:    50.0  - 99.99 IU/mL	
+ Clase VI:   Superior a 100.00 IU/mL.
+"
+328;IGE DERMATOPHAGOIDES FARINAE/D2;;IU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"
+ Clase 0:    Inferior a 0.34 IU/mL
+ Clase I:     0.35 - 0.69 IU/mL
+ Clase II:    0.70 - 3.49 IU/mL	
+ Clase III:   3.50 - 17.49 IU/mL	
+ Clase IV:   17.50 - 49.49 IU/mL	
+ Clase V:    50.0  - 99.99 IU/mL	
+ Clase VI:   Superior a 100.00 IU/mL.
+"
+321;IGE - ALERGENO - ESPECIFICO DE 3RA GENERACION;KU/L  CLASE(O);;Quimioluminiscencia (CLIA)-Inmulite 2000;;INMUNOLOGIA;INMUNOLOGIA;"AUSENTE O INDETECTABLE
+"
+74;IGA - INMUNOGLOBULINA A;;mg/dL;Turbidimetria;;INMUNOLOGIA;INMUNOLOGIA;70 - 400 mg/dL
+212;HS1M - HERPES SIMPLE TIPO I  IGM;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+211;HS1G - HERPES SIMPLE TIPO I  IGG;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+206;HPYA - HELICOBACTER PYLORI ANTIC. IGA;;U/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                    INFERIOR  8.0 U/mL            
+INDETERMINADO       8.1 - 11.9U/ml 
+POSITIVO                     SUPERIOR  12 U/mL"
+166;HPY - HELICOBACTER PYLORI AC. TOTAL;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+182;HPM - HELICOBACTER PYLORI  ANTICUERPOS IGM;;;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                 INFERIOR  0.90
+INDETERMINADO     0.91 - 0.99 
+POSITIVO                   SUPERIOR  1.00
+"
+154;HPG - HELICOBACTER PYLORI ANTICUERPOS IGG;;U/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                 INFERIOR  8.0 U/mL            
+INDETERMINADO     8.0 - 11.9 U/ml 
+POSITIVO                   SUPERIOR  12 U/mL"
+140;HIV - HIV 1- HIV2 AG/AB;;;Quimioluminiscencia/Fotometria;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NO REACTIVO     INFERIOR  1,00   
+REACTIVO           SUPERIOR  1,00
+
+Esta Metodologia es un test de screening se debe repetir
+en casos de contacto de riesgo. El laboratorio se reserva el  
+derecho de solicitar una 2da. muestra si el caso lo requiere."
+299;HEPATITIS B CORE IGM ANTICUERPOS;;;Electroquimioluminiscencia (ECLIA)- Cobas 6000;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+300;HEPATITIS B ANTICUERPOS DE SUPERFICIE (HBS-AC);;;;;INMUNOLOGIA;INMUNOLOGIA;"Positivo: Igual o mayor a 10U/L
+Negativo: Inferior a 10 U/L"
+157;HCV - HEPATITIS C ANTICUERPOS TOTAL;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+155;HBS AG - HEPATITIS B SUPERFICIE CUANTIT;;;Quimioluminiscencia/Fotometria;;INMUNOLOGIA;INMUNOLOGIA;"NO REACTIVO    INFERIOR 1,0
+REACTIVO          SUPERIOR  1,0
+"
+156;HBS AG - HEPATITIS B ANTIGENO SUPERFICIE;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+120;HBC - HEPATITIS B ANTICUERPOS ANTI ANTIGENO;;;Inmunocromatografico;;INMUNOLOGIA;INMUNOLOGIA;
+158;HAV -  HEPATITIS A  ANTICUERPOS;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+334;HAPTOGLOBINA;;mg/dL;Inmunodifusion Radial;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"80  -  300  mg/dL
+"
+261;GLIADINA IGG - ANTICUERPOS;;U;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+336;GLIADINA IGA - ANTICUERPOS;;U;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+304;FTA - ABS IGM;;;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO     Inferior a 9 DU
+ZONA GRIS    9 - 11 DU
+POSITIVO      Superior a 12 DU"
+303;FTA - ABS IGG;;;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO     Inferior 0.90
+ZONA GRIS    0.91 - 1.10
+POSITIVO      Superior 1.11"
+372;FTA - ABS - AC TOTALES;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+257;ENDOMISIO IGG - ANTICUERPOS;;;Inmunofluorescencia Indirecta;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO: Inferior a 20 U/mL
+POSITIVO: Superior a 20 U/mL"
+256;ENDOMISIO IGA - ANTICUERPOS;;;Inmunofluorescencia Indirecta;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO: Inferior a 20 U/mL
+POSITIVO: Superior a 20 U/mL"
+355;ECHOVIRUS IGM ANTICUERPOS;;;IFI;SUERO.;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+290;DNADS - ANTICUERPOS;;IU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"No Detectable: Inferior a 9.0
+Indeterminado: 9.0 a 10.0
+Detectable: Superior a 11.0"
+260;DGP-PEPTIDOS DEAMINADOS DE GLIADINA IGG;;U;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+259;DGP-PEPTIDOS DEAMINADOS DE GLIADINA IGA;;U;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+106;DGM - DENGUE  IGG-IGM;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+272;DERMATOPHAGOIDES PTERONYSSINUS D1 IGE RAST;;lU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"BAJO	              0.1 - 0.7 (KU/L)
+MODERADO      0.7 - 3.5 (KU/L)
+ALTO	              MAYOR 3.5 (KU/L)
+Limite de deteccion del metodo: 0.1 KU/L.
+"
+273;DERMATOPHAGOIDES FARINAE (D2) IGE RAST;;lU/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"BAJO	              0.1 - 0.7 (KU/L)
+MODERADO      0.7 - 3.5 (KU/L)
+ALTO	              MAYOR 3.5 (KU/L)
+Limite de deteccion del metodo: 0.1 KU/L."
+403;C50 - COMPLEMENTO ACTIVIDAD TOTAL (CH50);;u/CAE;Ensayo Inmunoenzimatico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;Mayor o igual a  u/CAE
+305;CLE  - CELULAS LE;;;Inmunoaglutinacion - Latex;SUERO.;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+354;  ;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+253;CHLAMYDIA TRACHOMATIS IGM;;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO           Inferior a 9.0
+ZONA GRIS           9.0  -  11.0
+POSITIVO             Superior a  11.0
+"
+252;CHLAMYDIA TRACHOMATIS IGG;;;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO             Inferior a 9.0
+INDETERMINADO 9.0 - 11.0
+POSITIVO              Superior a 11.0
+"
+386;CHI - CHAGAS;;;Inmunocromatografico;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO
+"
+97;CBD - COOMBS DIRECTA;;;Inmunoaglutinacion;SANGRE/EDTA;INMUNOLOGIA;INMUNOLOGIA;NEGATIVO
+278;CASEINA (F78) IGE RAST;;KU/L;Fluorescencia Enzimatica FEIA/ImmunoCAP;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"BAJO	              0.1 - 0.7 (KU/L)
+MODERADO      0.7 - 3.5 (KU/L)
+ALTO	              MAYOR 3.5 (KU/L)
+Limite de deteccion del metodo: 0.1 KU/L.
+"
+266;CARDIOLIPINA IGM - ANTICUERPOS;;MPL/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                Inferior a 12 MPL/mL
+INDETERMINADO      12 - 18 MPL/mL
+POSITIVO                 Superior a 18 MPL/mL.
+"
+265;CARDIOLIPINA IGG - ANTICUERPOS;;GPL/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                Inferior a 12 GPL/mL
+INDETERMINADO      12 - 18 GPL/mL
+POSITIVO                 Superior a 18 GPL/mL."
+90;BHCG - SUB UNIDAD BETA CUANTITATIVA;;mIU/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+381;BETA 2 GLICOPROTEINA I IGG ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                  INFERIOR   12   U/mL
+INDETERMINADO                 12  -  18   U/mL
+POSITIVO                   SUPERIOR   18  U/mL
+"
+380;BETA 2 GLICOPROTEINA I IGA ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                  INFERIOR   12   U/mL
+INDETERMINADO                 12  -  18   U/mL
+POSITIVO                   SUPERIOR   18  U/mL
+"
+277;BETA LACTOGLOBULINA (F77) IGE RAST;;KU/L;Fluorescencia Enzimatica FEIA/ImmunoCAP;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"BAJO	              0.1 - 0.7 (KU/L)
+MODERADO      0.7 - 3.5 (KU/L)
+ALTO	              MAYOR 3.5 (KU/L)
+Limite de deteccion del metodo: 0.1 KU/L.
+"
+343;ASM - ANTIC.ANTI SM (SMITH);;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                Inferior a 15 U/mL
+INDETERMINADO      15 - 25  U/mL
+POSITIVO                 Superior a 25 U/mL."
+160;ANTI-HBCII-HEPATITIS B CORE AC. TOTAL;;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;INMUNOLOGIA;INMUNOLOGIA;###############################################################################################################################################################################################################################################################
+338;ANTIFOSFOLIPIDOS IGM ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                Inferior a 12 U/mL
+INDETERMINADO      12 - 18  U/mL
+POSITIVO                 Superior a 18 U/mL."
+337;ANTIFOSFOLIPIDOS IGG ANTICUERPOS;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                Inferior a 12 U/mL
+INDETERMINADO      12 - 18  U/mL
+POSITIVO                 Superior a 18 U/mL."
+285;ANTICOAGULANTE LUPICO;;U/mL;EIA;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO                Inferior a 12 U/mL
+INDETERMINADO      12 - 18  U/mL
+POSITIVO                 Superior a 18 U/mL.
+"
+102;ANTI-CCP PEPTIDO CICLICO CITRULINADO;;U/mL;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"NEGATIVO    INFERIOR a 30.0 U/mL
+POSITIVO      MAYOR O IGUAL a 30.0 U/mL"
+358;ANTI  SCL70;;;;;INMUNOLOGIA;INMUNOLOGIA;
+276;ALFA LACTOALBUMINA (F76) IGE RAST;;KU/L;Fluorescencia Enzimatica FEIA/ImmunoCAP;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"BAJO	              0.1 - 0.7 (KU/L)
+MODERADO      0.7 - 3.5 (KU/L)
+ALTO	              MAYOR 3.5 (KU/L)
+Limite de deteccion del metodo: 0.1 KU/L.
+"
+159;ALDOLASA SERICA;;U/L;Enzimatica;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"HASTA    7.6 U/L
+Sensibilidad del metodo: 1.73 U/L."
+344;AC - ANTICUERPOS ANTINUCLEARES;;;ELISA AUTOMATIZADO;SUERO.;INMUNOLOGIA;INMUNOLOGIA;"No Detectable: Inferior a 9.0
+Indeterminado: 9.0 a 10.0
+Detectable: Superior a 11.0"
+115;VSG - ERITROSEDIMENTACION;;;Westergreen;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;
+169;TTPA - TIEMPO DE TROMBOPLASTINA PARCIAL ACTIVADA;;seg.;Automatizado-coagulimetria;PLASMA/CITRATADO;HEMATOLOGIA;HEMATOLOGIA;"VALOR NORMAL    22.0 - 27.9 seg
+NEONATOS Y NI?OS MENORES A 10 A?OS
+PUEDEN TENER PROLONGADO HASTA EN UN
+20 % EN RELACION AL ADULTO
+"
+231;TS - TIEMPO DE SANGRIA;;;;;HEMATOLOGIA;HEMATOLOGIA;"HASTA 5 MINUTOS
+"
+170;TP - TIEMPO DE PROTROMBINA;;%;Automatizado-coagulimetria;PLASMA/CITRATADO;HEMATOLOGIA;HEMATOLOGIA;" (100  -  70 %) EN ADULTOS NORMALES.
+Neonatos y ni?os menores a 10 a?os: Pueden
+tener prolongado hasta en un 20% en relacion
+al valor de Adulto."
+232;TCO - TIEMPO DE COAGULACION;;;;;HEMATOLOGIA;HEMATOLOGIA;"HASTA 12 MINUTOS
+"
+239;RET - RETICULOCITOS;;%;;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;"PRIMERAS 24 HORAS               2  -  6 % 
+1 DIA - 2 SEMANAS DE VIDA    0,3  -  1,5% 
+2 SEMANAS - ADULTO              0,5  -  2,2%
+"
+234;INR RAZON NORMALIZADA INTERNACIONAL;;;;;HEMATOLOGIA;HEMATOLOGIA;
+230;HTO - HEMATOCRITO;;;;;HEMATOLOGIA;HEMATOLOGIA;"HOMBRES :  40 - 48 %
+MUJERES   :  36 - 45 %"
+298;HGB - HEMOGLOBINA;;gr/dL;Automatizado  Human Count 60 ts.;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;"ADULTOS   : 12.0 - 16.0 gr/dL 
+RN            : 16.0 - 20.0 gr/dL 
+BEBE         : 10.0 - 15.0 gr/dL
+NI?OS       : 11.0 - 14.0 gr/dL"
+130;HEM - HEMOGRAMA COMPLETO;fL;;Automatizado  Human Count 60 ts.;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;54 - 64 %
+130;HEM - HEMOGRAMA COMPLETO;/mm3;;Automatizado  Human Count 60 ts.;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;80.0  -  94.0 fL
+130;HEM - HEMOGRAMA COMPLETO;%;;Automatizado  Human Count 60 ts.;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;27.0  -  32.0 pg
+130;HEM - HEMOGRAMA COMPLETO;gr/dL;;Automatizado  Human Count 60 ts.;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;11.0  -  14.0 %
+130;HEM - HEMOGRAMA COMPLETO;pg;;Automatizado  Human Count 60 ts.;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;80.0  -  94.0 fL
+130;HEM - HEMOGRAMA COMPLETO;g/dL;;Automatizado  Human Count 60 ts.;SANGRE/EDTA;HEMATOLOGIA;HEMATOLOGIA;"ADULTOS   : 12.0 - 16.0 gr/dL 
+RN            : 16.0 - 20.0 gr/dL 
+BEBE         : 10.0 - 15.0 gr/dL
+NI?OS       : 11.0 - 14.0 gr/dL"
+410;CUERPOS LAMENARES;;;Automatizado-contador hematologico;;HEMATOLOGIA;HEMATOLOGIA;SUPERIOR A 20.000
+50;COA - COAGULOGRAMA;seg;;;PLASMA/CITRATADO;HEMATOLOGIA;HEMATOLOGIA;"VALOR NORMAL   22  -  30 seg
+Neonatos y ni?os menores a 10 a?os: Pueden tener
+prolongado hasta en un 20% en relacion al valor de Adulto.
+"
+50;COA - COAGULOGRAMA;%;;;PLASMA/CITRATADO;HEMATOLOGIA;HEMATOLOGIA;HASTA 12 MINUTOS
+50;COA - COAGULOGRAMA;;;;PLASMA/CITRATADO;HEMATOLOGIA;HEMATOLOGIA;HASTA 12 MINUTOS
+50;COA - COAGULOGRAMA;/mm3;;;PLASMA/CITRATADO;HEMATOLOGIA;HEMATOLOGIA;HASTA 5 MINUTOS
+50;COA - COAGULOGRAMA;mg/dl;;;PLASMA/CITRATADO;HEMATOLOGIA;HEMATOLOGIA;
+316;ADN;;;;;HEMATOLOGIA;BIOLOGIA MOLECULAR;
+186;SOM - SANGRE OCULTA;;;Inmunocromatografico;HECES;HECES;HECES;"NEGATIVO
+"
+245;ROTA - ADENO TEST;;;Inmunocromatografico;HECES;HECES;HECES;"NEGATIVO
+"
+184;ROT - ROTAVIRUS;;;Inmunocromatografico;HECES;HECES;HECES;"NEGATIVO
+"
+178;FMF - FROTIS DE HECES;;;;;HECES;HECES;
+181;ESTUDIO DE HECES -  BENEDICT;;;Reaccion de Benedict;HECES;HECES;HECES;NEGATIVO
+240;ESTEATOCRITO HECES;;%;Extraccion acida total;;HECES;HECES;INFERIOR A     2%
+255;CFR - FROTIS DE MATERIA FECAL;;;;;HECES;HECES;
+227;ANTIGENO ADENOVIRUS;;;Inmunocromatografico;;HECES;HECES;NEGATIVO
+177;GASOMETRIA SANGRE VENOSA;%;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;"7,310  -   7,41
+"
+177;GASOMETRIA SANGRE VENOSA;mm/Hg;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;"7,310  -   7,41
+"
+177;GASOMETRIA SANGRE VENOSA;;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;"23,0  -  28,0  mmol/L
+"
+177;GASOMETRIA SANGRE VENOSA;mmol/L;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;80  -   105  mm/Hg
+79;GASOMETRIA SANGRE ARTERIAL;%;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;"7,310  -   7,41
+"
+79;GASOMETRIA SANGRE ARTERIAL;mm/Hg;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;"23,0  -  28,0  mmol/L
+"
+79;GASOMETRIA SANGRE ARTERIAL;;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;20,0 vol %
+79;GASOMETRIA SANGRE ARTERIAL;mmol/L;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;20,0 vol %
+79;GASOMETRIA SANGRE ARTERIAL;vol %;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;40,0  -  45,0 nmol/L
+79;GASOMETRIA SANGRE ARTERIAL;nmol/L;;Analizador Automatizado i-SAT;;GASOMETRIA;GASOMETRIA;"41,0  -  51,0  mm/Hg
+"
+352;17-OH PROGESTERONA;;ng/ml;EIA;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"MUJERES:
+FASE FOLICULAR:     0.1 - 0.8 ng/ml
+FASE LUTEA:            0.6 - 2.3 ng/ml
+OVULACION:            0.3 - 1.4 ng/ml
+3? TRIMESTRE:        2.0 - 12 ng/ml
+POSTMENOPAUSIA:  0.13 - 0.51 ng/ml."
+250;TSH - THYROID-STIMULATING HORMONE;;?Ul/mL;Quimioluminiscencia/Fotometria;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"0,35  -  4,94  ?Ul/mL
+"
+191;TES - TESTOSTERONA TOTAL NO USAR;;nmol/l;Quimioluminiscencia/Fotometria;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"HOMBRES 21 - 49 A?OS        1,63  - 34,00 nmol/l
+HOMBRES MAYOR 50 A?OS    4.41 - 35.38 nmol/l
+MUJERES 21 - 49 A?OS          0,25 - 2,75  nmol/l
+MUJERES MAYOR 50 A?OS     0,30 - 1,28  nmol/l"
+221;TEL - TESTOSTERONA LIBRE;;pg/ml;ELISA AUTOMATIZADO;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"NI?OS HASTA 10 A?OS       0.1 - 1.25 pg/ml
+MUJERES                            0 - 3 pg/ml
+HOMBRES                           5 - 30 pg/ml.
+"
+225;SOMATOMEDINA C (IGF-1);;ng/mL;Quimioluminiscencia;;ENDOCRINOLOGIA;ENDOCRINOLOGIA;###############################################################################################################################################################################################################################################################
+223;SHBG - GLOBULINA FIJ DE HORMONAS SEXUALES;;nmol/L;Quimioluminiscencia;;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"HOMBRES DE 20 - 50 A?OS    13,2  -  89,9  nmol/L
+MUJERES DE 20 - 46 A?OS     18,2  -  135,7 nmol/L
+MUJERES DE 47 - 91 A?OS 
+(POS MENOPAUSIA)              16,8  -  106,9  nmol/L
+"
+36;S-DHEA - DEHIDROEPIANDROSTERONA SULFATO;;?g/dL;Quimioluminiscencia/Fotometria;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"Mujeres: 35 - 430 ug/dL
+Hombres: 80 - 560 ug/dL"
+194;PTH - HORMONA PARATIROIDEA;;pg/ml;Quimioluminiscencia/Fotometria;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;15,0  -  68,3 (pg/ml)
+132;PG - PROGESTERONA EN SUERO;;ng/ml;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;###############################################################################################################################################################################################################################################################
+325;PERFIL TIROIDEO NEONATAL;?g/dL;;Electroquimioluminiscencia (ECLIA)- Cobas 6000;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"6 dias a 3 meses: 0.720 - 11.000 ?Ul/mL
+"
+325;PERFIL TIROIDEO NEONATAL;ng/dL;;Electroquimioluminiscencia (ECLIA)- Cobas 6000;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"6 dias a 3 meses: 0.720 - 11.000 ?Ul/mL
+"
+325;PERFIL TIROIDEO NEONATAL;?Ul/mL;;Electroquimioluminiscencia (ECLIA)- Cobas 6000;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;1 - 11 meses: 105 - 245 ng/dL
+21;PERFIL TIROIDEO;ug/dl;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"0,59  -  1,51  ng/ml
+"
+21;PERFIL TIROIDEO;ng/ml;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"0,59  -  1,51  ng/ml
+"
+21;PERFIL TIROIDEO;?Ul/ml;;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"0,59  -  1,51  ng/ml
+"
+359;PEPTIDO C;;ng/mL;Electroquimioluminiscencia (ECLIA)- Cobas E411;SUERO.;ENDOCRINOLOGIA;INMUNOLOGIA;     1.1   -    4.4 ng/mL
+2;NO USAR FT4 - T4 LIBRE;;ng/dL;Quimioluminiscencia/Fotometria;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"0,70  -  1,48  ng/dl
+"
+70;NO USAR FT3 - T3 LIBRE;;Pg/ml;Quimioluminiscencia/Fotometria;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"1,71  -  3,71  Pg/ml
+"
+40;LH - HORMONA LUTEINAZANTE;;mIU/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"HOMBRES                 1,1  -  7,0 mUl/mL
+
+*FASE FOLICULAR    
+Primera mitad:  1,50  -  8,0 mUl/mL
+Segunda mitad: 2,0 - 8,0 mUl/mL
+
+*FASE LUTEINICA      0,2 - 6,5 mUl/mL
+*MENOPAUSIA          8,0 - 33,0 mUl/mL
+"
+347;H.TESTOSTERONA TOTAL;;ng/ml;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA; 0.05 a 13.50 ng/mL
+224;HOMOCISTEINA;;?mol/L;Quimioluminiscencia;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"15 a 65 a?os: Inferior o igual a 15.0 ?mol/L
+
+"
+238;E1 - ESTRONA;;pg/mL;Inmunoensayo enzimatico;;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"HOMBRES                                 13,0  -  149,0   pg/mL
+MUJERES PRE-MENOPAUSA      21,0  -  319,0  pg/mL
+MUJERES POS-MENOPAUSA     11,0  -     95,0  pg/mL
+"
+222;DHT - DIHIDROTESTOSTERONA;;pg/mL;Inmunoensayo enzimatico;;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"HOMBRE                 250,0 - 990,0  pg/mL
+MUJERES
+PRE MENOPAUSIA   24,0 - 368,0  pg/mL
+POS MENOPAUSA   10.0 - 181,0  pg/mL"
+226;DHEA - DEHIDROEPIANDROSTERONA;;?g/dL;Quimioluminiscencia;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"FEMENINO      35 - 430 ?g/dL
+MASCULINO     80 -  560 ?g/dL"
+174;CORTISOL  ( PM );;ng/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;16 a 19 PM: 24,61 - 171,52  ng/mL
+101;CORTISOL  ( AM );;ug/dL;Quimioluminiscencia;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;8 a 10 AM:    5  - 25 ug/dL
+4;ATG - ANTI TIROGLOBULINA;;lU/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;INMUNOLOGIA;"INFERIOR a 18.0lU/mL
+"
+175;ANTI-PEROXIDASA TIROIDEA (ANTI-TPO);;Ul/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;"Inferior a 8.0 UI/mL
+"
+271;ANDROSTENEDIONA;;ng/mL;Quimioluminiscencia (CLIA)-Inmulite 2000;SUERO.;ENDOCRINOLOGIA;ENDOCRINOLOGIA;ADULTOS:   0.30   -   3.30 ng/mL.
+335;ACTH HORMONA ADRENOCORTICOTROPA;;pg/mL;Quimioluminiscencia;PLASMA EDTA;ENDOCRINOLOGIA;ENDOCRINOLOGIA;7 a 63 pg/mL
+235;NA - SODIO;;;Electrodo ion enzimatico;SUERO.;ELECTROLITOS;ELECTROLITOS;"135  -  145  mmol/L
+"
+237;K - POTASIO;;;Electrodo ion enzimatico;SUERO.;ELECTROLITOS;ELECTROLITOS;"3,50  -  5,50  mmol/L
+"
+58;ELECTROLITOS - IONOGRAMA;mmol/L;;Electrodo ion enzimatico;SUERO.;ELECTROLITOS;ELECTROLITOS;"2,20  -  2,68 mmol/L
+"
+236;CLORO (SUERO);;;Electrodo ion enzimatico;;ELECTROLITOS;ELECTROLITOS;"96  -  110  mmol/L
+"
+148;CAI - CALCIO IONICO;;mmol/L;Electrodo ion enzimatico;SUERO.;ELECTROLITOS;ELECTROLITOS;"1,10  -  1,40 mmol/L
+
+"
+94;25-HIDROXI VITAMINA D;;ng/mL;ELFA - ENZYME LINKED FLUORESCENT ASSAY;SUERO.;BIOQUIMICA;BIOQUIMICA;"DEFICIENCIA                 INFERIOR 20 ng/mL
+INSUFICIENCIA               20  -  29 ng/mL
+DESEABLE                      30  -  100 ng/mL
+TOXICIDAD POTENCIAL   MAYOR 100 ng/mL"
+310;ZN - ZINC SERICO;;?g/dL;Espectrometria de Absorcion Atomica por llama.;SUERO.;BIOQUIMICA;BIOQUIMICA;46 - 150 ug/dl
+32;VLL - COLESTEROL VLDL;;mg/dL;Quimioluminiscencia/Fotometria;;BIOQUIMICA;BIOQUIMICA;DESEABLE INFERIOR  50  mg/dL
+351;VITAMINA A;;mg/L;HPLC (Cromatografia Liquida de alta performance);SUERO.;BIOQUIMICA;BIOQUIMICA;"1 - 6 A?OS             0,2  -  0,4  mg/L
+7 - 12 A?OS           0,3  -  0,5 mg/L
+MAS DE 13 A?OS   0,3  -  0,7 mg/L
+"
+370;URU - UREA ORINA ESPONTANEA;;gr/L;Reaccion Jaffe;ORINA ESPONTANEA;BIOQUIMICA;BIOQUIMICA;"hasta 400 gr/L
+"
+96;URI - ACIDO URICO (ORINA);;mg/dL;Quimioluminiscencia/Fotometria;;BIOQUIMICA;BIOQUIMICA;
+129;TRANSFERRINA;;mg/dl;Turbidimetrica/Inmunoturbidimetrica;SUERO.;BIOQUIMICA;BIOQUIMICA;"200 - 360 mg/dL
+"
+342;SELENIO;;?g/L;Epectrometria de masa con plasma I - A.;SUERO.;BIOQUIMICA;BIOQUIMICA;" 46    a   143 ?g/L
+
+""Metodologia desenvolvida e validada in
+house seguindo protocolos de validac?o
+nacionais e internacionais."""
+18;SATURACION DE TRANSFERRINA;;%;Razon;SUERO.;BIOQUIMICA;BIOQUIMICA;"Hombres: 20- 50 %
+Mujeres: 15 - 50 %"
+209;PUR - PROTEINURIA 24HS;;;;;BIOQUIMICA;BIOQUIMICA;  28  -  141 mg/24 horas
+209;PUR - PROTEINURIA 24HS;mL;;;;BIOQUIMICA;BIOQUIMICA;  28  -  141 mg/24 horas
+209;PUR - PROTEINURIA 24HS;mg/24 hs;;;;BIOQUIMICA;BIOQUIMICA;"ORINA ESPONTANEA       15  -  45 mg/dL
+ORINA 24 HORAS              28  -  141 mg/24H
+EMBARAZADAS                 160 mg/24h
+"
+147;PRUEBA: TOLERANCIA A LA GLUCOSA;mg%;;O'Sullivan;;BIOQUIMICA;BIOQUIMICA;70  -  110 mg%
+109;PHOS - FOSFORO (ORINA);;mg/dL;Colorimetrico;ORINA;BIOQUIMICA;BIOQUIMICA;
+7;PFL CED - PERFIL LIPIDICO;;;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"NORMAL                     MENOR  150 mg/dL
+EN EL LIMITE ALTO     150 - 199 mg/dL
+ALTO                          200 - 499 mg/dL
+MUY ALTO                  MAYOR  500 mg/dL
+"
+7;PFL CED - PERFIL LIPIDICO;mg/dL;;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"DESEABLE           MENOR  100 mg/dL
+ELEVADO            MAYOR  130 mg/dL
+MUY ELEVADO     MAYOR  190 mg/dL
+
+"
+317;PENICILINA V (PENICILLOYL V) C2;;KU/L CLASE(O);Quimioluminiscencia (CLIA)-Inmulite 2000;SUERO.;BIOQUIMICA;INMUNOLOGIA;"AUSENCIA O INDETECTABLE
+Sensibilidad del metodo: 0.10 KU/L"
+318;PENICILINA G (PENICILLOYL G) C1;;KU/L CLASE(O);Quimioluminiscencia (CLIA)-Inmulite 2000;SUERO.;BIOQUIMICA;INMUNOLOGIA;"AUSENCIA O INDETECTABLE
+Sensibilidad del metodo: 0.10 KU/L"
+103;OCR - CREATININA (ORINA);;mg/dL;Colorimetrico;ORINA;BIOQUIMICA;BIOQUIMICA;"HOMBRES: 39 - 259 mg/dL
+MUJERES: 28 -217 mg/dL
+"
+99;OAM - ALFA AMILASA (ORINA);;U/l;Quimioluminiscencia/Fotometria;;BIOQUIMICA;BIOQUIMICA;Hasta 1000 U/l
+128;NO USAR - PROTEINURIA ESPONTANEA - PUR-URI;;g/dL;Quimioluminiscencia/Fotometria;;BIOQUIMICA;QUIMICA;
+122;MICROALBUMINURIA DE 24 HORAS;;ug/min;Quimioluminiscencia/Fotometria;;BIOQUIMICA;BIOQUIMICA;Hasta: 18 ug/mim
+149;INS - INSULINA;;?U/mL;ELISA AUTOMATIZADO;SUERO.;BIOQUIMICA;BIOQUIMICA;"2  -  25  ?U/mL
+"
+150;INP - INSULINA PRE Y POST PANDRIAL;;Ul/ml;Quimioluminiscencia/Fotometria;;BIOQUIMICA;BIOQUIMICA;
+5;HEP - HEPATOGRAMA;;;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"0,0  -  0,5  mg/dL
+"
+5;HEP - HEPATOGRAMA;U/L;;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;###############################################################################################################################################################################################################################################################
+5;HEP - HEPATOGRAMA;mg/dL;;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"0,0  -  0,5  mg/dL
+"
+30;HDL - COLESTEROL HDL;;mg/dL;Quimioluminiscencia/Fotometria;;BIOQUIMICA;BIOQUIMICA;"FACTOR DE RIESGO DE CARDIOPATIAS 
+ INFERIOR a 40 mg/dL
+FACTOR BAJO DE RIESGO DE CARDIOPATIAS 
+ MAYOR a   60 mg/dL"
+51;GPT -(ALT) ALANINA AMINOTRANSFERASA;;U/L;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"HOMBRES: Hasta 42  U/l
+MUJERES: Hasta 32 U/l"
+119;GPP - GLUCOSA POST PRANDIAL;;mg/dL;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"HASTA      140  mg/dL
+"
+55;GOT -(AST) ASPARTATO AMINOTRANSFERASA;;U/L;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"HOMBRES: Hasta 37 U/l
+MUJERES: Hasta 31 U/l
+"
+116;GLU - GLUCOSA;;mg/dL;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"Suero,plasma(ayunas):  75  -  115  mg/dL
+
+
+NI?OS                                  60  -  100 mg/dL
+ADULTOS                              70  -  105 mg/dL
+MAYOR 70 A?OS                    83  -  110 mg/dL
+"
+151;GLO - GLOBULINAS;;g/dL;;;BIOQUIMICA;BIOQUIMICA;2,0 - 3,5  g/dL
+26;FES - HIERRO SERICO;;?g/dl;Colorimetrico;SUERO.;BIOQUIMICA;BIOQUIMICA;"MUJERES: 37  -  145 ug/dL
+HOMBRES: 59 - 148 ug/dL"
+37;FER - FERRITINA;;ng/mL;ELISA AUTOMATIZADO;SUERO.;BIOQUIMICA;BIOQUIMICA;"HOMBRES: 20 - 250 ng/mL
+MUJERES: 10 - 120 ng/mL
+Ninhos de 6 meses a 15 anhos: 7 a 140 ng/mL
+"
+368;FENITOINA;;?g/mL;CINETICO;SUERO.;BIOQUIMICA;BIOQUIMICA;"Rango terapeutico
+10 - 20  ?g/mL
+Rango toxico: Mayor a 20  ?g/mL"
+49;FAL - FOSFATASA ALCALINA;;U/L;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;"MUJERES:     64 - 306 U/l
+HOMBRES:   80 - 306 U/l
+Ni?os hasta 15 a?os: Hasta 644 U/l
+Ni?os hasta 17 a?os: Hasta 483 U/l"
+292;EPSTEIN BARR VIRUS ANTICUERPOS  IGM;;;EIA;SUERO.;BIOQUIMICA;INMUNOLOGIA;"NEGATIVO             Inferior 9.0
+INDETERMINADO   9.0 - 11.0
+POSITIVO              Superior 11.0"
+291;EPSTEIN BARR VIRUS ANTICUERPOS  IGG;;;EIA;SUERO.;BIOQUIMICA;INMUNOLOGIA;"NEGATIVO             Inferior 9.0
+INDETERMINADO   9.0 - 11.0
+POSITIVO              Superior 11.0"
+361;CREATININA ORINA ESPONTANEA;;mg/dL;Reaccion Jaffe;ORINA ESPONTANEA;BIOQUIMICA;BIOQUIMICA;"Hombres: 39 a 259 mg/dL
+Mujeres: 28 - 217 mg/dL
+"
+3;CLE - CLEARANCE DE CREATININA;mL;;Reaccion Jaffe;;BIOQUIMICA;BIOQUIMICA;"2 - 3 A?OS          6  -  22 mg/kg/24hs
+MAYOR 3 A?OS   12  -  30 mg/kg/24hs
+ADULTOS
+*HOMBRES         21  -  26 mg/kg/24hs
+*MUJERES          16  -  22 mg/kg/24hs
+"
+3;CLE - CLEARANCE DE CREATININA;ml/min;;Reaccion Jaffe;;BIOQUIMICA;BIOQUIMICA;"HOMBRES     94  -  140 ml/min/1,73m2
+MUJERES      72  -  110 ml/min/1,73m2
+"
+3;CLE - CLEARANCE DE CREATININA;m2;;Reaccion Jaffe;;BIOQUIMICA;BIOQUIMICA;"HOMBRES     94  -  140 ml/min/1,73m2
+MUJERES      72  -  110 ml/min/1,73m2
+"
+3;CLE - CLEARANCE DE CREATININA;ml/min/1.73;;Reaccion Jaffe;;BIOQUIMICA;BIOQUIMICA;"2 - 3 A?OS          6  -  22 mg/kg/24hs
+MAYOR 3 A?OS   12  -  30 mg/kg/24hs
+ADULTOS
+*HOMBRES         21  -  26 mg/kg/24hs
+*MUJERES          16  -  22 mg/kg/24hs
+"
+3;CLE - CLEARANCE DE CREATININA;mg/dL;;Reaccion Jaffe;;BIOQUIMICA;BIOQUIMICA;"HOMBRES     94  -  140 ml/min/1,73m2
+MUJERES      72  -  110 ml/min/1,73m2
+"
+3;CLE - CLEARANCE DE CREATININA;mg/kg. peso;;Reaccion Jaffe;;BIOQUIMICA;BIOQUIMICA;"HOMBRES     0,72  -  1,25 mg/dL
+MUJERES      0,57  -  1,01 mg/dL
+"
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;mL;;;;BIOQUIMICA;MICROBIOLOGIA;###############################################################################################################################################################################################################################################################
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;mg/dL;;;;BIOQUIMICA;MICROBIOLOGIA;"NORMAL  MENOR                   150             mg/dL
+EN EL LIMITE ALTO                150 - 199    mg/dL
+ALTO                                      200 - 499    mg/dL
+MUY ALTO  MAYOR O IGUAL 500     mg/dL
+"
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;;;;;BIOQUIMICA;MICROBIOLOGIA;"NORMAL  MENOR                   150             mg/dL
+EN EL LIMITE ALTO                150 - 199    mg/dL
+ALTO                                      200 - 499    mg/dL
+MUY ALTO  MAYOR O IGUAL 500     mg/dL
+"
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;%;;;;BIOQUIMICA;MICROBIOLOGIA;"NORMAL  MENOR                   150             mg/dL
+EN EL LIMITE ALTO                150 - 199    mg/dL
+ALTO                                      200 - 499    mg/dL
+MUY ALTO  MAYOR O IGUAL 500     mg/dL
+"
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;p/c;;;;BIOQUIMICA;MICROBIOLOGIA;"NORMAL  MENOR                   150             mg/dL
+EN EL LIMITE ALTO                150 - 199    mg/dL
+ALTO                                      200 - 499    mg/dL
+MUY ALTO  MAYOR O IGUAL 500     mg/dL
+"
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;U/L;;;;BIOQUIMICA;MICROBIOLOGIA;###############################################################################################################################################################################################################################################################
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;/mm3;;;;BIOQUIMICA;MICROBIOLOGIA;###############################################################################################################################################################################################################################################################
+89;CITOQUIMICO - LIQUIDOS BIOLOGICOS;gr/dL;;;;BIOQUIMICA;MICROBIOLOGIA;"NORMAL  MENOR                   150             mg/dL
+EN EL LIMITE ALTO                150 - 199    mg/dL
+ALTO                                      200 - 499    mg/dL
+MUY ALTO  MAYOR O IGUAL 500     mg/dL
+"
+264;CARDIOLIPINA IGA - ANTICUERPOS;;APL/mL;EIA;SUERO.;BIOQUIMICA;INMUNOLOGIA;"NEGATIVO                Inferior a 12 APL/mL
+INDETERMINADO      12 - 18 APL/mL
+POSITIVO                 Superior a 18 APL/mL."
+80;CAO - CALCIO (ORINA);;mg/dL;Colorimetrico;ORINA ESPONTANEA;BIOQUIMICA;BIOQUIMICA;
+341;B6 - VITAMINA B6;;ug/L;HPLC (Cromatografia Liquida de alta performance);SANGRE/EDTA;BIOQUIMICA;BIOQUIMICA;Referencia:        8,7 - 27,2 ug/L
+127;B12 - VITAMINA B12;;pg/mL;Quimioluminiscencia;SUERO.;BIOQUIMICA;BIOQUIMICA;"174  -  878 pg/mL
+
+
+"
+61;BRRT - BILIRRUBINA TOTAL;;mg/dL;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;###############################################################################################################################################################################################################################################################
+60;BRRI - BILIRRUBINA INDIRECTA;;mg/dL;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;HASTA   0,85  mg/dL
+59;BRRD - BILIRRUBINA DIRECTA;;mg/dL;Quimioluminiscencia/Fotometria;SUERO.;BIOQUIMICA;BIOQUIMICA;0,0  -   0,2  mg/dL
+319;AMOXICILINA (AMOXICILLIN) C204;;KU/L CLASE (O);Quimioluminiscencia (CLIA)-Inmulite 2000;SUERO.;BIOQUIMICA;INMUNOLOGIA;"AUSENCIA O INDETECTABLE
+Sensibilidad del metodo: 0.10 KU/L"
+15;AMONIO;;;Quimioluminiscencia/Fotometria;;BIOQUIMICA;BIOQUIMICA;
+53;AMI - ALFA AMILASA;;U/L;Enzimatica;SUERO.;BIOQUIMICA;BIOQUIMICA;25 -125 U/L
+25;AFO - ACIDO FOLICO;;ng/mL;ELISA AUTOMATIZADO;;BIOQUIMICA;BIOQUIMICA;3,2  -  13,7 ng/mL
+17;ACIDO LACTICO. LACTATO;;mg/dL;Enzimatica;PLASMA C/ FLUORURO;BIOQUIMICA;ENDOCRINOLOGIA;"0 - 90 DIAS:     9 - 32  mg/dL
+3 - 24 MESES:  9 - 30  mg/dL
+2 - 18 A?OS:    9 - 22  mg/dL
+ADULTOS:        4.5 - 19.8 mg/dL
+"
+404;PANEL VIRAL DE LCR;;;Real Time PCR;SUERO.;BIOLOGIA MOLECULAR;BIOLOGIA MOLECULAR;
+402;HLA (ANTIGENO HLA B27);;;Real Time PCR;;BIOLOGIA MOLECULAR;BIOLOGIA MOLECULAR;###############################################################################################################################################################################################################################################################
+393;HERPES VIRUS SIMPLEX 1 Y 2 (HSV 1 + HSV2), DETECCION;;;Real Time PCR;;BIOLOGIA MOLECULAR;BIOLOGIA MOLECULAR;
+392;DETECCION DE ENTEROVIRUS, L.C.R.;;;Real Time PCR;;BIOLOGIA MOLECULAR;BIOLOGIA MOLECULAR;
+400;DETECCION DE ADENOVIRUS;;;Real Time PCR;;BIOLOGIA MOLECULAR;BIOLOGIA MOLECULAR;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;

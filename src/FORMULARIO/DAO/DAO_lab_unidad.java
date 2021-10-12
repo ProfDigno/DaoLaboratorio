@@ -20,10 +20,10 @@ public class DAO_lab_unidad {
     EvenFecha evefec = new EvenFecha();
     private String mensaje_insert = "LAB_UNIDAD GUARDADO CORRECTAMENTE";
     private String mensaje_update = "LAB_UNIDAD MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO lab_unidad(idlab_unidad,nombre) VALUES (?,?);";
-    private String sql_update = "UPDATE lab_unidad SET nombre=? WHERE idlab_unidad=?;";
-    private String sql_select = "SELECT idlab_unidad,nombre FROM lab_unidad order by 1 desc;";
-    private String sql_cargar = "SELECT idlab_unidad,nombre FROM lab_unidad WHERE idlab_unidad=";
+    private String sql_insert = "INSERT INTO public.lab_unidad(idlab_unidad,nombre) VALUES (?,?);";
+    private String sql_update = "UPDATE public.lab_unidad SET nombre=? WHERE idlab_unidad=?;";
+    private String sql_select = "SELECT idlab_unidad,nombre FROM public.lab_unidad order by 1 desc;";
+    private String sql_cargar = "SELECT idlab_unidad,nombre FROM public.lab_unidad WHERE idlab_unidad=";
 
     public void insertar_lab_unidad(Connection conn, lab_unidad lab_u) {
         lab_u.setC1idlab_unidad(eveconn.getInt_ultimoID_mas_uno(conn, lab_u.getTb_lab_unidad(), lab_u.getId_idlab_unidad()));

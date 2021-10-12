@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class DAO_persona {
 
@@ -20,10 +21,14 @@ public class DAO_persona {
     EvenFecha evefec = new EvenFecha();
     private String mensaje_insert = "PERSONA GUARDADO CORRECTAMENTE";
     private String mensaje_update = "PERSONA MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO persona(idpersona,nombre,apellido,cedula,telefono,direccion,fec_nac,genero,nro_tarjeta,registro,tipo_persona,fk_idtipo_seguro,fk_idplan_seguro,fk_iddirec_barrio,fk_iddirec_ciudad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-    private String sql_update = "UPDATE persona SET nombre=?,apellido=?,cedula=?,telefono=?,direccion=?,fec_nac=?,genero=?,nro_tarjeta=?,registro=?,tipo_persona=?,fk_idtipo_seguro=?,fk_idplan_seguro=?,fk_iddirec_barrio=?,fk_iddirec_ciudad=? WHERE idpersona=?;";
-    private String sql_select = "SELECT idpersona,nombre,apellido,cedula,telefono,direccion,fec_nac,genero,nro_tarjeta,registro,tipo_persona,fk_idtipo_seguro,fk_idplan_seguro,fk_iddirec_barrio,fk_iddirec_ciudad FROM persona order by 1 desc limit 20;";
-    private String sql_cargar = "SELECT idpersona,nombre,apellido,cedula,telefono,direccion,fec_nac,genero,nro_tarjeta,registro,tipo_persona,fk_idtipo_seguro,fk_idplan_seguro,fk_iddirec_barrio,fk_iddirec_ciudad FROM persona WHERE idpersona=";
+    private String sql_insert = "INSERT INTO public.persona(idpersona,nombre,apellido,cedula,telefono,direccion,fec_nac,genero,nro_tarjeta,registro,tipo_persona,fk_idtipo_seguro,fk_idplan_seguro,fk_iddirec_barrio,fk_iddirec_ciudad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    private String sql_update = "UPDATE public.persona SET nombre=?,apellido=?,cedula=?,telefono=?,direccion=?,fec_nac=?,genero=?,nro_tarjeta=?,registro=?,tipo_persona=?,fk_idtipo_seguro=?,fk_idplan_seguro=?,fk_iddirec_barrio=?,fk_iddirec_ciudad=? WHERE idpersona=?;";
+    private String sql_select = "SELECT idpersona,nombre,apellido,cedula,tipo_persona FROM public.persona order by 1 desc limit 20;";
+    private String sql_cargar = "SELECT idpersona,nombre,apellido,cedula,telefono,direccion,fec_nac,"
+            + "genero,nro_tarjeta,registro,tipo_persona,"
+            + "fk_idtipo_seguro,fk_idplan_seguro,fk_iddirec_barrio,fk_iddirec_ciudad, "
+              + "to_char(age(current_date,fec_nac), 'YY\"A\"-mm\"M\"-DD\"D\"') as fec_nac "
+            + "FROM public.persona WHERE idpersona=";
 
     public void insertar_persona(Connection conn, persona per) {
         per.setC1idpersona(eveconn.getInt_ultimoID_mas_uno(conn, per.getTb_persona(), per.getId_idpersona()));
@@ -106,6 +111,7 @@ public class DAO_persona {
                 per.setC13fk_idplan_seguro(rs.getInt(13));
                 per.setC14fk_iddirec_barrio(rs.getInt(14));
                 per.setC15fk_iddirec_ciudad(rs.getInt(15));
+                per.setC16edad(rs.getString(16));
                 evemen.Imprimir_serial_sql(sql_cargar + "\n" + per.toString(), titulo);
             }
         } catch (Exception e) {
@@ -117,16 +123,24 @@ public class DAO_persona {
         eveconn.Select_cargar_jtable(conn, sql_select, tbltabla);
         ancho_tabla_persona(tbltabla);
     }
-
+     public void actualizar_buscar_persona(Connection conn, JTable tbltabla,JTextField txtbuscar,String campo) {
+         String buscar=txtbuscar.getText();
+         String sql="SELECT idpersona,nombre,apellido,cedula,tipo_persona "
+                 + "FROM public.persona "
+                 + "where "+campo+" ilike'%"+buscar+"%' "
+                 + "order by 1 desc limit 40;";
+        eveconn.Select_cargar_jtable(conn, sql, tbltabla);
+        ancho_tabla_persona(tbltabla);
+    }
     public void ancho_tabla_persona(JTable tbltabla) {
-        int Ancho[] = {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7};
+        int Ancho[] = {10, 30, 35, 15, 10};
         evejt.setAnchoColumnaJtable(tbltabla, Ancho);
     }
 
     public void actualizar_tabla_buscar_persona(Connection conn, JTable tbltabla,String campo,String buscar,String tipo_persona) {
         String sql = "select p.idpersona as idp,p.nombre,p.apellido,\n"
                 + "p.cedula,tp.nombre as seguro,ps.nombre as planseguro \n"
-                + "from persona p,tipo_seguro tp,plan_seguro ps \n"
+                + "from public.persona p,public.tipo_seguro tp,public.plan_seguro ps \n"
                 + "where p.fk_idtipo_seguro=tp.idtipo_seguro\n"
                 + "and p.fk_idplan_seguro=ps.idplan_seguro\n"
                 + "and p.tipo_persona='"+tipo_persona+"' \n"
@@ -139,11 +153,11 @@ public class DAO_persona {
         int idpersona=0;
         String sql = "select p.idpersona as idp,p.nombre,p.apellido,\n"
                 + "p.cedula,tp.nombre as seguro,ps.nombre as planseguro \n"
-                + "from persona p,tipo_seguro tp,plan_seguro ps \n"
+                + "from public.persona p,public.tipo_seguro tp,public.plan_seguro ps \n"
                 + "where p.fk_idtipo_seguro=tp.idtipo_seguro\n"
                 + "and p.fk_idplan_seguro=ps.idplan_seguro\n"
                 + "and p.tipo_persona='"+tipo_persona+"' \n"
-                + "and "+campo+" ilike'%"+buscar+"%' "
+                + "and "+campo+" ilike'%"+buscar+"' "
                 + " ";
         String titulo = "getInt_buscar_idpersona";
         try {

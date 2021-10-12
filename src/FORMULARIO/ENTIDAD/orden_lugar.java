@@ -8,7 +8,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public orden_lugar() {
-		setTb_orden_lugar("orden_lugar");
+		setTb_orden_lugar("public.orden_lugar");
 		setId_idorden_lugar("idorden_lugar");
 	}
 	public static String getTb_orden_lugar(){

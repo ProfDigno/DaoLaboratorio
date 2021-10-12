@@ -7,6 +7,7 @@ package FORMULARIO.VISTA;
 
 import BASEDATO.EvenConexion;
 import BASEDATO.LOCAL.ConnPostgres;
+import BASEDATO.SERVER.ConnPostgresServer;
 import Evento.Color.cla_color_pelete;
 import Evento.Combobox.EvenCombobox;
 import Evento.JTextField.EvenJTextField;
@@ -50,6 +51,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     EvenJTextField evejtf = new EvenJTextField();
     EvenCombobox comb = new EvenCombobox();
     Connection conn = ConnPostgres.getConnPosgres();
+    Connection connSer = ConnPostgresServer.getConnPosgresServer();
     cla_color_pelete clacolor = new cla_color_pelete();
     EvenMensajeJoptionpane evemen = new EvenMensajeJoptionpane();
     DefaultTableModel model_per = new DefaultTableModel();
@@ -62,11 +64,11 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     private plan_seguro pseg = new plan_seguro();
     private DAO_plan_seguro psegdao = new DAO_plan_seguro();
     private tabla_orden_lab tbl_or = new tabla_orden_lab();
-    private orden_lab ordl=new orden_lab();
-    private DAO_orden_lab ordDao=new DAO_orden_lab();
-    private BO_orden_lab ordBo=new BO_orden_lab();
-    private BO_item_orden_lab iolBo=new BO_item_orden_lab();
-    private DAO_item_orden_lab iolDao=new DAO_item_orden_lab();
+    private orden_lab ordl = new orden_lab();
+    private DAO_orden_lab ordDao = new DAO_orden_lab();
+    private BO_orden_lab ordBo = new BO_orden_lab();
+    private BO_item_orden_lab iolBo = new BO_item_orden_lab();
+    private DAO_item_orden_lab iolDao = new DAO_item_orden_lab();
     private java.util.List<JButton> botones_tabla3;
     private java.util.List<JButton> botones_tabla6;
     private java.util.List<JButton> botones_marca;
@@ -79,6 +81,9 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     private int fk_idpersona3;
     private int fk_idusuario = 1;
 //    private String estado_orden = "PEDIDO";
+    private int cant_estu_local;
+    private int cant_estu_ser;
+    private String suma_estudio_ser;
 
     private void abrir_formulario() {
         this.setTitle("ORDEN PEDIDO");
@@ -86,7 +91,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
         botones_tabla3 = new ArrayList<>();
         botones_tabla6 = new ArrayList<>();
         botones_marca = new ArrayList<>();
-        ordDao.actualizar_tabla_orden_lab(conn, tblorden_lab);
+        ordDao.actualizar_tabla_orden_lab(conn, tblorden_lab,"");
         cargar_boton_tabla3();
         cargar_orden_lugar();
         reestableser_orden();
@@ -109,7 +114,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     }
 
     private void cargar_orden_lugar() {
-        comb.cargarCombobox(conn, jCorden_lugar, "idorden_lugar", "nombre", "orden_lugar", "");
+        comb.cargarCombobox(conn, jCorden_lugar, "idorden_lugar", "nombre", "public.orden_lugar", "");
         hab_orden_lugar = true;
     }
 
@@ -194,7 +199,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     private void cargar_boton_tabla3() {//area
         String titulo = "cargar_boton_tabla3";
         String sql = "select idlab_grupo_estudio,nombre,orden \n"
-                + "from lab_grupo_estudio\n"
+                + "from public.lab_grupo_estudio\n"
                 + "where fk_idlab_grupo=" + tbl_or.getIdtabla_area()
                 + " order by orden asc;";
         try {
@@ -250,8 +255,8 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
         panel_referencia_tabla6.updateUI();
         cant_boton_unid = 0;
         String sql = "select lge2.idlab_grupo_estudio,lge2.nombre,lge2.orden \n"
-                + "from lab_grupo_estudio lge,item_lab_estudio ile,lab_estudio le,\n"
-                + "lab_grupo_estudio lge2,item_lab_estudio ile2\n"
+                + "from public.lab_grupo_estudio lge,public.item_lab_estudio ile,public.lab_estudio le,\n"
+                + "public.lab_grupo_estudio lge2,public.item_lab_estudio ile2\n"
                 + "where lge.idlab_grupo_estudio=ile.fk_idlab_grupo_estudio\n"
                 + "and ile.fk_idlab_estudio=le.idlab_estudio\n"
                 + "and lge.idlab_grupo_estudio=" + idlab_grupo_estudio + "\n"
@@ -322,7 +327,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
                 + "when le.es_testo=true then 'tes'\n"
                 + "when le.es_predefinido then 'pre'\n"
                 + "else 'otro' end tipo "
-                + "from lab_grupo_estudio lge,item_lab_estudio ile,lab_estudio le,lab_unidad lun\n"
+                + "from public.lab_grupo_estudio lge,public.item_lab_estudio ile,public.lab_estudio le,public.lab_unidad lun\n"
                 + "where lge.idlab_grupo_estudio=ile.fk_idlab_grupo_estudio\n"
                 + "and ile.fk_idlab_estudio=le.idlab_estudio\n"
                 + "and le.fk_idlab_unidad=lun.idlab_unidad\n"
@@ -343,7 +348,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
                     + "when le.es_testo=true then 'tes'\n"
                     + "when le.es_predefinido then 'pre'\n"
                     + "else 'otro' end tipo "
-                    + "from lab_grupo_estudio lge,item_lab_estudio ile,lab_estudio le,lab_unidad lun\n"
+                    + "from public.lab_grupo_estudio lge,public.item_lab_estudio ile,public.lab_estudio le,public.lab_unidad lun\n"
                     + "where lge.idlab_grupo_estudio=ile.fk_idlab_grupo_estudio\n"
                     + "and ile.fk_idlab_estudio=le.idlab_estudio\n"
                     + "and le.fk_idlab_unidad=lun.idlab_unidad\n"
@@ -360,6 +365,9 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     }
 
     private boolean validar_guardar_orden_lab() {
+        if (evejtf.getBoo_JTextField_vacio(txtnro_documento, "NO SE CARGO NINGUNA NUMERO DE DOCUMENTO")) {
+            return false;
+        }
         if (evejtf.getBoo_JTextField_vacio(txtpaciente_nombre, "NO SE CARGO NINGUNA NOMBRE DE PACIENTE")) {
             return false;
         }
@@ -390,6 +398,10 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
         if (eveJtab.getBoolean_validar_cant_cargado(tblitem_orden_lab)) {
             return false;
         }
+        if (jCorden_lugar.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(jCorden_lugar, "NO SE CARGO NINGUN LUGAR");
+            return false;
+        }
         return true;
     }
 
@@ -403,18 +415,127 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
             ordl.setC9fk_idpersona3(fk_idpersona3);
             ordl.setC10fk_idorden_lugar(fk_idorden_lugar);
             ordl.setC11fk_idusuario(fk_idusuario);
-            ordBo.insertar_orden_lab(ordl,tblitem_orden_lab);
-            ordDao.actualizar_tabla_orden_lab(conn, tblorden_lab);
+            ordl.setC12nro_documento(Integer.parseInt(txtnro_documento.getText()));
+            ordBo.insertar_orden_lab(ordl, tblitem_orden_lab);
+            ordDao.actualizar_tabla_orden_lab(conn, tblorden_lab,"");
             reestableser_orden();
         }
     }
-    private void seleccionar_orden(){
-        if(tblorden_lab.getSelectedRow()>=0){
+
+    private void seleccionar_orden() {
+        if (tblorden_lab.getSelectedRow() >= 0) {
             //String idorden_lab = eveJtab.getString_select(tblorden_lab, 0);
-            int idorden_lab=eveJtab.getInt_select_id(tblorden_lab);
+            int idorden_lab = eveJtab.getInt_select_id(tblorden_lab);
             iolDao.actualizar_tabla_item_orden_lab_pedido(conn, tblitem_orden_lab_pedido, idorden_lab);
         }
     }
+
+    private void buscar_orden(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (txtnro_documento.getText().trim().length() > 0) {
+                String documentno = txtnro_documento.getText();
+                buscar_orden_idempiere(documentno);
+                buscar_paciente_idempiere(documentno);
+            }
+        }
+    }
+
+    private void buscar_orden_idempiere(String documentno) {
+        String titulo = "buscar_orden_idempiere";
+        String sql = "select col.m_product_id,mp.name as servicio,mp.sku as sku\n"
+                + "from c_orderline col,m_product mp,c_order co \n"
+                + "where co.c_order_id=col.c_order_id \n"
+                + "and col.m_product_id=mp.m_product_id \n"
+                + "and co.documentno='" + documentno + "' "
+                + "order by col.c_orderline_id asc;";
+        try {
+            ResultSet rs = eveconn.getResulsetSQL(connSer, sql, titulo);
+            cant_estu_ser = 0;
+            cant_estu_local = 0;
+            suma_estudio_ser = "";
+            eveJtab.limpiar_tabla_datos(model_item_orden_lab);
+            while (rs.next()) {
+                cant_estu_ser++;
+                String servicio = rs.getString("servicio");
+                String sku = rs.getString("sku");
+                System.out.println("servicio: " + servicio + " sku: " + sku);
+                suma_estudio_ser = suma_estudio_ser + "(" + sku + "):" + servicio;
+                buscar_estudio_por_sku(sku);
+            }
+            if (cant_estu_ser == 0) {
+                JOptionPane.showMessageDialog(null, "NO SE ENCONTRO NINGUN REGISTRO");
+            } else if(cant_estu_ser == cant_estu_local){
+                JOptionPane.showMessageDialog(null, "CANTIDAD DE SERVICIO ENCONTRADO:"
+                        + "\nCant. Ser:" + cant_estu_ser
+                        + "\nCant. Local:" + cant_estu_local
+                        + "\n" + suma_estudio_ser);
+            }else if(cant_estu_ser > cant_estu_local){
+                JOptionPane.showMessageDialog(null, "NO SE ENCONTRO TODOS LOS ESTUDIOS:"+(cant_estu_ser-cant_estu_local)
+                        + "\nCant. Ser:" + cant_estu_ser
+                        + "\nCant. Local:" + cant_estu_local
+                        + "\n" + suma_estudio_ser,"ERROR",JOptionPane.ERROR_MESSAGE);
+            }else {
+                JOptionPane.showMessageDialog(null, "NINGUN PROCESO ENCONTRADO");
+            }
+        } catch (Exception e) {
+            evemen.mensaje_error(e, sql, titulo);
+        }
+    }
+
+    private void buscar_paciente_idempiere(String documentno) {
+        String titulo = "buscar_paciente_idempiere";
+        String sql = "select co.documentno,cb.\"name\" as paciente, cb.taxid as cedula \n"
+                + "from c_order co,c_bpartner cb \n"
+                + "where co.c_bpartner_id=cb.c_bpartner_id \n"
+                + "and co.documentno='" + documentno + "' ";
+        try {
+            ResultSet rs = eveconn.getResulsetSQL(connSer, sql, titulo);
+            int cant = 0;
+            if (rs.next()) {
+                cant++;
+                String paciente = rs.getString("paciente");
+                String cedula = rs.getString("cedula");
+                txtpaciente_cedula.setText(cedula);
+                buscar_persona(2);
+            }
+            if (cant == 0) {
+                JOptionPane.showMessageDialog(null, "NO SE ENCONTRO NINGUN PACIENTE");
+            }
+        } catch (Exception e) {
+            evemen.mensaje_error(e, sql, titulo);
+        }
+    }
+
+    private void buscar_estudio_por_sku(String sku) {
+        String titulo = "buscar_estudio_por_sku";
+        String sql = "select le.idlab_estudio as idle,le.fk_idlab_grupo_estudio as idg,le.es_estudio,\n"
+                + "le.nombre_completo as ncompleto,lun.nombre as unid\n"
+                + "from public.lab_estudio le,public.lab_unidad lun\n"
+                + "where le.fk_idlab_unidad=lun.idlab_unidad\n"
+                + "and le.sku=" + sku;
+        try {
+            ResultSet rs = eveconn.getResulsetSQL(conn, sql, titulo);
+            if (rs.next()) {
+                cant_estu_local++;
+                String idlab_estudio = rs.getString("idle");
+                String idg = rs.getString("idg");
+                String nombre_completo = rs.getString("ncompleto");
+                String unidad = rs.getString("unid");
+                boolean es_estudio = rs.getBoolean("es_estudio");
+                if (es_estudio) {
+                    Object dato[] = {idlab_estudio, idg, nombre_completo, unidad, false};
+                    model_item_orden_lab = (DefaultTableModel) tblitem_orden_lab.getModel();
+                    model_item_orden_lab.addRow(dato);
+                }
+                suma_estudio_ser = suma_estudio_ser + " ==>>OK\n";
+            }else{
+                suma_estudio_ser = suma_estudio_ser + " ==>>NO\n";
+            }
+        } catch (Exception e) {
+            evemen.mensaje_error(e, sql, titulo);
+        }
+    }
+
     public FrmOrden_lab_pedido() {
         initComponents();
         abrir_formulario();
@@ -469,6 +590,8 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         txtvisacion = new javax.swing.JTextField();
         txtmedico_idpersona = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtnro_documento = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblorden_lab = new javax.swing.JTable();
@@ -562,7 +685,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtbuscar_nombre_estudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("PACIENTE"));
@@ -768,6 +891,14 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
         txtmedico_idpersona.setEditable(false);
         txtmedico_idpersona.setBackground(new java.awt.Color(204, 204, 204));
 
+        jLabel11.setText("Nro DOCUMENTO IDEMPIERE:");
+
+        txtnro_documento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnro_documentoKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -775,13 +906,18 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtobservacion))
+                        .addComponent(panel_referencia_tabla6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtobservacion))
-                    .addComponent(panel_referencia_tabla6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtnro_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -812,35 +948,39 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(panel_referencia_tabla6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtbuscar_medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtbuscar_registro_medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtmedico_idpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jCorden_lugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(txtvisacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtobservacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel11)
+                                .addComponent(txtnro_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(panel_referencia_tabla6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(txtobservacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(jLabel6)
+                                .addComponent(txtbuscar_medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)
+                                .addComponent(txtbuscar_registro_medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtmedico_idpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(jCorden_lugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10)
+                                .addComponent(txtvisacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ORDEN PEDIDO", jPanel1);
@@ -891,7 +1031,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("FILTRO ORDEN PEDIDO", jPanel5);
@@ -904,7 +1044,9 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -920,7 +1062,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     private void jCorden_lugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCorden_lugarActionPerformed
         // TODO add your handling code here:
         if (hab_orden_lugar) {
-            fk_idorden_lugar = comb.getInt_seleccionar_COMBOBOX(conn, jCorden_lugar, "idorden_lugar", "nombre", "orden_lugar");
+            fk_idorden_lugar = comb.getInt_seleccionar_COMBOBOX(conn, jCorden_lugar, "idorden_lugar", "nombre", "public.orden_lugar");
         }
     }//GEN-LAST:event_jCorden_lugarActionPerformed
 
@@ -1002,6 +1144,11 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
         seleccionar_orden();
     }//GEN-LAST:event_tblorden_labMouseReleased
 
+    private void txtnro_documentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnro_documentoKeyPressed
+        // TODO add your handling code here:
+        buscar_orden(evt);
+    }//GEN-LAST:event_txtnro_documentoKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar_persona;
@@ -1013,6 +1160,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jCorden_lugar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1042,6 +1190,7 @@ public class FrmOrden_lab_pedido extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtbuscar_nombre_estudio;
     public static javax.swing.JTextField txtbuscar_registro_medico;
     public static javax.swing.JTextField txtmedico_idpersona;
+    public static javax.swing.JTextField txtnro_documento;
     private javax.swing.JTextField txtobservacion;
     public static javax.swing.JTextField txtpaciente_cedula;
     public static javax.swing.JTextField txtpaciente_nombre;

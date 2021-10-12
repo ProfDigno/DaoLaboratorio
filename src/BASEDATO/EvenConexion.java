@@ -248,14 +248,20 @@ public class EvenConexion {
     }
     public String getString_filtro_sql(Connection conn,String sql){
         String titulo="getString_filtro_sql";
-        String getcampo="";        
+        String getcampo="";    
+        int cant=0;
         try {
             ResultSet rs = getResulsetSQL(conn,sql,titulo);
-            if (rs.next()) {
+            
+            while (rs.next()) {
+                cant++;
                 getcampo = rs.getString(1);
             }
         } catch (Exception e) {
             evmen.mensaje_error(e, sql,titulo);
+        }
+        if(cant>1){
+            getcampo="duplicado:"+cant;    
         }
         return getcampo;
     }

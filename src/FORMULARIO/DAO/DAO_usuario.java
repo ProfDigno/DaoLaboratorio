@@ -17,10 +17,10 @@ public class DAO_usuario {
 	EvenFecha evefec = new EvenFecha();
 	private String mensaje_insert = "USUARIO GUARDADO CORRECTAMENTE";
 	private String mensaje_update = "USUARIO MODIFICADO CORECTAMENTE";
-	private String sql_insert = "INSERT INTO usuario(idusuario,nombre,usuario,password,nivel) VALUES (?,?,?,?,?);";
-	private String sql_update = "UPDATE usuario SET nombre=?,usuario=?,password=?,nivel=? WHERE idusuario=?;";
-	private String sql_select = "SELECT idusuario,nombre,usuario,password,nivel FROM usuario order by 1 desc;";
-	private String sql_cargar = "SELECT idusuario,nombre,usuario,password,nivel FROM usuario WHERE idusuario=";
+	private String sql_insert = "INSERT INTO public.usuario(idusuario,nombre,usuario,password,nivel) VALUES (?,?,?,?,?);";
+	private String sql_update = "UPDATE public.usuario SET nombre=?,usuario=?,password=?,nivel=? WHERE idusuario=?;";
+	private String sql_select = "SELECT idusuario,nombre,usuario,password,nivel FROM public.usuario order by 1 desc;";
+	private String sql_cargar = "SELECT idusuario,nombre,usuario,password,nivel FROM public.usuario WHERE idusuario=";
 	public void insertar_usuario(Connection conn, usuario usu){
 		usu.setC1idusuario(eveconn.getInt_ultimoID_mas_uno(conn, usu.getTb_usuario(), usu.getId_idusuario()));
 		String titulo = "insertar_usuario";

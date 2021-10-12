@@ -20,10 +20,10 @@ public class DAO_lab_estudio_predefinido {
     EvenFecha evefec = new EvenFecha();
     private String mensaje_insert = "LAB_ESTUDIO_PREDEFINIDO GUARDADO CORRECTAMENTE";
     private String mensaje_update = "LAB_ESTUDIO_PREDEFINIDO MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO lab_estudio_predefinido(idlab_estudio_predefinido,nombre,es_anormal) VALUES (?,?,?);";
-    private String sql_update = "UPDATE lab_estudio_predefinido SET nombre=?,es_anormal=? WHERE idlab_estudio_predefinido=?;";
-    private String sql_select = "SELECT idlab_estudio_predefinido,nombre,es_anormal FROM lab_estudio_predefinido order by 1 desc;";
-    private String sql_cargar = "SELECT idlab_estudio_predefinido,nombre,es_anormal FROM lab_estudio_predefinido WHERE idlab_estudio_predefinido=";
+    private String sql_insert = "INSERT INTO public.lab_estudio_predefinido(idlab_estudio_predefinido,nombre,es_anormal) VALUES (?,?,?);";
+    private String sql_update = "UPDATE public.lab_estudio_predefinido SET nombre=?,es_anormal=? WHERE idlab_estudio_predefinido=?;";
+    private String sql_select = "SELECT idlab_estudio_predefinido,nombre,es_anormal FROM public.lab_estudio_predefinido order by 1 desc;";
+    private String sql_cargar = "SELECT idlab_estudio_predefinido,nombre,es_anormal FROM public.lab_estudio_predefinido WHERE idlab_estudio_predefinido=";
 
     public void insertar_lab_estudio_predefinido(Connection conn, lab_estudio_predefinido lep) {
         lep.setC1idlab_estudio_predefinido(eveconn.getInt_ultimoID_mas_uno(conn, lep.getTb_lab_estudio_predefinido(), lep.getId_idlab_estudio_predefinido()));

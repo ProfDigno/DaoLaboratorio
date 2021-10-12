@@ -21,14 +21,14 @@ public class DAO_lab_grupo_estudio {
     EvenFecha evefec = new EvenFecha();
     private String mensaje_insert = "LAB_GRUPO_ESTUDIO GUARDADO CORRECTAMENTE";
     private String mensaje_update = "LAB_GRUPO_ESTUDIO MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO lab_grupo_estudio(idlab_grupo_estudio,nombre,fk_idlab_grupo,orden) VALUES (?,?,?,?);";
-    private String sql_update = "UPDATE lab_grupo_estudio SET nombre=?,fk_idlab_grupo=?,orden=? WHERE idlab_grupo_estudio=?;";
+    private String sql_insert = "INSERT INTO public.lab_grupo_estudio(idlab_grupo_estudio,nombre,fk_idlab_grupo,orden) VALUES (?,?,?,?);";
+    private String sql_update = "UPDATE public.lab_grupo_estudio SET nombre=?,fk_idlab_grupo=?,orden=? WHERE idlab_grupo_estudio=?;";
     private String sql_select = "select lge.idlab_grupo_estudio as idlge,lge.nombre as nombre,\n"
             + "('('||lg.idlab_grupo||')-'||lg.nombre) as grupo,lge.orden \n"
-            + "from lab_grupo_estudio lge,lab_grupo lg\n"
+            + "from public.lab_grupo_estudio lge,public.lab_grupo lg\n"
             + "where lge.fk_idlab_grupo=lg.idlab_grupo\n"
             + "order by lg.idlab_grupo desc,lge.orden asc ;";
-    private String sql_cargar = "SELECT idlab_grupo_estudio,nombre,fk_idlab_grupo,orden FROM lab_grupo_estudio WHERE idlab_grupo_estudio=";
+    private String sql_cargar = "SELECT idlab_grupo_estudio,nombre,fk_idlab_grupo,orden FROM public.lab_grupo_estudio WHERE idlab_grupo_estudio=";
 
     public void insertar_lab_grupo_estudio(Connection conn, lab_grupo_estudio lab_ge) {
         lab_ge.setC1idlab_grupo_estudio(eveconn.getInt_ultimoID_mas_uno(conn, lab_ge.getTb_lab_grupo_estudio(), lab_ge.getId_idlab_grupo_estudio()));
@@ -92,7 +92,7 @@ public class DAO_lab_grupo_estudio {
         String buscar = txtbuscar.getText();
         String sql = "select lge.idlab_grupo_estudio as idlge,lge.nombre as nombre,\n"
                 + "('('||lg.idlab_grupo||')-'||lg.nombre) as grupo,lge.orden \n"
-                + "from lab_grupo_estudio lge,lab_grupo lg\n"
+                + "from public.lab_grupo_estudio lge,public.lab_grupo lg\n"
                 + "where lge.fk_idlab_grupo=lg.idlab_grupo\n"
                 + " and lge.nombre ilike'%" + buscar + "%' "
                 + "order by lg.idlab_grupo desc,lge.orden asc ;";

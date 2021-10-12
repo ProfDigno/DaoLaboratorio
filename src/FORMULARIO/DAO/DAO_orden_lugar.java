@@ -20,10 +20,10 @@ public class DAO_orden_lugar {
     EvenFecha evefec = new EvenFecha();
     private String mensaje_insert = "ORDEN_LUGAR GUARDADO CORRECTAMENTE";
     private String mensaje_update = "ORDEN_LUGAR MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO orden_lugar(idorden_lugar,nombre) VALUES (?,?);";
-    private String sql_update = "UPDATE orden_lugar SET nombre=? WHERE idorden_lugar=?;";
-    private String sql_select = "SELECT idorden_lugar,nombre FROM orden_lugar order by 1 desc;";
-    private String sql_cargar = "SELECT idorden_lugar,nombre FROM orden_lugar WHERE idorden_lugar=";
+    private String sql_insert = "INSERT INTO public.orden_lugar(idorden_lugar,nombre) VALUES (?,?);";
+    private String sql_update = "UPDATE public.orden_lugar SET nombre=? WHERE idorden_lugar=?;";
+    private String sql_select = "SELECT idorden_lugar,nombre FROM public.orden_lugar order by 1 desc;";
+    private String sql_cargar = "SELECT idorden_lugar,nombre FROM public.orden_lugar WHERE idorden_lugar=";
 
     public void insertar_orden_lugar(Connection conn, orden_lugar orlu) {
         orlu.setC1idorden_lugar(eveconn.getInt_ultimoID_mas_uno(conn, orlu.getTb_orden_lugar(), orlu.getId_idorden_lugar()));

@@ -20,12 +20,12 @@ public class DAO_item_lab_estudio_predefinido {
     EvenFecha evefec = new EvenFecha();
     private String mensaje_insert = "ITEM_LAB_ESTUDIO_PREDEFINIDO GUARDADO CORRECTAMENTE";
     private String mensaje_update = "ITEM_LAB_ESTUDIO_PREDEFINIDO MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO item_lab_estudio_predefinido(iditem_lab_estudio_predefinido,orden,fk_idlab_estudio_predefinido,fk_idlab_estudio) VALUES (?,?,?,?);";
-    private String sql_update = "UPDATE item_lab_estudio_predefinido SET orden=?,fk_idlab_estudio_predefinido=?,fk_idlab_estudio=? WHERE iditem_lab_estudio_predefinido=?;";
+    private String sql_insert = "INSERT INTO public.item_lab_estudio_predefinido(iditem_lab_estudio_predefinido,orden,fk_idlab_estudio_predefinido,fk_idlab_estudio) VALUES (?,?,?,?);";
+    private String sql_update = "UPDATE public.item_lab_estudio_predefinido SET orden=?,fk_idlab_estudio_predefinido=?,fk_idlab_estudio=? WHERE iditem_lab_estudio_predefinido=?;";
 //    private String sql_select = "SELECT iditem_lab_estudio_predefinido,orden,fk_idlab_estudio_predefinido,fk_idlab_estudio FROM item_lab_estudio_predefinido order by 1 desc;";
-    private String sql_cargar = "SELECT iditem_lab_estudio_predefinido,orden,fk_idlab_estudio_predefinido,fk_idlab_estudio FROM item_lab_estudio_predefinido WHERE iditem_lab_estudio_predefinido=";
+    private String sql_cargar = "SELECT iditem_lab_estudio_predefinido,orden,fk_idlab_estudio_predefinido,fk_idlab_estudio FROM public.item_lab_estudio_predefinido WHERE iditem_lab_estudio_predefinido=";
     private String sql_select = "select ilep.iditem_lab_estudio_predefinido as idi,ilep.orden as ord,lep.nombre as resultado \n"
-            + "from item_lab_estudio_predefinido ilep,lab_estudio_predefinido lep\n"
+            + "from public.item_lab_estudio_predefinido ilep,public.lab_estudio_predefinido lep\n"
             + "where ilep.fk_idlab_estudio_predefinido=lep.idlab_estudio_predefinido\n"
             + "and ilep.fk_idlab_estudio=";
 

@@ -8,6 +8,7 @@ package FORMULARIO.VISTA;
 import BASEDATO.EvenConexion;
 import BASEDATO.LOCAL.ConnPostgres;
 import BASEDATO.LOCAL.VariablesBD;
+import BASEDATO.SERVER.ConnPostgresServer;
 import Config_JSON.json_config;
 import Evento.Color.cla_color_pelete;
 import Evento.Fecha.EvenFecha;
@@ -25,7 +26,9 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
      * Creates new form FrmMenuSainterLab
      */
     Connection conn = null;
+    Connection connSer = null;
     ConnPostgres conPs = new ConnPostgres();
+    ConnPostgresServer conPsSer = new ConnPostgresServer();
     VariablesBD var = new VariablesBD();
     EvenJFRAME evetbl = new EvenJFRAME();
     EvenFecha evefec = new EvenFecha();
@@ -35,10 +38,15 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
     private Timer tiempo;
     void abrir_formulario() {
         conPs.ConnectDBpostgres(conn, false, false);
+        conPsSer.ConnectDBpostgresServer( false);
         conn = conPs.getConnPosgres();
         jsconfig.cargar_jsom_configuracion();
         this.setTitle("LABORATORIO SANATORIO INTERMACIONAL");
         this.setExtendedState(MAXIMIZED_BOTH);
+    }
+    private void conexion_server(){
+        conPsSer.ConnectDBpostgresServer( true);
+        connSer = conPsSer.getConnPosgresServer();
     }
     public FrmMenuSainterLab() {
         initComponents();
@@ -55,6 +63,9 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        btnorden_idempiere = new javax.swing.JButton();
+        btnordencargar = new javax.swing.JButton();
+        btnorden_pedido = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -73,18 +84,57 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnorden_idempiere.setText("ORDEN IDEMPIERE");
+        btnorden_idempiere.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnorden_idempiereActionPerformed(evt);
+            }
+        });
+
+        btnordencargar.setText("ORDEN CARGAR");
+        btnordencargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnordencargarActionPerformed(evt);
+            }
+        });
+
+        btnorden_pedido.setText("ORDEN PEDIDO");
+        btnorden_pedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnorden_pedidoActionPerformed(evt);
+            }
+        });
+
+        escritorio.setLayer(btnorden_idempiere, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(btnordencargar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(btnorden_pedido, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 924, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnordencargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnorden_idempiere, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnorden_pedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(789, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnorden_idempiere)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnorden_pedido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnordencargar)
+                .addContainerGap(427, Short.MAX_VALUE))
         );
 
         jMenu2.setText("LABORATORIO");
@@ -205,6 +255,14 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem12);
 
+        jMenuItem14.setText("ORDEN IDEMPIERE");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem14);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -288,6 +346,26 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
         evetbl.abrir_TablaJinternal(new FrmLab_estudio_predefinido());
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        evetbl.abrir_TablaJinternal(new FrmOrdenIdempiere());
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void btnorden_idempiereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnorden_idempiereActionPerformed
+        // TODO add your handling code here:
+        evetbl.abrir_TablaJinternal(new FrmOrdenIdempiere());
+    }//GEN-LAST:event_btnorden_idempiereActionPerformed
+
+    private void btnordencargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnordencargarActionPerformed
+        // TODO add your handling code here:
+        evetbl.abrir_TablaJinternal(new FrmOrden_lab_cargaDato());
+    }//GEN-LAST:event_btnordencargarActionPerformed
+
+    private void btnorden_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnorden_pedidoActionPerformed
+        // TODO add your handling code here:
+        evetbl.abrir_TablaJinternal(new FrmOrden_lab_pedido());
+    }//GEN-LAST:event_btnorden_pedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -324,6 +402,9 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnorden_idempiere;
+    private javax.swing.JButton btnorden_pedido;
+    private javax.swing.JButton btnordencargar;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -335,6 +416,7 @@ public class FrmMenuSainterLab extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -17,10 +17,10 @@ public class DAO_validar_estudio {
 	EvenFecha evefec = new EvenFecha();
 	private String mensaje_insert = "VALIDAR_ESTUDIO GUARDADO CORRECTAMENTE";
 	private String mensaje_update = "VALIDAR_ESTUDIO MODIFICADO CORECTAMENTE";
-	private String sql_insert = "INSERT INTO validar_estudio(idvalidar_estudio,genero,edad_minimo,edad_maximo,valor_minimo,valor_maximo) VALUES (?,?,?,?,?,?);";
-	private String sql_update = "UPDATE validar_estudio SET genero=?,edad_minimo=?,edad_maximo=?,valor_minimo=?,valor_maximo=? WHERE idvalidar_estudio=?;";
-	private String sql_select = "SELECT idvalidar_estudio,genero,edad_minimo,edad_maximo,valor_minimo,valor_maximo FROM validar_estudio order by 1 desc;";
-	private String sql_cargar = "SELECT idvalidar_estudio,genero,edad_minimo,edad_maximo,valor_minimo,valor_maximo FROM validar_estudio WHERE idvalidar_estudio=";
+	private String sql_insert = "INSERT INTO public.validar_estudio(idvalidar_estudio,genero,edad_minimo,edad_maximo,valor_minimo,valor_maximo) VALUES (?,?,?,?,?,?);";
+	private String sql_update = "UPDATE public.validar_estudio SET genero=?,edad_minimo=?,edad_maximo=?,valor_minimo=?,valor_maximo=? WHERE idvalidar_estudio=?;";
+	private String sql_select = "SELECT idvalidar_estudio,genero,edad_minimo,edad_maximo,valor_minimo,valor_maximo FROM public.validar_estudio order by 1 desc;";
+	private String sql_cargar = "SELECT idvalidar_estudio,genero,edad_minimo,edad_maximo,valor_minimo,valor_maximo FROM public.validar_estudio WHERE idvalidar_estudio=";
 	public void insertar_validar_estudio(Connection conn, validar_estudio vali){
 		vali.setC1idvalidar_estudio(eveconn.getInt_ultimoID_mas_uno(conn, vali.getTb_validar_estudio(), vali.getId_idvalidar_estudio()));
 		String titulo = "insertar_validar_estudio";

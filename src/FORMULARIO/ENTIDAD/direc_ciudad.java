@@ -8,7 +8,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public direc_ciudad() {
-		setTb_direc_ciudad("direc_ciudad");
+		setTb_direc_ciudad("public.direc_ciudad");
 		setId_iddirec_ciudad("iddirec_ciudad");
 	}
 	public static String getTb_direc_ciudad(){

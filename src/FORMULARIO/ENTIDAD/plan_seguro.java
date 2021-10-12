@@ -8,7 +8,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public plan_seguro() {
-		setTb_plan_seguro("plan_seguro");
+		setTb_plan_seguro("public.plan_seguro");
 		setId_idplan_seguro("idplan_seguro");
 	}
 	public static String getTb_plan_seguro(){

@@ -1,6 +1,34 @@
 	package FORMULARIO.ENTIDAD;
 public class lab_estudio {
 
+    /**
+     * @return the C14concepto_id
+     */
+    public int getC14concepto_id() {
+        return C14concepto_id;
+    }
+
+    /**
+     * @param C14concepto_id the C14concepto_id to set
+     */
+    public void setC14concepto_id(int C14concepto_id) {
+        this.C14concepto_id = C14concepto_id;
+    }
+
+    /**
+     * @return the C12sku
+     */
+    public int getC12sku() {
+        return C12sku;
+    }
+
+    /**
+     * @param C12sku the C12sku to set
+     */
+    public void setC12sku(int C12sku) {
+        this.C12sku = C12sku;
+    }
+
 //---------------DECLARAR VARIABLES---------------
 private int C1idlab_estudio;
 private String C2nombre_completo;
@@ -13,11 +41,15 @@ private boolean C8es_validado;
 private String C9valor_de_referencia;
 private int C10fk_idlab_unidad;
 private int C11fk_idlab_grupo_estudio;
+private int C12sku;
+private boolean C13se_carga;
+private int C14concepto_id;
+private boolean C15es_estudio;
 private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public lab_estudio() {
-		setTb_lab_estudio("lab_estudio");
+		setTb_lab_estudio("public.lab_estudio");
 		setId_idlab_estudio("idlab_estudio");
 	}
 	public static String getTb_lab_estudio(){
@@ -109,5 +141,33 @@ private static String nom_idtabla;
      */
     public void setC11fk_idlab_grupo_estudio(int C11fk_idlab_grupo_estudio) {
         this.C11fk_idlab_grupo_estudio = C11fk_idlab_grupo_estudio;
+    }
+
+    /**
+     * @return the C13se_carga
+     */
+    public boolean isC13se_carga() {
+        return C13se_carga;
+    }
+
+    /**
+     * @param C13se_carga the C13se_carga to set
+     */
+    public void setC13se_carga(boolean C13se_carga) {
+        this.C13se_carga = C13se_carga;
+    }
+
+    /**
+     * @return the C15es_estudio
+     */
+    public boolean isC15es_estudio() {
+        return C15es_estudio;
+    }
+
+    /**
+     * @param C15es_estudio the C15es_estudio to set
+     */
+    public void setC15es_estudio(boolean C15es_estudio) {
+        this.C15es_estudio = C15es_estudio;
     }
 }

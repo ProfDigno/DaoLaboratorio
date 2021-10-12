@@ -10,7 +10,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public item_lab_estudio_predefinido() {
-		setTb_item_lab_estudio_predefinido("item_lab_estudio_predefinido");
+		setTb_item_lab_estudio_predefinido("public.item_lab_estudio_predefinido");
 		setId_iditem_lab_estudio_predefinido("iditem_lab_estudio_predefinido");
 	}
 	public static String getTb_item_lab_estudio_predefinido(){

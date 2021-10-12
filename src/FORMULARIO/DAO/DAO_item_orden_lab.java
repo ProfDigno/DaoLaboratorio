@@ -29,14 +29,20 @@ public class DAO_item_orden_lab {
     
     private String mensaje_insert = "ITEM_ORDEN_LAB GUARDADO CORRECTAMENTE";
     private String mensaje_update = "ITEM_ORDEN_LAB MODIFICADO CORECTAMENTE";
-    private String sql_insert = "INSERT INTO item_orden_lab(iditem_orden_lab,descripcion,numerico_decimal,valor_numerico,valor_testo,valor_predefinido,valor_de_referencia,unidad,es_numerico,es_testo,es_predefinido,estado_estudio,nota,cobertura,fk_idorden_lab,fk_idlab_estudio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-    private String sql_update = "UPDATE item_orden_lab SET descripcion=?,numerico_decimal=?,valor_numerico=?,valor_testo=?,valor_predefinido=?,valor_de_referencia=?,unidad=?,es_numerico=?,es_testo=?,es_predefinido=?,estado_estudio=?,nota=?,cobertura=?,fk_idorden_lab=?,fk_idlab_estudio=? WHERE iditem_orden_lab=?;";
-    private String sql_update_carga_numerico = "UPDATE item_orden_lab SET valor_numerico=?,estado_estudio=?,nota=? WHERE iditem_orden_lab=?;";
-    private String sql_update_carga_testo = "UPDATE item_orden_lab SET valor_testo=?,estado_estudio=?,nota=? WHERE iditem_orden_lab=?;";
-    private String sql_update_carga_predefinido = "UPDATE item_orden_lab SET valor_predefinido=?,estado_estudio=?,nota=? WHERE iditem_orden_lab=?;";
+    private String sql_insert = "INSERT INTO public.item_orden_lab(iditem_orden_lab,descripcion,numerico_decimal,"
+            + "valor_numerico,valor_testo,valor_predefinido,valor_de_referencia,unidad,"
+            + "es_numerico,es_testo,es_predefinido,estado_estudio,nota,cobertura,"
+            + "fk_idorden_lab,fk_idlab_estudio,sku,se_carga) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    private String sql_update = "UPDATE public.item_orden_lab SET descripcion=?,numerico_decimal=?,valor_numerico=?,valor_testo=?,"
+            + "valor_predefinido=?,valor_de_referencia=?,unidad=?,"
+            + "es_numerico=?,es_testo=?,es_predefinido=?,estado_estudio=?,nota=?,cobertura=?,"
+            + "fk_idorden_lab=?,fk_idlab_estudio=?,sku=?,se_carga=? WHERE iditem_orden_lab=?;";
+    private String sql_update_carga_numerico = "UPDATE public.item_orden_lab SET valor_numerico=?,estado_estudio=?,nota=? WHERE iditem_orden_lab=?;";
+    private String sql_update_carga_testo = "UPDATE public.item_orden_lab SET valor_testo=?,estado_estudio=?,nota=? WHERE iditem_orden_lab=?;";
+    private String sql_update_carga_predefinido = "UPDATE public.item_orden_lab SET valor_predefinido=?,estado_estudio=?,nota=? WHERE iditem_orden_lab=?;";
 
-    private String sql_select = "SELECT iditem_orden_lab,descripcion,numerico_decimal,valor_numerico,valor_testo,valor_predefinido,valor_de_referencia,unidad,es_numerico,es_testo,es_predefinido,estado_estudio,nota,cobertura,fk_idorden_lab,fk_idlab_estudio FROM item_orden_lab order by 1 desc;";
-    private String sql_cargar = "SELECT iditem_orden_lab,descripcion,numerico_decimal,valor_numerico,valor_testo,valor_predefinido,valor_de_referencia,unidad,es_numerico,es_testo,es_predefinido,estado_estudio,nota,cobertura,fk_idorden_lab,fk_idlab_estudio FROM item_orden_lab WHERE iditem_orden_lab=";
+    private String sql_select = "SELECT iditem_orden_lab,descripcion,numerico_decimal,valor_numerico,valor_testo,valor_predefinido,valor_de_referencia,unidad,es_numerico,es_testo,es_predefinido,estado_estudio,nota,cobertura,fk_idorden_lab,fk_idlab_estudio,sku,se_carga FROM public.item_orden_lab order by 1 desc;";
+    private String sql_cargar = "SELECT iditem_orden_lab,descripcion,numerico_decimal,valor_numerico,valor_testo,valor_predefinido,valor_de_referencia,unidad,es_numerico,es_testo,es_predefinido,estado_estudio,nota,cobertura,fk_idorden_lab,fk_idlab_estudio,sku,se_carga FROM public.item_orden_lab WHERE iditem_orden_lab=";
 
     public void insertar_item_orden_lab_de_orden(Connection conn, JTable tblitem_producto, orden_lab ordl) {
         item_orden_lab iord = new item_orden_lab();
@@ -56,7 +62,7 @@ public class DAO_item_orden_lab {
                 iord.setC2descripcion(descripcion);
                 iord.setC3numerico_decimal(estu.getC4numerico_decimal());
                 iord.setC4valor_numerico(0);
-                iord.setC5valor_testo("*");
+                iord.setC5valor_testo(" ");
                 iord.setC6valor_predefinido(0);
                 iord.setC7valor_de_referencia(estu.getC9valor_de_referencia());
                 iord.setC8unidad(unidad);
@@ -64,27 +70,30 @@ public class DAO_item_orden_lab {
                 iord.setC10es_testo(estu.getC6es_testo());
                 iord.setC11es_predefinido(estu.getC7es_predefinido());
                 iord.setC12estado_estudio(tbl_or.getEstado_pedido());
-                iord.setC13nota("*");
+                iord.setC13nota(" ");
                 iord.setC14cobertura(setcobertura);
                 iord.setC15fk_idorden_lab(ordl.getC1idorden_lab());
                 iord.setC16fk_idlab_estudio(fk_idlab_estudio);
+                iord.setC17sku(estu.getC12sku());
+                iord.setC18se_carga(estu.isC13se_carga());
                 insertar_item_orden_lab(conn, iord);
             } else {
                 String titulo = "cargar_item_orden_lab_estudio_panel";
                 String sql = "select le.idlab_estudio,le.nombre_completo,le.numerico_decimal,\n"
-                        + "le.es_numerico,le.es_testo,le.es_predefinido,le.valor_de_referencia,lu.nombre as unidad \n"
-                        + "from item_lab_estudio ile, lab_estudio le,lab_unidad lu \n"
+                        + "le.es_numerico,le.es_testo,le.es_predefinido,le.valor_de_referencia,lu.nombre as unidad, \n"
+                        + "le.sku,le.se_carga "
+                        + "from public.item_lab_estudio ile, public.lab_estudio le,public.lab_unidad lu \n"
                         + "where ile.fk_idlab_estudio=le.idlab_estudio\n"
                         + "and le.fk_idlab_unidad=lu.idlab_unidad\n"
-                        + "and ile.fk_idlab_grupo_estudio="+fk_idlab_grupo_estudio
-                        + " and le.fk_idlab_grupo_estudio=0";
+                        + "and ile.fk_idlab_grupo_estudio="+fk_idlab_grupo_estudio;
+                        //+ " and le.fk_idlab_grupo_estudio=0";
                 try {
                     ResultSet rs = eveconn.getResulsetSQL(conn, sql, titulo);
                     while (rs.next()) {
                         iord.setC2descripcion(rs.getString("nombre_completo"));
                         iord.setC3numerico_decimal(rs.getInt("numerico_decimal"));
                         iord.setC4valor_numerico(0);
-                        iord.setC5valor_testo("*");
+                        iord.setC5valor_testo(" ");
                         iord.setC6valor_predefinido(0);
                         iord.setC7valor_de_referencia(rs.getString("valor_de_referencia"));
                         iord.setC8unidad(rs.getString("unidad"));
@@ -92,10 +101,12 @@ public class DAO_item_orden_lab {
                         iord.setC10es_testo(rs.getBoolean("es_testo"));
                         iord.setC11es_predefinido(rs.getBoolean("es_predefinido"));
                         iord.setC12estado_estudio(tbl_or.getEstado_pedido());
-                        iord.setC13nota("*");
+                        iord.setC13nota(" ");
                         iord.setC14cobertura(setcobertura);
                         iord.setC15fk_idorden_lab(ordl.getC1idorden_lab());
                         iord.setC16fk_idlab_estudio(rs.getInt("idlab_estudio"));
+                        iord.setC17sku(rs.getInt("sku"));
+                        iord.setC18se_carga(rs.getBoolean("se_carga"));
                         insertar_item_orden_lab(conn, iord);
                     }
                 } catch (Exception e) {
@@ -126,6 +137,7 @@ public class DAO_item_orden_lab {
                 iord.setC14cobertura(rs.getBoolean(14));
                 iord.setC15fk_idorden_lab(rs.getInt(15));
                 iord.setC16fk_idlab_estudio(rs.getInt(16));
+                iord.setC17sku(rs.getInt(17));
                 evemen.Imprimir_serial_sql(sql_cargar + "\n" + iord.toString(), titulo);
             }
         } catch (Exception e) {
@@ -155,6 +167,8 @@ public class DAO_item_orden_lab {
             pst.setBoolean(14, iord.getC14cobertura());
             pst.setInt(15, iord.getC15fk_idorden_lab());
             pst.setInt(16, iord.getC16fk_idlab_estudio());
+            pst.setInt(17,iord.getC17sku());
+            pst.setBoolean(18, iord.isC18se_carga());
             pst.execute();
             pst.close();
             evemen.Imprimir_serial_sql(sql_insert + "\n" + iord.toString(), titulo);
@@ -184,7 +198,10 @@ public class DAO_item_orden_lab {
             pst.setBoolean(13, iord.getC14cobertura());
             pst.setInt(14, iord.getC15fk_idorden_lab());
             pst.setInt(15, iord.getC16fk_idlab_estudio());
-            pst.setInt(16, iord.getC1iditem_orden_lab());
+            pst.setInt(16,iord.getC17sku());
+            pst.setBoolean(17, iord.isC18se_carga());
+            pst.setInt(18, iord.getC1iditem_orden_lab());
+            
             pst.execute();
             pst.close();
             evemen.Imprimir_serial_sql(sql_update + "\n" + iord.toString(), titulo);
@@ -265,6 +282,8 @@ public class DAO_item_orden_lab {
                 iord.setC14cobertura(rs.getBoolean(14));
                 iord.setC15fk_idorden_lab(rs.getInt(15));
                 iord.setC16fk_idlab_estudio(rs.getInt(16));
+                iord.setC17sku(rs.getInt(17));
+                iord.setC18se_carga(rs.getBoolean(18));
                 evemen.Imprimir_serial_sql(sql_cargar + "\n" + iord.toString(), titulo);
             }
         } catch (Exception e) {
@@ -284,56 +303,77 @@ public class DAO_item_orden_lab {
 
     public void actualizar_tabla_item_orden_lab_pedido(Connection conn, JTable tbltabla, int idorden_lab) {
         String sql = "select iol.iditem_orden_lab,\n"
-                + "case when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge\n"
+                + "case when (select lge.orden as orden from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
                 + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
                 + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_seccion()
                 + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null \n"
-                + "then (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge\n"
+                + "then (select lge.orden as orden from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
                 + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
                 + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_seccion()
                 + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)\n"
-                + "else '----------' end as seccion,\n"
-                + "case when (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge\n"
+                    + "else 99 end as os,\n"
+                + "case when (select lge.nombre as nombre from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
+                + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
+                + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_seccion()
+                + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null \n"
+                + "then (select lge.nombre as gru_valor from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
+                + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
+                + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_seccion()
+                + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)\n"
+                    + "else '----------' end as seccion,\n"
+                + "case when (select lge.orden as orden from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
                 + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
                 + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_grupo_valor()
                 + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null \n"
-                + "then (select lge.nombre as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge\n"
+                + "then (select lge.orden as orden from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
                 + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
                 + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_grupo_valor()
                 + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)\n"
-                + "else '----------' end as gru_valor,\n"
-                + "case when (select ile1.orden as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge\n"
+                    + "else 99 end as og,\n"
+                + "case when (select lge.nombre as nombre from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
                 + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
                 + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_grupo_valor()
                 + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null \n"
-                + "then (select ile1.orden as gru_valor from item_lab_estudio ile1,lab_grupo_estudio lge\n"
+                + "then (select lge.nombre as gru_valor from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
                 + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
                 + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_grupo_valor()
                 + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)\n"
-                + "else 0 end as orden,\n"
+                    + "else '----------' end as gru_valor,\n"
+                + "case when (select ile1.orden as nombre from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
+                + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
+                + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_grupo_valor()
+                + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio) is not null \n"
+                + "then (select ile1.orden as gru_valor from public.item_lab_estudio ile1,public.lab_grupo_estudio lge\n"
+                + "where ile1.fk_idlab_grupo_estudio=lge.idlab_grupo_estudio\n"
+                + "and lge.fk_idlab_grupo="+tbl_or.getIdtabla_grupo_valor()
+                + " and ile1.fk_idlab_estudio=iol.fk_idlab_estudio)\n"
+                + "else 0 end as ord_gv,\n"
                 + "iol.fk_idlab_estudio as idle,iol.descripcion,\n"
                 + "case when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_pedido()+"') then null\n"
                 + "when (iol.es_testo=true and iol.estado_estudio='"+tbl_or.getEstado_pedido()+"') then null\n"
                 + "when (iol.es_predefinido=true and iol.estado_estudio='"+tbl_or.getEstado_pedido()+"') then null\n"
-                + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=0) then (to_char(iol.valor_numerico,'999G999G999'))\n"
-                + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=1) then (to_char(iol.valor_numerico,'999G999G999D9'))\n"
-                + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=2) then (to_char(iol.valor_numerico,'999G999G999D99'))\n"
+                + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=0 and iol.valor_numerico>=0) then (to_char(iol.valor_numerico,'999G999G999'))\n"
+                + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=1 and iol.valor_numerico>=1) then (to_char(iol.valor_numerico,'999G999G999D9'))\n"
+                + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=2 and iol.valor_numerico>=1) then (to_char(iol.valor_numerico,'999G999G999D99'))\n"
+                    + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=1) then (to_char(iol.valor_numerico,'0.9'))\n"
+                    + "when (iol.es_numerico=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"' and iol.numerico_decimal=2) then (to_char(iol.valor_numerico,'0.99'))\n"
                 + "when (iol.es_testo=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"') then (iol.valor_testo)\n"
                 + "when (iol.es_predefinido=true and iol.estado_estudio='"+tbl_or.getEstado_cargado()+"') then "
-                + "(select lep.nombre from lab_estudio_predefinido lep where lep.idlab_estudio_predefinido=iol.valor_predefinido)\n"
-                + "else 'mas_tipo' end as tipodato,iol.estado_estudio as estado,\n"
+                + "(select lep.nombre from public.lab_estudio_predefinido lep where lep.idlab_estudio_predefinido=iol.valor_predefinido)\n"
+                + "else 'error' end as tipodato,iol.estado_estudio as estado,\n"
                 + "case when iol.cobertura=true then 'SI'\n"
                 + "when iol.cobertura=false then 'NO'\n"
                 + "else 'otro' end as cober\n"
-                + "from item_orden_lab iol\n"
-                + "where iol.fk_idorden_lab="+idorden_lab
-                + " order by 2 desc,3 desc,4 asc,5 asc;\n";
+                + "from public.item_orden_lab iol\n"
+                + "where iol.fk_idorden_lab="+idorden_lab+"\n "
+                + "and iol.se_carga=true \n"
+                + " order by 2 asc,4 asc,6 asc;\n";
         eveconn.Select_cargar_jtable(conn, sql, tbltabla);
         ancho_tabla_item_orden_lab_pedido(tbltabla);
     }
 
     public void ancho_tabla_item_orden_lab_pedido(JTable tbltabla) {
-        int Ancho[] = {4, 22,18,4,4,25,10,8,5};
+        int Ancho[] = {4,4,18,4,18,4,4,20,10,8,5};
         evejt.setAnchoColumnaJtable(tbltabla, Ancho);
     }
 }

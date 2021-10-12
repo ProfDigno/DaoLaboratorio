@@ -45,7 +45,7 @@ public class BO_orden_lab {
                     conn.setAutoCommit(false);
                 }
                 ord_dao.update_orden_lab(conn, ord);
-                ord_dao.actualizar_tabla_orden_lab(conn, tbltabla);
+                ord_dao.actualizar_tabla_orden_lab(conn, tbltabla,"");
                 conn.commit();
             } catch (SQLException e) {
                 evmen.mensaje_error(e, ord.toString(), titulo);

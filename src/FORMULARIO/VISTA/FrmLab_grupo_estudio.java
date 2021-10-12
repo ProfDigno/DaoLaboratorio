@@ -54,7 +54,7 @@ public class FrmLab_grupo_estudio extends javax.swing.JInternalFrame {
         color_formulario();
     }
     private void cargar_grupo(){
-        comb.cargarCombobox(conn, jCgrupo,"idlab_grupo","nombre","lab_grupo","");
+        comb.cargarCombobox(conn, jCgrupo,"idlab_grupo","nombre","public.lab_grupo","");
         hab_grupo=true;
     }
     private void color_formulario(){
@@ -118,7 +118,7 @@ public class FrmLab_grupo_estudio extends javax.swing.JInternalFrame {
             iles.setC1iditem_lab_estudio(iditem_lab_estudio);
             ilesBO.update_item_lab_estudio_orden(iles);
             esdao.actualizar_tabla_lab_estudio_ordenar(conn, tbllab_estudios, idlab_grupo_estudio);
-            String Sorden=String.valueOf(eveconn.getInt_SumarOrden_mas_uno(conn, "item_lab_estudio", "orden", "fk_idlab_grupo_estudio", idlab_grupo_estudio));
+            String Sorden=String.valueOf(eveconn.getInt_SumarOrden_mas_uno(conn, "public.item_lab_estudio", "orden", "fk_idlab_grupo_estudio", idlab_grupo_estudio));
             txtactualizar_orden.setText(Sorden);
 //            tbllab_estudios.requestFocus();
 //            tbllab_estudios.changeSelection(0, 0, false, false);
@@ -568,7 +568,7 @@ public class FrmLab_grupo_estudio extends javax.swing.JInternalFrame {
     private void jCgrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCgrupoActionPerformed
         // TODO add your handling code here:
         if(hab_grupo){
-        fk_idlab_grupo=comb.getInt_seleccionar_COMBOBOX(conn, jCgrupo,"idlab_grupo","nombre","lab_grupo");
+        fk_idlab_grupo=comb.getInt_seleccionar_COMBOBOX(conn, jCgrupo,"idlab_grupo","nombre","public.lab_grupo");
         }
     }//GEN-LAST:event_jCgrupoActionPerformed
 

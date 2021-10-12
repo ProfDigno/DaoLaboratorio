@@ -65,14 +65,40 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
     private boolean buscar_tabla_predefinido;
     private int idlab_estudio_predefinido;
     private int fk_idlab_estudio;
+    private String filtro_orden_lab="";
 
     private void abrir_formulario() {
         this.setTitle("CARGAR ORDEN");
         evetbl.centrar_formulario_internalframa(this);
-        ordDao.actualizar_tabla_orden_lab(conn, tblbuscar_orden);
+        ordDao.actualizar_tabla_orden_lab(conn, tblbuscar_orden,filtro_orden_lab);
         txtnota.setEnabled(false);
     }
-
+    private String getStringFiltrofec_orden_lab(){
+        String fecha="";
+        /**
+         * + "where  date_part('year',fecha_emision)=" + ano
+                + " and date_part('week',fecha_emision)=" + semana
+         */
+        if(jRfecha_hoy.isSelected()){
+            fecha=" and date(ol.fecha_inicio)=date(current_date) ";
+//            fecha=" and date_part('year',ol.fecha_inicio)=date_part('year',current_date) ";
+        }
+        if(jRfecha_ayer.isSelected()){
+            fecha=" and date(ol.fecha_inicio)=date(current_date - 1) ";
+        }
+        if(jRfecha_semana.isSelected()){
+            fecha=" and date_part('year',ol.fecha_inicio)=date_part('year',current_date) "
+                    + "and date_part('week',ol.fecha_inicio)=date_part('week',current_date) ";
+        }
+        if(jRfecha_mes.isSelected()){
+            fecha=" and date_part('year',ol.fecha_inicio)=date_part('year',current_date) "
+                    + "and date_part('month',ol.fecha_inicio)=date_part('month',current_date) ";
+        }
+        return fecha;
+    }
+    void radio_filtro_fecha(){
+        ordDao.actualizar_tabla_orden_lab(conn, tblbuscar_orden,getStringFiltrofec_orden_lab());
+    }
     private void seleccionar_orden() {
         if (tblbuscar_orden.getSelectedRow() >= 0) {
             idorden_lab = eveJtab.getInt_select_id(tblbuscar_orden);
@@ -85,6 +111,7 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
             txtpaciente_direccion.setText(pers.getC6direccion());
             txtpaciente_telefono.setText(pers.getC5telefono());
             txtpaciente_genero.setText(pers.getC8genero());
+            txtpaciente_edad.setText(pers.getC16edad());
             tsegdao.cargar_tipo_seguro(conn, tseg, pers.getC12fk_idtipo_seguro());
             txtpaciente_tipo_seguro.setText(tseg.getC2nombre());
             psegdao.cargar_plan_seguro(conn, pseg, pers.getC13fk_idplan_seguro());
@@ -137,7 +164,7 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
             }
             if (iord.getC11es_predefinido()) {
                 eveJtab.mostrar_JTabbedPane(jTab_testo_predefinido, 1);
-                fk_idlab_estudio = eveJtab.getInt_select(tblitem_orden_lab, 4);
+                fk_idlab_estudio = eveJtab.getInt_select(tblitem_orden_lab, 6);
                 txtnombre_predefinido.requestFocus();
             }
         }
@@ -222,7 +249,7 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
             ordl.setC1idorden_lab(idorden_lab);
             ordl.setC4estado(tbl_or.getEstado_cargado());
             ordBo.update_orden_lab_estado(ordl,tbl_or.getEstado_cargado());
-            ordDao.actualizar_tabla_orden_lab(conn, tblbuscar_orden);
+            ordDao.actualizar_tabla_orden_lab(conn, tblbuscar_orden,filtro_orden_lab);
         }
     }
      private void update_orden_cancelado() {
@@ -230,19 +257,19 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
             ordl.setC1idorden_lab(idorden_lab);
             ordl.setC4estado(tbl_or.getEstado_cancelado());
             ordBo.update_orden_lab_estado(ordl,tbl_or.getEstado_cancelado());
-            ordDao.actualizar_tabla_orden_lab(conn, tblbuscar_orden);
+            ordDao.actualizar_tabla_orden_lab(conn, tblbuscar_orden,filtro_orden_lab);
         }
     }
 
     private void buscar_cargar_Jlista_predefinido(int fk_idlab_estudio) {
-        eveconn.buscar_cargar_Jlista(conn, txtnombre_predefinido, jLista_predefinido, "item_lab_estudio_predefinido ilep,lab_estudio_predefinido lep",
+        eveconn.buscar_cargar_Jlista(conn, txtnombre_predefinido, jLista_predefinido, "public.item_lab_estudio_predefinido ilep,public.lab_estudio_predefinido lep",
                 "ilep.fk_idlab_estudio_predefinido=lep.idlab_estudio_predefinido and ilep.fk_idlab_estudio=" + fk_idlab_estudio + " and lep.nombre",
                 "(lep.idlab_estudio_predefinido||'-('||lep.nombre||')') as nombre", 5);
     }
 
     private int cargar_idtabla_predefinido() {
         int idlab_estudio_predefinido = eveconn.getInt_seleccionar_JLista(conn, txtnombre_predefinido, jLista_predefinido, false,
-                "item_lab_estudio_predefinido ilep,lab_estudio_predefinido lep",
+                "public.item_lab_estudio_predefinido ilep,public.lab_estudio_predefinido lep",
                 "concat(lep.idlab_estudio_predefinido,'-(',lep.nombre,')')",
                 "(lep.idlab_estudio_predefinido||'-('||lep.nombre||')') as nombre", "nombre", "idlab_estudio_predefinido");
         return idlab_estudio_predefinido;
@@ -262,11 +289,23 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gru_fec = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblbuscar_orden = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jRfecha_hoy = new javax.swing.JRadioButton();
+        jRfecha_ayer = new javax.swing.JRadioButton();
+        jRfecha_semana = new javax.swing.JRadioButton();
+        jLabel13 = new javax.swing.JLabel();
+        txtfecha_desde = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtfecha_hasta = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jRfecha_mes = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -283,7 +322,7 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtpaciente_genero = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtpaciente_edad = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtpaciente_tipo_seguro = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -366,9 +405,97 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("FILTRO FECHA"));
+
+        gru_fec.add(jRfecha_hoy);
+        jRfecha_hoy.setSelected(true);
+        jRfecha_hoy.setText("HOY");
+        jRfecha_hoy.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRfecha_hoyItemStateChanged(evt);
+            }
+        });
+
+        gru_fec.add(jRfecha_ayer);
+        jRfecha_ayer.setText("AYER");
+        jRfecha_ayer.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRfecha_ayerItemStateChanged(evt);
+            }
+        });
+
+        gru_fec.add(jRfecha_semana);
+        jRfecha_semana.setText("SEMANA");
+        jRfecha_semana.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRfecha_semanaItemStateChanged(evt);
+            }
+        });
+
+        jLabel13.setText("DESDE:");
+
+        jLabel14.setText("aaa-mm-dd");
+
+        jLabel15.setText("HASTA:");
+
+        jLabel16.setText("aaa-mm-dd");
+
+        gru_fec.add(jRfecha_mes);
+        jRfecha_mes.setText("MES");
+        jRfecha_mes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRfecha_mesItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtfecha_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfecha_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel14))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jRfecha_hoy)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRfecha_ayer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRfecha_semana)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRfecha_mes, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRfecha_hoy)
+                    .addComponent(jRfecha_ayer)
+                    .addComponent(jRfecha_semana)
+                    .addComponent(jRfecha_mes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtfecha_desde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(txtfecha_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -376,12 +503,17 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 76, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("BUSCAR ORDEN DE LAB", jPanel1);
@@ -415,7 +547,7 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
         );
 
         panel_paciente.setBackground(new java.awt.Color(204, 204, 255));
@@ -448,8 +580,8 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
         txtpaciente_genero.setEditable(false);
         txtpaciente_genero.setBackground(new java.awt.Color(255, 255, 204));
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(255, 255, 204));
+        txtpaciente_edad.setEditable(false);
+        txtpaciente_edad.setBackground(new java.awt.Color(255, 255, 204));
 
         jLabel10.setText("SEGURO:");
 
@@ -491,7 +623,7 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
                             .addComponent(jLabel9))
                         .addGap(10, 10, 10)
                         .addGroup(panel_pacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7)
+                            .addComponent(txtpaciente_edad)
                             .addGroup(panel_pacienteLayout.createSequentialGroup()
                                 .addComponent(txtpaciente_genero, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -520,7 +652,7 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtpaciente_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtpaciente_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_pacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -540,6 +672,9 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
         txtvalor_numerico.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtvalor_numericoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtvalor_numericoKeyTyped(evt);
             }
         });
 
@@ -888,10 +1023,34 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
     private void btnimprimir_ordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimir_ordenActionPerformed
         // TODO add your handling code here:
         if (tblbuscar_orden.getSelectedRow() >= 0) {
-            
             ordDao.imprimir_orden(conn, idorden_lab);
         }
     }//GEN-LAST:event_btnimprimir_ordenActionPerformed
+
+    private void txtvalor_numericoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtvalor_numericoKeyTyped
+        // TODO add your handling code here:
+        evejtf.soloNumero(evt);
+    }//GEN-LAST:event_txtvalor_numericoKeyTyped
+
+    private void jRfecha_hoyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRfecha_hoyItemStateChanged
+        // TODO add your handling code here:
+        radio_filtro_fecha();
+    }//GEN-LAST:event_jRfecha_hoyItemStateChanged
+
+    private void jRfecha_ayerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRfecha_ayerItemStateChanged
+        // TODO add your handling code here:
+        radio_filtro_fecha();
+    }//GEN-LAST:event_jRfecha_ayerItemStateChanged
+
+    private void jRfecha_semanaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRfecha_semanaItemStateChanged
+        // TODO add your handling code here:
+        radio_filtro_fecha();
+    }//GEN-LAST:event_jRfecha_semanaItemStateChanged
+
+    private void jRfecha_mesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRfecha_mesItemStateChanged
+        // TODO add your handling code here:
+        radio_filtro_fecha();
+    }//GEN-LAST:event_jRfecha_mesItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -900,10 +1059,15 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnguardar_testo;
     private javax.swing.JButton btnimprimir_orden;
     private javax.swing.JButton btnpasar_cargados;
+    private javax.swing.ButtonGroup gru_fec;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -917,16 +1081,20 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JRadioButton jRfecha_ayer;
+    private javax.swing.JRadioButton jRfecha_hoy;
+    private javax.swing.JRadioButton jRfecha_mes;
+    private javax.swing.JRadioButton jRfecha_semana;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTab_testo_predefinido;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel lblvalor_numerico;
     private javax.swing.JPanel panel_paciente;
     private javax.swing.JPanel panel_valor_texto;
@@ -936,11 +1104,14 @@ public class FrmOrden_lab_cargaDato extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtAvalor_testo;
     private javax.swing.JTextField txtUnidad;
     private javax.swing.JTextField txtfec_inicio;
+    private javax.swing.JTextField txtfecha_desde;
+    private javax.swing.JTextField txtfecha_hasta;
     private javax.swing.JTextField txtnombre_predefinido;
     private javax.swing.JTextField txtnota;
     private javax.swing.JTextField txtorden;
     private javax.swing.JTextField txtpaciente_cedula;
     private javax.swing.JTextField txtpaciente_direccion;
+    private javax.swing.JTextField txtpaciente_edad;
     private javax.swing.JTextField txtpaciente_genero;
     private javax.swing.JTextField txtpaciente_nombre;
     private javax.swing.JTextField txtpaciente_plan_seguro;

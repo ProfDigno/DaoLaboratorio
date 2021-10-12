@@ -10,7 +10,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public item_lab_estudio() {
-		setTb_item_lab_estudio("item_lab_estudio");
+		setTb_item_lab_estudio("public.item_lab_estudio");
 		setId_iditem_lab_estudio("iditem_lab_estudio");
 	}
 	public static String getTb_item_lab_estudio(){

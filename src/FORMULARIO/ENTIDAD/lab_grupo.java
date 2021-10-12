@@ -9,7 +9,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public lab_grupo() {
-		setTb_lab_grupo("lab_grupo");
+		setTb_lab_grupo("public.lab_grupo");
 		setId_idlab_grupo("idlab_grupo");
 	}
 	public static String getTb_lab_grupo(){

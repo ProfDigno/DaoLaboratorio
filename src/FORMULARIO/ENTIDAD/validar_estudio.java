@@ -12,7 +12,7 @@ private static String nom_tabla;
 private static String nom_idtabla;
 //---------------TABLA-ID---------------
 	public validar_estudio() {
-		setTb_validar_estudio("validar_estudio");
+		setTb_validar_estudio("public.validar_estudio");
 		setId_idvalidar_estudio("idvalidar_estudio");
 	}
 	public static String getTb_validar_estudio(){
